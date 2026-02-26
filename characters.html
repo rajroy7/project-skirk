@@ -8,9 +8,26 @@
   <style>
     .page-title{margin:18px 0 8px 0;color:#7c5cff;letter-spacing:2px}
     .cards-grid{display:flex;flex-wrap:wrap;gap:20px}
-    .char-card{width:220px;background:rgba(255,255,255,0.04);border-radius:12px;padding:12px;backdrop-filter:blur(8px)}
-    .char-card img{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:10px}
-    .char-meta{font-size:13px;opacity:0.9}
+    .char-card{width:240px;background:linear-gradient(135deg,rgba(43,37,69,0.6),rgba(30,27,46,0.4));border-radius:12px;padding:0;overflow:hidden;backdrop-filter:blur(8px);transition:0.2s;cursor:pointer;border:1px solid rgba(255,255,255,0.1);position:relative}
+    .char-card:hover{transform:translateY(-6px);box-shadow:0 8px 24px rgba(124,92,255,0.2);border-color:rgba(124,92,255,0.3)}
+    .version-badge{position:absolute;top:8px;left:8px;background:rgba(124,92,255,0.8);padding:4px 8px;border-radius:4px;font-size:11px;font-weight:bold;z-index:10;color:white}
+    .rarity-badge{position:absolute;top:8px;right:8px;background:rgba(124,92,255,0.8);padding:4px 8px;border-radius:4px;font-size:11px;font-weight:bold;z-index:10;color:#ffd700}
+    .char-card img{width:100%;height:240px;object-fit:cover;margin:0}
+    .char-card h3{margin:12px 12px 4px 12px;font-size:16px;color:#7c5cff}
+    .char-card p{margin:0 12px 0 12px;font-size:12px;opacity:0.7;color:#aaa}
+    .char-meta{display:flex;gap:8px;margin:10px 12px 12px 12px;justify-content:center;align-items:center}
+    .char-meta img{width:28px;height:28px;border-radius:4px;background:rgba(255,255,255,0.1);padding:2px}
+    
+    .filters-container{margin:20px 0;padding:16px;background:rgba(255,255,255,0.02);border-radius:10px;border:1px solid rgba(255,255,255,0.1)}
+    .filter-group{margin-bottom:16px}
+    .filter-group h4{margin:0 0 10px 0;color:#aaa;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+    .filter-buttons{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .filter-btn{padding:8px 12px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:6px;cursor:pointer;transition:0.2s;font-size:13px}
+    .filter-btn:hover{border-color:rgba(124,92,255,0.5);background:rgba(124,92,255,0.1)}
+    .filter-btn.active{background:#7c5cff;color:white;border-color:#7c5cff}
+    .clear-filters-btn{padding:6px 12px;background:rgba(220,100,100,0.2);border:1px solid rgba(220,100,100,0.4);color:#ff9999;border-radius:6px;cursor:pointer;transition:0.2s;font-size:12px}
+    .clear-filters-btn:hover{background:rgba(220,100,100,0.3);border-color:rgba(220,100,100,0.6)}
+    .char-card.hidden{display:none}
   </style>
 </head>
 <body>
@@ -158,6 +175,47 @@
   <section style="padding:24px">
     <h1 class="page-title">Characters</h1>
     <p style="opacity:0.8">Browse characters. Data is loaded from <strong>characters.json</strong>.</p>
+
+    <!-- FILTERS -->
+    <div class="filters-container">
+      <!-- Rarity Filter -->
+      <div class="filter-group">
+        <h4>Rarity</h4>
+        <div class="filter-buttons">
+          <button class="filter-btn rarity-filter" data-rarity="5">5★</button>
+          <button class="filter-btn rarity-filter" data-rarity="4">4★</button>
+        </div>
+      </div>
+
+      <!-- Element Filter -->
+      <div class="filter-group">
+        <h4>Elements</h4>
+        <div class="filter-buttons">
+          <button class="filter-btn element-filter" data-element="Pyro" title="Pyro">🔥</button>
+          <button class="filter-btn element-filter" data-element="Hydro" title="Hydro">💧</button>
+          <button class="filter-btn element-filter" data-element="Electro" title="Electro">⚡</button>
+          <button class="filter-btn element-filter" data-element="Cryo" title="Cryo">❄️</button>
+          <button class="filter-btn element-filter" data-element="Anemo" title="Anemo">🌪️</button>
+          <button class="filter-btn element-filter" data-element="Geo" title="Geo">🪨</button>
+          <button class="filter-btn element-filter" data-element="Dendro" title="Dendro">🌿</button>
+        </div>
+      </div>
+
+      <!-- Weapon Filter -->
+      <div class="filter-group">
+        <h4>Weapons</h4>
+        <div class="filter-buttons">
+          <button class="filter-btn weapon-filter" data-weapon="Sword" title="Sword">⚔️</button>
+          <button class="filter-btn weapon-filter" data-weapon="Polearm" title="Polearm">🔱</button>
+          <button class="filter-btn weapon-filter" data-weapon="Bow" title="Bow">🏹</button>
+          <button class="filter-btn weapon-filter" data-weapon="Claymore" title="Claymore">🔨</button>
+          <button class="filter-btn weapon-filter" data-weapon="Catalyst" title="Catalyst">📖</button>
+        </div>
+      </div>
+
+      <!-- Clear Filters -->
+      <button id="clearFilters" class="clear-filters-btn">Clear All Filters</button>
+    </div>
 
     <div id="characters" class="cards-grid"></div>
   </section>
