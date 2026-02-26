@@ -40,12 +40,8 @@
 </style>
 </head>
 <body>
+<!-- Mobile Sidebar (hidden by default) -->
 <div class="sidebar" id="sidebar">
-    <!-- sidebar markup copied from other pages -->
-    <div class="logo-section">
-        <img src="icons/logo.png" class="logo">
-        <span class="logo-text">Project Skirk</span>
-    </div>
     <ul>
         <li><a href="index.html"><img src="icons/home.png" class="icon"><span class="text">Home</span></a></li>
         <li><a href="characters.html"><img src="icons/characters.png" class="icon"><span class="text">Characters</span></a></li>
@@ -91,7 +87,23 @@
 </div>
 
 <div class="main-content">
-    <nav><div class="logo">PROJECT SKIRK</div></nav>
+  <nav>
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="logo">PROJECT SKIRK</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="characters.html">Characters</a>
+      <a href="weapons.html">Weapons</a>
+      <a href="artifacts.html">Artifacts</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="search.html">Search</a>
+    </div>
+  </nav>
 
     <div class="detail-header">
         <a href="characters.html" class="back">&larr;</a>

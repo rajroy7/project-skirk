@@ -19,7 +19,7 @@
     "rarity": 5,
     "version": "6.3v1",
     "image": "https://ik.imagekit.io/gukc1okbd/Zibai_Icon.webp",
-    "icon": ""
+    "icon": "https://gi.yatta.moe/assets/UI/UI_Buff_Element_Rock.png?vh=2024123000"
   },
   {
     "id": 3,
@@ -29,7 +29,7 @@
     "weapon": "Bow",
     "rarity": 5,
     "version": "6.3v1",
-    "image": "",
+    "image": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Columbina.png?vh=2024123000",
     "icon": ""
   },
   {
@@ -40,7 +40,7 @@
     "weapon": "Sword",
     "rarity": 5,
     "version": "6.2",
-    "image": "",
+    "image": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Durin.png?vh=2024123000",
     "icon": ""
   },
   {
@@ -63,7 +63,7 @@
     "rarity": 5,
     "version": "6.2",
     "image": "",
-    "icon": ""
+    "icon": "https://gi.yatta.moe/assets/UI/UI_Buff_Element_Rock.png?vh=2024123000"
   },
   {
     "id": 7,
@@ -95,8 +95,8 @@
     "weapon": "Polearm",
     "rarity": 5,
     "version": "6.0",
-    "image": "",
-    "icon": ""
+    "image": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Nefer.png?vh=2024123000",
+    "icon": "https://gi.yatta.moe/assets/UI/UI_Buff_Element_Grass.png?vh=2024123000"
   },
   {
     "id": 10,
@@ -118,7 +118,7 @@
     "rarity": 5,
     "version": "6.0",
     "image": "",
-    "icon": ""
+    "icon": "https://gi.yatta.moe/assets/UI/UI_Buff_Element_Grass.png?vh=2024123000"
   },
   {
     "id": 12,
@@ -217,7 +217,7 @@
     "rarity": 5,
     "version": "4.3",
     "image": "",
-    "icon": ""
+    "icon": "https://gi.yatta.moe/assets/UI/UI_Buff_Element_Rock.png?vh=2024123000"
   },
   {
     "id": 21,
@@ -294,7 +294,7 @@
     "rarity": 5,
     "version": "3.6",
     "image": "",
-    "icon": ""
+    "icon": "https://gi.yatta.moe/assets/UI/UI_Buff_Element_Grass.png?vh=2024123000"
   },
   {
     "id": 28,
@@ -316,6 +316,6 @@
     "rarity": 5,
     "version": "3.4",
     "image": "",
-    "icon": ""
+    "icon": "https://gi.yatta.moe/assets/UI/UI_Buff_Element_Grass.png?vh=2024123000"
   }
 ]

@@ -9,8 +9,8 @@
   <style>.page-title{margin:18px 0;color:#7c5cff;letter-spacing:2px}</style>
 </head>
 <body>
+<!-- Mobile Sidebar (hidden by default) -->
 <div class="sidebar" id="sidebar">
-  <div class="logo-section"><img src="logo.png" class="logo"><span class="logo-text">Project Skirk</span></div>
   <ul>
     <li><a href="index.html"><img src="icons/home.png" class="icon"><span class="text">Home</span></a></li>
     <li><a href="characters.html"><img src="icons/characters.png" class="icon"><span class="text">Characters</span></a></li>
@@ -49,12 +49,36 @@
   </div>
 </div>
 <div class="main-content">
-  <nav><div class="logo">PROJECT SKIRK</div></nav>
+  <nav>
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="logo">PROJECT SKIRK</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="characters.html">Characters</a>
+      <a href="weapons.html">Weapons</a>
+      <a href="artifacts.html">Artifacts</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="search.html">Search</a>
+    </div>
+  </nav>
   <section style="padding:24px">
     <h1 class="page-title">Miliastra</h1>
     <p style="opacity:0.85">Placeholder page for Miliastra.</p>
   </section>
-  <div class="footer"><h2>PROJECT SKIRK</h2></div>
+  <div class="footer">
+    <div class="footer-content">
+      <h2>PROJECT SKIRK</h2>
+      <p class="footer-credit">Created by <strong>Raj Roy</strong></p>
+      <p class="footer-memorial">In memory of <strong>homdgcat</strong> and <strong>hakush.in</strong></p>
+      <div class="footer-divider"></div>
+      <p class="footer-copyright">&copy; 2024 Project Skirk. All rights reserved.</p>
+    </div>
+  </div>
 </div>
 <script src="script.js"></script>
 </body>

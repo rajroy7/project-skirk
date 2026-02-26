@@ -1,4 +1,28 @@
 const sidebar = document.getElementById("sidebar");
+const hamburger = document.getElementById("hamburger");
+
+// Hamburger menu toggle
+hamburger.addEventListener("click", function() {
+    sidebar.classList.toggle("open");
+    hamburger.classList.toggle("open");
+});
+
+// Close sidebar when a link is clicked
+const sidebarLinks = sidebar.querySelectorAll("a, button");
+sidebarLinks.forEach(link => {
+    link.addEventListener("click", function() {
+        sidebar.classList.remove("open");
+        hamburger.classList.remove("open");
+    });
+});
+
+// Close sidebar when clicking outside
+document.addEventListener("click", function(event) {
+    if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+        sidebar.classList.remove("open");
+        hamburger.classList.remove("open");
+    }
+});
 
 // Translation dictionary
 const translations = {
