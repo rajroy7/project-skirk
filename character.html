@@ -597,6 +597,7 @@ function displaySkills(charData) {
         
         const description = cleanDescription(talent.description || '');
         let attrs = '';
+        const iconUrl = talent.icon ? `https://gi.yatta.moe/assets/UI/${talent.icon}.png?vh=2024123000` : '';
         
         if (talent.descriptionBuff && Array.isArray(talent.descriptionBuff)) {
             attrs = '<div class="ability-attrs"><h4>Attributes</h4><table>';
@@ -609,8 +610,11 @@ function displaySkills(charData) {
             attrs += '</table></div>';
         }
         
+        const iconImg = iconUrl ? `<img src="${iconUrl}" alt="${talent.name}" style="width:80px; height:80px; border-radius:8px; margin-bottom:12px; border:2px solid #7c5cff;">` : '';
+        
         html += `
             <div class="ability-card">
+                ${iconImg}
                 <h3>${talent.name || 'Unknown Skill'}</h3>
                 <p>${description}</p>
                 ${attrs}
@@ -637,9 +641,12 @@ function displayConstellations(charData) {
         if (!const_data) return;
         
         const description = cleanDescription(const_data.description || '');
+        const iconUrl = const_data.icon ? `https://gi.yatta.moe/assets/UI/${const_data.icon}.png?vh=2024123000` : '';
+        const iconImg = iconUrl ? `<img src="${iconUrl}" alt="${const_data.name}" style="width:80px; height:80px; border-radius:8px; margin-bottom:12px; border:2px solid #7c5cff;">` : '';
         
         html += `
             <div class="ability-card">
+                ${iconImg}
                 <h3>${idx + 1}. ${const_data.name || 'Unknown'}</h3>
                 <p>${description}</p>
             </div>
