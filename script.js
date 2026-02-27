@@ -397,10 +397,11 @@ function initializeCardFadeAnimation() {
         let artifacts = [];
         let currentArtifactIndex = 0;
         
-        fetch('artifacts.json')
+        fetch('https://api.lunaris.moe/data/latest/artifactlist.json')
             .then(response => response.json())
             .then(data => {
-                artifacts = data;
+                // Convert Lunaris API format to array
+                artifacts = Object.values(data).filter(a => a.setIcon);
                 if (artifacts.length > 0) {
                     setInterval(() => {
                         if (artifacts.length > 0) {
@@ -408,7 +409,7 @@ function initializeCardFadeAnimation() {
                             artifactsCardImg.style.opacity = '0';
                             
                             setTimeout(() => {
-                                artifactsCardImg.src = `https://gi.yatta.moe/assets/UI/${artifact.icon}.png`;
+                                artifactsCardImg.src = `https://gi.yatta.moe/assets/UI/reliquary/${artifact.setIcon}.png?vh=2024123000`;
                                 artifactsCardImg.style.opacity = '0.6';
                             }, 250);
                             
@@ -669,7 +670,7 @@ function initializePageSearch() {
             card.className = `artifact-card rarity-${item.rarity || 3}`;
             card.style.cursor = 'pointer';
             
-            // Get icon URL with proper formatting
+            // Get icon URL with proper formatting - use new Lunaris API path
             const iconName = item.icon || item.name || 'artifact';
             const iconUrl = `https://gi.yatta.moe/assets/UI/reliquary/${iconName}.png?vh=2024123000`;
             

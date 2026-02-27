@@ -1,15 +1,30 @@
 #!/usr/bin/env python3
 import json
 import os
+import urllib.request
+import urllib.error
+
+# Try to fetch artifacts from Lunaris API
+artifact_data_from_api = {}
+print("Attempting to fetch artifact data from Lunaris API...")
+try:
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+    req = urllib.request.Request('https://api.lunaris.moe/data/latest/artifactlist.json', headers=headers)
+    with urllib.request.urlopen(req, timeout=10) as response:
+        artifact_data_from_api = json.loads(response.read().decode('utf-8'))
+    print(f"✓ Fetched {len(artifact_data_from_api)} artifacts from Lunaris API")
+except Exception as e:
+    print(f"⚠ Could not fetch from Lunaris API: {e}")
+    print("  Using artifacts.json only")
 
 # Load artifacts.json
 with open('artifacts.json', 'r', encoding='utf-8') as f:
-    artifacts = json.load(f)
+    artifacts_list = json.load(f)
 
 # Create artifacts directory
 os.makedirs('artifacts', exist_ok=True)
 
-print(f"Generating {len(artifacts)} artifact detail pages...")
+print(f"Generating {len(artifacts_list)} artifact detail pages...")
 print("=" * 70)
 
 def sanitize_filename(name):
@@ -19,14 +34,100 @@ def sanitize_filename(name):
     filename = filename.replace('<', '_').replace('>', '_').replace('|', '_')
     return filename
 
+def get_rarity_color(rarity):
+    """Get color based on rarity"""
+    if rarity == 4:
+        return '#b291dc'
+    elif rarity == 5:
+        return '#ffc107'
+    elif rarity == 3:
+        return '#4a9eff'
+    return '#ccc'
+
+def get_pieces_html(artifact_id, artifact_name):
+    """Get HTML for artifact pieces stats from Lunaris API data"""
+    pieces_html = ''
+    
+    # Try to get pieces from API data
+    if str(artifact_id) in artifact_data_from_api:
+        api_artifact = artifact_data_from_api[str(artifact_id)]
+        pieces = api_artifact.get('pieces', {})
+        
+        if pieces:
+            pieces_info = [
+                ('Flower of Life', pieces.get('flower', {})),
+                ('Plume of Death', pieces.get('plume', {})),
+                ('Sands of Time', pieces.get('sands', {})),
+                ('Goblet of Eonothem', pieces.get('goblet', {})),
+                ('Circlet of Logos', pieces.get('circlet', {}))
+            ]
+            
+            pieces_html = '<div class="pieces-grid">'
+            for piece_type, piece_data in pieces_info:
+                piece_name = piece_data.get('enName', piece_type)
+                piece_icon = piece_data.get('icon', '')
+                icon_url = f"https://gi.yatta.moe/assets/UI/reliquary/{piece_icon}.png?vh=2024123000" if piece_icon else "about:blank"
+                
+                pieces_html += f'''
+                <div class="piece-card">
+                    <div class="piece-image">
+                        <img src="{icon_url}" alt="{piece_name}" onerror="this.style.display='none'">
+                    </div>
+                    <div class="piece-info">
+                        <div class="piece-type">{piece_type}</div>
+                        <div class="piece-name">{piece_name}</div>
+                    </div>
+                </div>
+                '''
+            pieces_html += '</div>'
+    
+    # Fallback if no pieces data
+    if not pieces_html:
+        pieces_html = '''
+        <div class="pieces-grid">
+            <div class="piece-card">
+                <div class="piece-type">Flower of Life</div>
+                <div class="piece-name">Healing Power</div>
+            </div>
+            <div class="piece-card">
+                <div class="piece-type">Plume of Death</div>
+                <div class="piece-name">Attack</div>
+            </div>
+            <div class="piece-card">
+                <div class="piece-type">Sands of Time</div>
+                <div class="piece-name">Main Stat Varies</div>
+            </div>
+            <div class="piece-card">
+                <div class="piece-type">Goblet of Eonothem</div>
+                <div class="piece-name">Main Stat Varies</div>
+            </div>
+            <div class="piece-card">
+                <div class="piece-type">Circlet of Logos</div>
+                <div class="piece-name">Main Stat Varies</div>
+            </div>
+        </div>
+        '''
+    
+    return pieces_html
+
 def create_artifact_page(artifact):
     """Create a complete HTML page for an artifact"""
-    name = artifact['name']
-    icon_url = f"https://gi.yatta.moe/assets/UI/reliquary/{artifact['icon']}.png?vh=2024123000"
-    rarity_stars = '⭐' * artifact.get('rarity', 3)
+    name = artifact.get('name', 'Unknown')
+    artifact_id = artifact.get('id', '')
+    rarity = artifact.get('rarity', 3)
+    rarity_stars = '⭐' * rarity
+    rarity_color = get_rarity_color(rarity)
+    
+    # Get bonuses
     bonus_2pc = artifact.get('setBonus2pc', 'N/A')
     bonus_4pc = artifact.get('setBonus4pc', 'N/A')
-    rarity = artifact.get('rarity', 3)
+    
+    # Get icon URL - use reliquary path
+    icon_file = artifact.get('icon', 'UI_RelicIcon_10001_4')
+    icon_url = f"https://gi.yatta.moe/assets/UI/reliquary/{icon_file}.png?vh=2024123000"
+    
+    # Get pieces HTML
+    pieces_html = get_pieces_html(artifact_id, name)
     
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -38,340 +139,267 @@ def create_artifact_page(artifact):
     <link rel="stylesheet" href="../styles.css">
     <style>
         .artifact-detail-wrapper {{
-            min-height: 100vh;
+            min-height: calc(100vh - 200px);
             padding: 24px;
         }}
 
         .artifact-hero {{
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            margin-bottom: 32px;
-            align-items: start;
+            grid-template-columns: 100px 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+            align-items: flex-start;
         }}
 
-        .artifact-hero-left {{
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }}
-
-        .artifact-hero-image {{
-            background: linear-gradient(135deg, rgba(124, 92, 255, 0.2) 0%, rgba(124, 92, 255, 0.1) 100%);
-            border: 2px solid rgba(124, 92, 255, 0.4);
-            border-radius: 12px;
-            padding: 40px;
-            aspect-ratio: 1;
+        .artifact-image {{
+            width: 100px;
+            height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, rgba(100,100,255,0.1) 0%, rgba(200,150,255,0.1) 100%);
+            border: 2px solid {rarity_color};
+            border-radius: 8px;
+            padding: 8px;
         }}
 
-        .artifact-hero-image::before {{
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, rgba(124, 92, 255, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }}
-
-        .artifact-hero-image img {{
+        .artifact-image img {{
             width: 100%;
             height: 100%;
             object-fit: contain;
-            position: relative;
-            z-index: 1;
         }}
 
-        .artifact-hero-text {{
-            padding-top: 8px;
-        }}
-
-        .artifact-title {{
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }}
-
-        .artifact-title-badge {{
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            width: fit-content;
-            background: rgba(124, 92, 255, 0.3);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #9370db;
-        }}
-
-        .artifact-title-name {{
-            font-size: 36px;
-            font-weight: 700;
-            color: #fff;
-            line-height: 1.2;
-        }}
-
-        .artifact-rarity {{
-            display: flex;
-            gap: 6px;
-            font-size: 24px;
-            margin-top: 8px;
-        }}
-
-        .artifact-hero-right {{
-            padding: 20px;
-            border: 1px solid rgba(124, 92, 255, 0.3);
-            border-radius: 12px;
-            background: rgba(124, 92, 255, 0.05);
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }}
-
-        .bonus-section {{
+        .artifact-info {{
             display: flex;
             flex-direction: column;
             gap: 12px;
         }}
 
-        .bonus-section h3 {{
-            font-size: 14px;
-            color: #9370db;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .artifact-name {{
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+        }}
+
+        .artifact-rarity {{
+            font-size: 16px;
+            color: {rarity_color};
             font-weight: 600;
+        }}
+
+        .bonus-section {{
+            padding: 16px;
+            background: linear-gradient(135deg, rgba(100,100,255,0.05) 0%, rgba(200,150,255,0.05) 100%);
+            border-left: 4px solid {rarity_color};
+            border-radius: 8px;
+            margin-top: 12px;
+        }}
+
+        .bonus-title {{
+            font-size: 14px;
+            font-weight: 600;
+            color: {rarity_color};
+            margin-bottom: 6px;
         }}
 
         .bonus-text {{
             font-size: 13px;
-            line-height: 1.8;
-            color: #ddd;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 12px;
-            border-radius: 6px;
-            border-left: 3px solid rgba(124, 92, 255, 0.5);
+            color: #e0e0e0;
+            line-height: 1.5;
         }}
 
-        .content-tabs {{
+        .bonus-grid {{
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin: 32px 0;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
         }}
 
-        .tab-btn {{
-            padding: 12px 16px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(124, 92, 255, 0.3);
-            border-radius: 8px;
-            color: #aaa;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }}
-
-        .tab-btn:hover {{
-            border-color: rgba(124, 92, 255, 0.6);
-            color: #ddd;
-        }}
-
-        .tab-btn.active {{
-            background: rgba(124, 92, 255, 0.2);
-            border-color: rgba(124, 92, 255, 0.8);
-            color: #9370db;
-        }}
-
-        .content-section {{
-            display: none;
-        }}
-
-        .content-section.active {{
-            display: block;
-        }}
-
-        .artifact-info-section {{
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(124, 92, 255, 0.2);
+        .stats-section {{
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 32px;
         }}
 
-        .artifact-info-section h4 {{
-            font-size: 14px;
-            color: #9370db;
-            margin-bottom: 16px;
+        .stats-title {{
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 20px;
+        }}
+
+        .pieces-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+        }}
+
+        .piece-card {{
+            padding: 12px;
+            background: linear-gradient(135deg, rgba(100,100,255,0.08) 0%, rgba(200,150,255,0.08) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            text-align: center;
+        }}
+
+        .piece-image {{
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }}
+
+        .piece-image img {{
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }}
+
+        .piece-type {{
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 4px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            font-weight: 600;
         }}
 
-        .artifact-story-text {{
+        .piece-name {{
             font-size: 13px;
-            line-height: 1.8;
-            color: #ddd;
-        }}
-
-        @media (max-width: 1024px) {{
-            .artifact-hero {{
-                grid-template-columns: 1fr;
-            }}
-
-            .artifact-hero-image {{
-                min-height: 300px;
-            }}
-        }}
-
-        @media (max-width: 768px) {{
-            .artifact-detail-wrapper {{
-                padding: 16px;
-            }}
-
-            .artifact-title-name {{
-                font-size: 24px;
-            }}
-
-            .content-tabs {{
-                grid-template-columns: 1fr;
-            }}
+            color: #fff;
+            font-weight: 600;
         }}
     </style>
 </head>
 <body>
-<div class="main-content">
-    <nav>
-        <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <div class="logo">PROJECT SKIRK</div>
-        <div class="nav-links">
-            <a href="../index.html">Home</a>
-            <a href="../characters.html">Characters</a>
-            <a href="../weapons.html">Weapons</a>
-            <a href="../artifacts.html">Artifacts</a>
-            <button class="nav-search-btn" id="searchBtn" title="Search">
-                <img src="../icons/search.png" alt="Search" class="search-icon">
-            </button>
-            <button class="nav-settings-btn" id="topSettingsBtn" title="Settings">
-                <img src="../icons/settings.png" alt="Settings" class="settings-icon">
-            </button>
-        </div>
-    </nav>
-
-    <div class="artifact-detail-wrapper">
-        <div class="artifact-hero">
-            <div class="artifact-hero-left">
-                <div class="artifact-hero-image">
-                    <img src="{icon_url}" alt="{name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23333%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E'">
-                </div>
-                <div class="artifact-hero-text">
-                    <div class="artifact-title">
-                        <div class="artifact-title-badge">✦ Artifact Set</div>
-                        <div class="artifact-title-name">{name}</div>
-                        <div class="artifact-rarity">{rarity_stars}</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="artifact-hero-right">
-                <div class="bonus-section">
-                    <h3>2-Piece Bonus</h3>
-                    <div class="bonus-text">{bonus_2pc}</div>
-                </div>
-                <div class="bonus-section">
-                    <h3>4-Piece Bonus</h3>
-                    <div class="bonus-text">{bonus_4pc}</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-tabs">
-            <button class="tab-btn active" onclick="switchTab(event, 'story')">Story</button>
-            <button class="tab-btn" onclick="switchTab(event, 'stats')">Stats</button>
-        </div>
-
-        <div id="story" class="content-section active">
-            <div class="artifact-info-section">
-                <h4>History</h4>
-                <p class="artifact-story-text">This artifact set is part of the Genshin Impact world. Explore its history and significance through your adventures.</p>
-            </div>
-        </div>
-
-        <div id="stats" class="content-section">
-            <div class="artifact-info-section">
-                <h4>Artifact Pieces</h4>
-                <div class="artifact-story-text">
-                    <p>• Flower of Life</p>
-                    <p>• Plume of Death</p>
-                    <p>• Sands of Eon</p>
-                    <p>• Goblet of Eonothem</p>
-                    <p>• Circlet of Logos</p>
-                </div>
-            </div>
-            <div class="artifact-info-section">
-                <h4>Set Rarity</h4>
-                <div class="artifact-story-text">
-                    <p>Rarity: {rarity}★</p>
-                    <p>This artifact set can be found in domains and from various sources in the game.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer">
-        <div class="footer-content">
-            <h2>PROJECT SKIRK</h2>
-            <p class="footer-credit">Created by <strong>Raj Roy</strong></p>
-        </div>
-    </div>
+<!-- Mobile Sidebar (hidden by default) -->
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li><a href="../index.html"><img src="../icons/home.png" class="icon"><span class="text">Home</span></a></li>
+        <li><a href="../characters.html"><img src="../icons/characters.png" class="icon"><span class="text">Characters</span></a></li>
+        <li><a href="../weapons.html"><img src="../icons/weapons.png" class="icon"><span class="text">Weapons</span></a></li>
+        <li><a href="../artifacts.html"><img src="../icons/artifacts.png" class="icon"><span class="text">Artifacts</span></a></li>
+        <li><a href="../achievements.html"><img src="../icons/achievements.png" class="icon"><span class="text">Achievements</span></a></li>
+        <li><a href="../inventory.html"><img src="../icons/inventory.png" class="icon"><span class="text">Inventory</span></a></li>
+        <li><a href="../enemy.html"><img src="../icons/enemy.png" class="icon"><span class="text">Enemy Creatures</span></a></li>
+        <li><a href="../tcg.html"><img src="../icons/tcg.png" class="icon"><span class="text">Genius Invokation TCG</span></a></li>
+        <li><a href="../abyss.html"><img src="../icons/abyss.png" class="icon"><span class="text">Spiral Abyss</span></a></li>
+        <li><a href="../theater.html"><img src="../icons/theater.png" class="icon"><span class="text">Imaginarium Theater</span></a></li>
+        <li><a href="../stygian.html"><img src="../icons/wishes.png" class="icon"><span class="text">Stygian Onslaught</span></a></li>
+        <li><a href="../furnishings.html"><img src="../icons/furnishings.png" class="icon"><span class="text">Furnishings</span></a></li>
+        <li><a href="../furnishing-set.html"><img src="../icons/furnishing-set.png" class="icon"><span class="text">Furnishing Set</span></a></li>
+        <li><a href="../miliastra.html"><img src="../icons/miliastra.png" class="icon"><span class="text">Miliastra</span></a></li>
+        <li><a href="../wonderland.html"><img src="../icons/wonderland.png" class="icon"><span class="text">Wonderland</span></a></li>
+        <li><a href="../mw-set.html"><img src="../icons/mw-set.png" class="icon"><span class="text">Miliastra Wonderland Set</span></a></li>
+        <li><a href="../mw-inventory.html"><img src="../icons/mw-inventory.png" class="icon"><span class="text">Miliastra Wonderland Inventory</span></a></li>
+        <li><a href="../search.html"><img src="../icons/search.png" class="icon"><span class="text">Search</span></a></li>
+        <li><a href="../diff.html"><img src="../icons/diff.png" class="icon"><span class="text">Diff</span></a></li>
+        <li><a href="../wishes.html"><img src="../icons/wishes.png" class="icon"><span class="text">Character Wishes</span></a></li>
+        <li class="settings-menu-item"><button id="settingsBtn" class="settings-menu-btn"><img src="../icons/settings.png" class="icon"><span class="text">Settings</span></button></li>
+    </ul>
 </div>
+<div id="settingsModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header"><h2>Settings</h2><button class="modal-close">&times;</button></div>
+    <div class="modal-body">
+      <div class="settings-section"><h3>Main</h3><div class="settings-row"><label>Language</label><select id="language"><option>English</option><option>French</option><option>German</option><option>Spanish</option><option>Chinese</option><option>Japanese</option></select></div><div class="settings-row"><label>Region</label><select id="region"><option>Europe</option><option>North America</option><option>Asia</option><option>South America</option></select></div><div class="settings-row"><label>Twin</label><select id="twin"><option>Male</option><option>Female</option></select></div></div>
+      <div class="settings-section"><h3>Talent</h3><div class="settings-row"><label>Display Style</label><select id="displayStyle"><option>Slider</option><option>Input</option><option>Dropdown</option></select></div><div class="settings-row"><label>Default LVL</label><select id="defaultLvl"><option>1</option><option>5</option><option>10</option><option>15</option><option>20</option></select></div><div class="settings-row"><label>Default LVL (constellation)</label><select id="defaultLvlConstellation"><option>None</option><option>+1</option><option>+2</option><option>+3</option></select></div><div class="settings-row"><label>Default Decimal</label><select id="defaultDecimal"><option>Default</option><option>0</option><option>1</option><option>2</option><option>3</option></select></div><div class="settings-row"><label>Add constellations info</label><input type="checkbox" id="addConstellations"></div></div>
+      <div class="settings-section"><h3>Other</h3><div class="settings-row"><label>Unreleased Content</label><select id="unreleased"><option>Disable</option><option>Enable</option></select></div><div class="settings-info"><strong>Note:</strong> Unreleased content includes characters and weapons not yet available.</div></div>
+    </div>
+    <div class="modal-footer">
+        <button id="saveSettingsBtn" class="save-btn">Save</button>
+      </div>
+  </div>
+</div>
+<div class="main-content">
+  <nav>
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="logo">PROJECT SKIRK</div>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../characters.html">Characters</a>
+      <a href="../weapons.html">Weapons</a>
+      <a href="../artifacts.html">Artifacts</a>
+      <a href="../achievements.html">Achievements</a>
+      <a href="../inventory.html">Inventory</a>
+      <button class="nav-search-btn" id="searchBtn" title="Search">
+        <img src="../icons/search.png" alt="Search" class="search-icon">
+      </button>
+      <button class="nav-settings-btn" id="topSettingsBtn" title="Settings">
+        <img src="../icons/settings.png" alt="Settings" class="settings-icon">
+      </button>
+    </div>
+  </nav>
 
+  <section style="padding:24px">
+    <div class="artifact-detail-wrapper">
+      <div class="artifact-hero">
+        <div class="artifact-image">
+          <img src="{icon_url}" alt="{name}" loading="lazy">
+        </div>
+        <div class="artifact-info">
+          <div class="artifact-name">{name}</div>
+          <div class="artifact-rarity">{rarity_stars}</div>
+          
+          <div class="bonus-grid">
+            <div class="bonus-section">
+              <div class="bonus-title">2-Piece Bonus</div>
+              <div class="bonus-text">{bonus_2pc}</div>
+            </div>
+            <div class="bonus-section">
+              <div class="bonus-title">4-Piece Bonus</div>
+              <div class="bonus-text">{bonus_4pc}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <div class="stats-title">Artifact Pieces</div>
+        {pieces_html}
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="footer-content">
+      <h2>PROJECT SKIRK</h2>
+      <p class="footer-credit">Created by <strong>Raj Roy</strong></p>
+      <p class="footer-memorial">In memory of <strong>homdgcat</strong> and <strong>hakush.in</strong></p>
+      <div class="footer-divider"></div>
+      <p class="footer-copyright">&copy; 2024 Project Skirk. All rights reserved.</p>
+    </div>
+  </div>
+</div>
 <script src="../script.js"></script>
-<script>
-    function switchTab(event, tabName) {{
-        event.preventDefault();
-        
-        document.querySelectorAll('.content-section').forEach(section => {{
-            section.classList.remove('active');
-        }});
-        document.querySelectorAll('.tab-btn').forEach(btn => {{
-            btn.classList.remove('active');
-        }});
-        
-        document.getElementById(tabName).classList.add('active');
-        event.target.classList.add('active');
-    }}
-</script>
 </body>
 </html>
 """
     return html
 
-success_count = 0
-for idx, artifact in enumerate(artifacts, 1):
+# Generate pages for each artifact
+count = 0
+for artifact in artifacts_list:
+    name = artifact.get('name', 'Unknown')
+    filename = sanitize_filename(name) + '.html'
+    filepath = os.path.join('artifacts', filename)
+    
     try:
         html_content = create_artifact_page(artifact)
-        filename = sanitize_filename(artifact['name'])
-        filepath = f'artifacts/{filename}.html'
-        
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(html_content)
-        
-        success_count += 1
-        status = f"[{idx:3d}/{len(artifacts)}] ✓ {artifact['name'][:40]:40s} ({artifact.get('rarity', 3)}★)"
-        print(status)
-        
+        print(f"[{count+1}] ✓ {name}")
+        count += 1
     except Exception as e:
-        print(f"[{idx:3d}/{len(artifacts)}] ✗ {artifact.get('name', 'Unknown')}: {str(e)[:40]}")
+        print(f"[{count+1}] ✗ {name} - Error: {e}")
 
 print("=" * 70)
-print(f"SUCCESS: Generated {success_count}/{len(artifacts)} artifact pages!")
+print(f"SUCCESS: Generated {count}/{len(artifacts_list)} artifact pages!")
+print(f"API data available: {len(artifact_data_from_api)} artifacts")
