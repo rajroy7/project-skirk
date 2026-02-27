@@ -739,6 +739,11 @@ function initializePageSearch() {
                 card.style.transform = 'translateY(0)';
                 card.style.boxShadow = 'none';
             });
+            
+            // Click handler to navigate to item page
+            card.addEventListener('click', () => {
+                window.location.href = `inventory-items/${item.id}.html`;
+            });
         } else {
             // Fallback for other item types
             card.className = 'card';
