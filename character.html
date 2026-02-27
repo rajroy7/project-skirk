@@ -997,12 +997,12 @@ function calculateTalentUpgradeCosts(talentObj, fromLevel, toLevel) {
 }
 
 function initTalentCalculator(charData) {
-    if (!charData.data || !charData.data.talent) {
+    if (!charData.talent) {
         document.getElementById('talentsList').innerHTML = '<p style="color:#999;">No talent data available</p>';
         return;
     }
     
-    const talent = charData.data.talent;
+    const talent = charData.talent;
     const talentsList = document.getElementById('talentsList');
     const mainTalentIds = [0, 1, 2]; // Normal attack, elemental skill, burst (levels 1-10 only)
     
@@ -1059,7 +1059,7 @@ function initTalentCalculator(charData) {
 }
 
 function updateTalentCostsDisplay(charData, talentId, fromLevel, toLevel) {
-    const { materials, mora } = calculateTalentUpgradeCosts(charData.data.talent[talentId], fromLevel, toLevel);
+    const { materials, mora } = calculateTalentUpgradeCosts(charData.talent[talentId], fromLevel, toLevel);
     
     if (Object.keys(materials).length === 0 && mora === 0) {
         document.getElementById('talentCostsDisplay').innerHTML = '<p style="color:#aaa;">Select valid level range to see costs.</p>';
