@@ -95,6 +95,15 @@ nav{
 .time-box{ background:rgba(255,255,255,0.04); padding:16px 20px; border-radius:10px; backdrop-filter:blur(8px); min-width:72px; }
 .time-box span{ font-size:24px; color:#00f0ff; display:block; }
 
+/* UPCOMING BIRTHDAYS */
+.upcoming-birthdays-section{ margin:48px 20px; padding:20px; background:rgba(255,255,255,0.02); border-radius:12px; border:1px solid rgba(124,92,255,0.2); }
+.birthdays-container{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+.birthday-card{ display:flex; flex-direction:column; align-items:center; gap:8px; padding:12px; background:rgba(124,92,255,0.1); border-radius:10px; border:1px solid rgba(124,92,255,0.3); min-width:100px; transition:0.2s; cursor:pointer; text-decoration:none; color:inherit; }
+.birthday-card:hover{ background:rgba(124,92,255,0.2); transform:translateY(-4px); box-shadow:0 4px 16px rgba(124,92,255,0.15); }
+.birthday-card img{ width:80px; height:80px; border-radius:8px; object-fit:cover; background:rgba(255,255,255,0.05); }
+.birthday-card .date{ font-size:13px; font-weight:bold; color:#7c5cff; }
+.birthday-card .name{ font-size:12px; text-align:center; opacity:0.8; }
+
 /* FOOTER */
 .footer {
     background: linear-gradient(180deg, #0a0a18 0%, #1a1a2e 50%, #050510 100%);

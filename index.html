@@ -185,6 +185,14 @@
   </div>
 </div>
 
+<!-- UPCOMING BIRTHDAYS -->
+<section class="upcoming-birthdays-section">
+  <h2 style="text-align:center; color:#7c5cff; margin-bottom:20px;">Coming Birthdays</h2>
+  <div id="upcomingBirthdays" class="birthdays-container">
+    <p style="text-align:center; opacity:0.6;">Loading upcoming birthdays...</p>
+  </div>
+</section>
+
 <!-- CARDS -->
 <section class="cards">
 
@@ -269,6 +277,104 @@ var x = setInterval(function() {
   }
 
 }, 1000);
+</script>
+<script>
+// Load upcoming birthdays from characters.json
+document.addEventListener('DOMContentLoaded', () => {
+  loadUpcomingBirthdays();
+});
+
+function loadUpcomingBirthdays() {
+  fetch('characters.json')
+    .then(r => r.json())
+    .then(characters => {
+      getUpcomingBirthdays(characters).then(birthdays => {
+        displayBirthdays(birthdays);
+      });
+    })
+    .catch(err => {
+      console.error('Error loading birthdays:', err);
+      document.getElementById('upcomingBirthdays').innerHTML = '<p style="text-align:center; opacity:0.6;">Unable to load upcoming birthdays</p>';
+    });
+}
+
+async function getUpcomingBirthdays(characters) {
+  const today = new Date(2026, 1, 27); // Feb 27, 2026
+  const upcomingBirthdays = [];
+
+  // Load consolidated characters-data.json for birthday info
+  try {
+    const response = await fetch('characters-data.json');
+    const charData = await response.json();
+
+    for (const char of characters) {
+      if (!char.id || !charData[char.id]) continue;
+      
+      const data = charData[char.id];
+      const birthday = data.birthday;
+      
+      if (!birthday || !Array.isArray(birthday) || birthday.length < 2) continue;
+      
+      const [month, day] = birthday;
+      
+      // Calculate next birthday
+      let nextBirthday = new Date(2026, month - 1, day);
+      
+      // If birthday has already passed this year, schedule for next year
+      if (nextBirthday < today) {
+        nextBirthday = new Date(2027, month - 1, day);
+      }
+      
+      // Only show birthdays within next 30 days
+      const daysUntil = Math.floor((nextBirthday - today) / (1000 * 60 * 60 * 24));
+      
+      if (daysUntil >= 0 && daysUntil <= 30) {
+        upcomingBirthdays.push({
+          id: char.id,
+          name: char.name,
+          image: char.image,
+          birthMonth: month,
+          birthDay: day,
+          nextBirthday: nextBirthday,
+          daysUntil: daysUntil
+        });
+      }
+    }
+    
+    // Sort by days until birthday
+    upcomingBirthdays.sort((a, b) => a.daysUntil - b.daysUntil);
+    
+  } catch (err) {
+    console.error('Error loading character data:', err);
+  }
+
+  return upcomingBirthdays;
+}
+
+function displayBirthdays(birthdays) {
+  const container = document.getElementById('upcomingBirthdays');
+  
+  if (!birthdays || birthdays.length === 0) {
+    container.innerHTML = '<p style="text-align:center; opacity:0.6;">No upcoming birthdays in the next 30 days</p>';
+    return;
+  }
+  
+  let html = '';
+  birthdays.forEach(birthday => {
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const dateStr = `${monthNames[birthday.birthMonth - 1]}/${birthday.birthDay}`;
+    
+    html += `
+      <a href="character.html?id=${birthday.id}" class="birthday-card" title="${birthday.name}">
+        <img src="${birthday.image}" alt="${birthday.name}" onerror="this.src='https://via.placeholder.com/80'">
+        <div class="date">${dateStr}</div>
+        <div class="name">${birthday.name}</div>
+      </a>
+    `;
+  });
+  
+  container.innerHTML = html;
+}
 </script>
 <script src="script.js"></script>
 </body>
