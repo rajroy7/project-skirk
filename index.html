@@ -185,14 +185,6 @@
   </div>
 </div>
 
-<!-- UPCOMING BIRTHDAYS -->
-<section class="upcoming-birthdays-section">
-  <h2 style="text-align:center; color:#7c5cff; margin-bottom:20px;">Coming Birthdays</h2>
-  <div id="upcomingBirthdays" class="birthdays-container">
-    <p style="text-align:center; opacity:0.6;">Loading upcoming birthdays...</p>
-  </div>
-</section>
-
 <!-- CARDS -->
 <section class="cards">
 
@@ -220,6 +212,14 @@
     </div>
   </a>
 
+</section>
+
+<!-- UPCOMING BIRTHDAYS -->
+<section class="upcoming-birthdays-section">
+  <h2 style="text-align:center; color:#7c5cff; margin-bottom:20px;">Coming Birthdays</h2>
+  <div id="upcomingBirthdays" class="birthdays-container">
+    <p style="text-align:center; opacity:0.6;">Loading upcoming birthdays...</p>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -302,6 +302,11 @@ async function getUpcomingBirthdays(characters) {
   const today = new Date(2026, 1, 27); // Feb 27, 2026
   const upcomingBirthdays = [];
 
+  // Helper function to check if a year is a leap year
+  function isLeapYear(year) {
+    return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+  }
+
   // Load consolidated characters-data.json for birthday info
   try {
     const response = await fetch('characters-data.json');
@@ -315,14 +320,24 @@ async function getUpcomingBirthdays(characters) {
       
       if (!birthday || !Array.isArray(birthday) || birthday.length < 2) continue;
       
-      const [month, day] = birthday;
+      let [month, day] = birthday;
+      
+      // Handle Feb 29 in non-leap years - adjust to Feb 28
+      if (month === 2 && day === 29 && !isLeapYear(2026)) {
+        day = 28;
+      }
       
       // Calculate next birthday
       let nextBirthday = new Date(2026, month - 1, day);
       
       // If birthday has already passed this year, schedule for next year
       if (nextBirthday < today) {
-        nextBirthday = new Date(2027, month - 1, day);
+        // Also check leap year for next year when advancing
+        if (month === 2 && day === 29 && birthday[1] === 29 && !isLeapYear(2027)) {
+          nextBirthday = new Date(2027, 1, 28); // Feb 28 in non-leap 2027
+        } else {
+          nextBirthday = new Date(2027, month - 1, day);
+        }
       }
       
       // Only show birthdays within next 30 days
@@ -360,7 +375,8 @@ function displayBirthdays(birthdays) {
   }
   
   let html = '';
-  birthdays.forEach(birthday => {
+  // Only display the first 5 birthdays
+  birthdays.slice(0, 5).forEach(birthday => {
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const dateStr = `${monthNames[birthday.birthMonth - 1]}/${birthday.birthDay}`;
     
