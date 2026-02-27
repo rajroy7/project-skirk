@@ -34,7 +34,7 @@
         <li><a href="search.html"><img src="icons/search.png" class="icon"><span class="text">Search</span></a></li>
         <li><a href="diff.html"><img src="icons/diff.png" class="icon"><span class="text">Diff</span></a></li>
         <li><a href="wishes.html"><img src="icons/wishes.png" class="icon"><span class="text">Character Wishes</span></a></li>
-        <li class="settings-menu-item"><button id="settingsBtn" class="settings-menu-btn"><img src="icons/settings.png" class="icon"><span class="text">Settings</span></button></li>
+        <li class="about-menu-item"><a href="about.html" class="about-menu-btn"><img src="icons/settings.png" class="icon"><span class="text">About Developer</span></a></li>
     </ul>
 </div>
 
@@ -162,7 +162,9 @@
     <a href="achievements.html">Achievements</a>
     <a href="inventory.html">Inventory</a>
     <a href="search.html">Search</a>
-    
+    <button class="nav-settings-btn" id="topSettingsBtn" title="Settings">
+      <img src="icons/settings.png" alt="Settings" class="settings-icon">
+    </button>
   </div>
 </nav>
 
@@ -189,26 +191,67 @@
 <section class="cards">
 
   <a href="characters.html" class="card-link">
-    <div class="card">
-      <img src="https://ik.imagekit.io/gukc1okbd/images.jpeg">
-      <h3>Characters</h3>
-      <p>Explore builds, abilities and meta insights.</p>
+    <div class="card character-card">
+      <img src="https://ik.imagekit.io/gukc1okbd/images.jpeg" class="cycling-card-img-blurred" id="charactersCardImgBlurred">
+      <div class="card-content">
+        <h3>Characters</h3>
+        <p>Explore builds, abilities and meta insights.</p>
+      </div>
     </div>
   </a>
 
   <a href="weapons.html" class="card-link">
-    <div class="card">
-      <img src="https://ik.imagekit.io/gukc1okbd/Weapon_Azurelight_2nd.webp">
-      <h3>Weapons</h3>
-      <p>Complete weapon guides and rankings.</p>
+    <div class="card weapons-card">
+      <img src="https://ik.imagekit.io/gukc1okbd/Weapon_Azurelight_2nd.webp" class="cycling-card-img-fade" id="weaponsCardImg">
+      <div class="card-content">
+        <h3>Weapons</h3>
+        <p>Complete weapon guides and rankings.</p>
+      </div>
     </div>
   </a>
 
   <a href="artifacts.html" class="card-link">
-    <div class="card">
-      <img src="https://ik.imagekit.io/gukc1okbd/UI_RelicIcon_15040_4.png">
-      <h3>Artifacts</h3>
-      <p>Best sets and optimization strategies.</p>
+    <div class="card artifacts-card">
+      <img src="https://ik.imagekit.io/gukc1okbd/UI_RelicIcon_15040_4.png" class="cycling-card-img-fade" id="artifactsCardImg">
+      <div class="card-content">
+        <h3>Artifacts</h3>
+        <p>Best sets and optimization strategies.</p>
+      </div>
+    </div>
+  </a>
+
+</section>
+
+<!-- ADDITIONAL CARDS -->
+<section class="cards-small">
+
+  <a href="abyss.html" class="card-link">
+    <div class="card abyss-card">
+      <img src="https://ik.imagekit.io/gukc1okbd/Domain_Spiral_Abyss_Abyssal_Moon_Spire.webp" class="small-card-img">
+      <div class="card-content">
+        <h3>Spiral Abyss</h3>
+        <p>Challenging dungeons and rewards.</p>
+      </div>
+    </div>
+  </a>
+
+  <a href="theater.html" class="card-link">
+    <div class="card theater-card">
+      <img src="https://ik.imagekit.io/gukc1okbd/Namecard_Background_Achievement_Feline_Fortune.webp" class="small-card-img">
+      <div class="card-content">
+        <h3>Imaginarium Theater</h3>
+        <p>Strategic combat scenarios.</p>
+      </div>
+    </div>
+  </a>
+
+  <a href="stygian.html" class="card-link">
+    <div class="card stygian-card">
+      <img src="https://ik.imagekit.io/gukc1okbd/5apqeyf8s6yf1.webp" class="small-card-img">
+      <div class="card-content">
+        <h3>Stygian Onslaught</h3>
+        <p>Limited-time event challenges.</p>
+      </div>
     </div>
   </a>
 
@@ -240,9 +283,8 @@
 
   <div class="footer-links">
     <a href="index.html">Home</a>
-    <a href="#">Characters</a>
-    <a href="#">Weapons</a>
-    <a href="#">Artifacts</a>
+    <a href="about.html">About Developer</a>
+    <a href="https://instagram.com/raj_7si" target="_blank">Instagram</a>
   </div>
 
   <div class="footer-bottom">

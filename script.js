@@ -186,14 +186,94 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') document.documentElement.classList.remove('sidebar-open');
 });
 
+// CHARACTER CARD IMAGE CYCLING
+function initializeCharacterCardCycling() {
+    const cardImg = document.getElementById('charactersCardImgBlurred');
+    if (!cardImg) return;
+    
+    let characters = [];
+    let currentCharIndex = 0;
+    
+    // Fetch characters data
+    fetch('characters.json')
+        .then(response => response.json())
+        .then(data => {
+            characters = data;
+            if (characters.length > 0) {
+                // Cycle through characters every 2 seconds
+                setInterval(() => {
+                    if (characters.length > 0) {
+                        const character = characters[currentCharIndex];
+                        // Fade out
+                        cardImg.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            cardImg.src = character.image;
+                            // Fade in
+                            cardImg.style.opacity = '0.6';
+                        }, 250);
+                        
+                        currentCharIndex = (currentCharIndex + 1) % characters.length;
+                    }
+                }, 2000);
+            }
+        })
+        .catch(error => console.error('Error loading characters:', error));
+}
+
+// WEAPONS AND ARTIFACTS CARD FADE ANIMATION
+function initializeCardFadeAnimation() {
+    const cardElements = [
+        document.getElementById('weaponsCardImg'),
+        document.getElementById('artifactsCardImg')
+    ];
+    
+    // Function to create fade animation for a card
+    const createFadeLoop = (cardElement) => {
+        if (!cardElement) return;
+        
+        setInterval(() => {
+            // Fade out
+            cardElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Fade in
+                cardElement.style.opacity = '0.6';
+            }, 250);
+        }, 2000);
+    };
+    
+    cardElements.forEach(createFadeLoop);
+}
+
+// Initialize on page load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeCharacterCardCycling();
+        initializeCardFadeAnimation();
+    });
+} else {
+    initializeCharacterCardCycling();
+    initializeCardFadeAnimation();
+}
+
 // SETTINGS MODAL
 document.addEventListener('DOMContentLoaded', () => {
     const settingsBtn = document.getElementById('settingsBtn');
+    const topSettingsBtn = document.getElementById('topSettingsBtn');
     const settingsModal = document.getElementById('settingsModal');
     const closeModalBtn = document.querySelector('.modal-close');
 
+    // Sidebar settings button
     if (settingsBtn) {
         settingsBtn.addEventListener('click', () => {
+            settingsModal.classList.add('open');
+        });
+    }
+
+    // Top navbar settings button
+    if (topSettingsBtn) {
+        topSettingsBtn.addEventListener('click', () => {
             settingsModal.classList.add('open');
         });
     }
