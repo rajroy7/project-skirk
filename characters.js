@@ -107,11 +107,10 @@ function renderCharacters(chars, container) {
     const card = document.createElement('div');
     card.className = 'char-card';
 
-    // determine detail link
+    // determine detail link using character ID
     let linkUrl = '';
-    if (c.name) {
-      const safe = c.name.toLowerCase().replace(/\s+/g, '-');
-      linkUrl = `${safe}.html`;
+    if (c.id) {
+      linkUrl = `character.html?id=${c.id}`;
     }
 
     const inner = document.createElement('div');

@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character - Project Skirk</title>
+<link rel="icon" href="https://ik.imagekit.io/gukc1okbd/Crystallina_Shape.webp" type="image/webp">
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-title { margin: 18px 0; color: #7c5cff; letter-spacing: 2px; }
+/* detail page specific */
+.detail-header { display:flex; align-items:center; gap:12px; padding:20px; }
+.detail-header .back { color:#ffffff; text-decoration:none; font-size:24px; transition:0.2s; }
+.detail-header .back:hover { color:#7c5cff; }
+.detail-header .name { font-size:24px; font-weight:700; color:#fff; }
+.detail-tabs { display:flex; gap:24px; padding:0 20px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:16px; overflow-x:auto; }
+.detail-tabs a { color:#aaa; text-decoration:none; padding:12px 0; transition:color 0.2s; cursor:pointer; white-space:nowrap; }
+.detail-tabs a.active { color:#fff; border-bottom:2px solid #7c5cff; }
+.character-overview { text-align:center; padding:20px; animation:fadeIn 1s ease; }
+.character-overview img { width:120px; border-radius:50%; }
+.character-overview p { opacity:0.8; margin-top:8px; }
+.info-panels { display:flex; flex-wrap:wrap; gap:20px; padding:0 20px; }
+.basic-info, .ascension { background:rgba(255,255,255,0.05); border-radius:12px; padding:20px; flex:1 1 300px; animation:fadeIn 0.8s ease; }
+.basic-info table { width:100%; color:#fff; }
+.basic-info table td { padding: 8px 0; }
+.basic-info table td:first-child { width: 40%; }
+.level-config { padding:20px; }
+.level-config input[type=range] { width:100%; }
+
+/* ability cards */
+.abilities { display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); padding:20px; }
+.ability-card { background:rgba(255,255,255,0.03); border-radius:12px; padding:20px; position:relative; overflow:hidden; transition:transform 0.3s,box-shadow 0.3s; }
+.ability-card:hover { transform:translateY(-8px); box-shadow:0 8px 30px rgba(124,92,255,0.2); }
+.ability-card h3 { margin-top:0; color:#7c5cff; }
+.ability-card p { color:#ddd; line-height:1.4; }
+.ability-attrs { margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.1); }
+.ability-attrs h4 { font-size:12px; color:#aaa; text-transform:uppercase; letter-spacing:1px; margin:0 0 12px 0; }
+.ability-attrs table { width:100%; font-size:13px; }
+.ability-attrs td { padding:4px 0; color:#ddd; }
+.ability-attrs td:last-child { text-align:right; color:#7c5cff; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1}} 
+.loading { text-align: center; padding: 40px; color: #aaa; }
+.error { 
+    color: #ff6b6b; 
+    padding: 20px; 
+    text-align: center; 
+    background: rgba(255, 107, 107, 0.1);
+    border: 2px solid #ff6b6b;
+    border-radius: 8px;
+    margin: 20px;
+    font-weight: bold;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: monospace;
+}
+</style>
+</head>
+<body>
+<!-- Mobile Sidebar (hidden by default) -->
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li><a href="index.html"><img src="icons/home.png" class="icon"><span class="text">Home</span></a></li>
+        <li><a href="characters.html"><img src="icons/characters.png" class="icon"><span class="text">Characters</span></a></li>
+        <li><a href="weapons.html"><img src="icons/weapons.png" class="icon"><span class="text">Weapons</span></a></li>
+        <li><a href="artifacts.html"><img src="icons/artifacts.png" class="icon"><span class="text">Artifacts</span></a></li>
+        <li><a href="achievements.html"><img src="icons/achievements.png" class="icon"><span class="text">Achievements</span></a></li>
+        <li><a href="inventory.html"><img src="icons/inventory.png" class="icon"><span class="text">Inventory</span></a></li>
+        <li><a href="enemy.html"><img src="icons/enemy.png" class="icon"><span class="text">Enemy Creatures</span></a></li>
+        <li><a href="tcg.html"><img src="icons/tcg.png" class="icon"><span class="text">Genius Invokation TCG</span></a></li>
+        <li><a href="abyss.html"><img src="icons/abyss.png" class="icon"><span class="text">Spiral Abyss</span></a></li>
+        <li><a href="theater.html"><img src="icons/theater.png" class="icon"><span class="text">Imaginarium Theater</span></a></li>
+        <li><a href="stygian.html"><img src="icons/stygian.png" class="icon"><span class="text">Stygian Onslaught</span></a></li>
+        <li><a href="furnishings.html"><img src="icons/furnishings.png" class="icon"><span class="text">Furnishings</span></a></li>
+        <li><a href="furnishing-set.html"><img src="icons/furnishing-set.png" class="icon"><span class="text">Furnishing Set</span></a></li>
+        <li><a href="miliastra.html"><img src="icons/miliastra.png" class="icon"><span class="text">Miliastra</span></a></li>
+        <li><a href="wonderland.html"><img src="icons/wonderland.png" class="icon"><span class="text">Wonderland</span></a></li>
+        <li><a href="mw-set.html"><img src="icons/mw-set.png" class="icon"><span class="text">Miliastra Wonderland Set</span></a></li>
+        <li><a href="mw-inventory.html"><img src="icons/mw-inventory.png" class="icon"><span class="text">Miliastra Wonderland Inventory</span></a></li>
+        <li><a href="search.html"><img src="icons/search.png" class="icon"><span class="text">Search</span></a></li>
+        <li><a href="diff.html"><img src="icons/diff.png" class="icon"><span class="text">Diff</span></a></li>
+        <li><a href="wishes.html"><img src="icons/wishes.png" class="icon"><span class="text">Character Wishes</span></a></li>
+        <li class="settings-menu-item"><button id="settingsBtn" class="settings-menu-btn"><img src="icons/settings.png" class="icon"><span class="text">Settings</span></button></li>
+    </ul>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div id="settingsModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Settings</h2>
+      <button class="modal-close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="settings-section"><h3>Main</h3><div class="settings-row"><label>Language</label><select id="language"><option>English</option><option>French</option><option>German</option><option>Spanish</option><option>Chinese</option><option>Japanese</option></select></div><div class="settings-row"><label>Region</label><select id="region"><option>Europe</option><option>North America</option><option>Asia</option><option>South America</option></select></div><div class="settings-row"><label>Twin</label><select id="twin"><option>Male</option><option>Female</option></select></div></div>
+      <div class="settings-section"><h3>Talent</h3><div class="settings-row"><label>Display Style</label><select id="displayStyle"><option>Slider</option><option>Input</option><option>Dropdown</option></select></div><div class="settings-row"><label>Default LVL</label><select id="defaultLvl"><option>1</option><option>5</option><option>10</option><option>15</option><option>20</option></select></div><div class="settings-row"><label>Default LVL (constellation)</label><select id="defaultLvlConstellation"><option>None</option><option>+1</option><option>+2</option><option>+3</option></select></div><div class="settings-row"><label>Default Decimal</label><select id="defaultDecimal"><option>Default</option><option>0</option><option>1</option><option>2</option><option>3</option></select></div><div class="settings-row"><label>Add constellations info</label><input type="checkbox" id="addConstellations"></div></div>
+      <div class="settings-section"><h3>Other</h3><div class="settings-row"><label>Unreleased Content</label><select id="unreleased"><option>Disable</option><option>Enable</option></select></div><div class="settings-info"><strong>Note:</strong> Unreleased content includes characters and weapons not yet available.</div></div>
+    </div>
+    <div class="modal-footer">
+        <button id="saveSettingsBtn" class="save-btn">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <nav>
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="logo">PROJECT SKIRK</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="characters.html">Characters</a>
+      <a href="weapons.html">Weapons</a>
+      <a href="artifacts.html">Artifacts</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="search.html">Search</a>
+    </div>
+  </nav>
+
+    <div class="detail-header">
+        <a href="characters.html" class="back">&larr;</a>
+        <span class="name" id="charName">Loading...</span>
+    </div>
+
+    <div class="detail-tabs">
+        <a data-tab="info" class="active">Character Information</a>
+        <a data-tab="stats">Base Stats</a>
+        <a data-tab="skills">Skills</a>
+        <a data-tab="constellations">Constellations</a>
+        <a data-tab="ascension">Ascension</a>
+        <a data-tab="voice">Voice Actors</a>
+    </div>
+
+    <div id="content-container">
+        <div class="loading">Loading character data...</div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-content">
+        <h2>PROJECT SKIRK</h2>
+        <p class="footer-credit">Created by <strong>Raj Roy</strong></p>
+        <p class="footer-memorial">In memory of <strong>homdgcat</strong> and <strong>hakush.in</strong></p>
+        <div class="footer-divider"></div>
+        <p class="footer-copyright">&copy; 2024 Project Skirk. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// Character map embedded directly in HTML to avoid fetch issues with file:// protocol
+const CHAR_MAP_EMBEDDED = {
+  "10000002": { "name": "Kamisato Ayaka", "file": "Kamisato Ayaka" },
+  "10000003": { "name": "Jean", "file": "Jean" },
+  "10000006": { "name": "Lisa", "file": "Lisa" },
+  "10000007": { "name": "Traveler", "file": "Traveler" },
+  "10000014": { "name": "Barbara", "file": "Barbara" },
+  "10000015": { "name": "Kaeya", "file": "Kaeya" },
+  "10000016": { "name": "Diluc", "file": "Diluc" },
+  "10000020": { "name": "Razor", "file": "Razor" },
+  "10000021": { "name": "Amber", "file": "Amber" },
+  "10000022": { "name": "Venti", "file": "Venti" },
+  "10000023": { "name": "Xiangling", "file": "Xiangling" },
+  "10000024": { "name": "Beidou", "file": "Beidou" },
+  "10000025": { "name": "Xingqiu", "file": "Xingqiu" },
+  "10000026": { "name": "Xiao", "file": "Xiao" },
+  "10000027": { "name": "Ningguang", "file": "Ningguang" },
+  "10000029": { "name": "Klee", "file": "Klee" },
+  "10000030": { "name": "Zhongli", "file": "Zhongli" },
+  "10000031": { "name": "Fischl", "file": "Fischl" },
+  "10000032": { "name": "Bennett", "file": "Bennett" },
+  "10000033": { "name": "Tartaglia", "file": "Tartaglia" },
+  "10000034": { "name": "Noelle", "file": "Noelle" },
+  "10000035": { "name": "Qiqi", "file": "Qiqi" },
+  "10000036": { "name": "Chongyun", "file": "Chongyun" },
+  "10000037": { "name": "Ganyu", "file": "Ganyu" },
+  "10000038": { "name": "Albedo", "file": "Albedo" },
+  "10000039": { "name": "Diona", "file": "Diona" },
+  "10000041": { "name": "Mona", "file": "Mona" },
+  "10000042": { "name": "Keqing", "file": "Keqing" },
+  "10000043": { "name": "Sucrose", "file": "Sucrose" },
+  "10000044": { "name": "Xinyan", "file": "Xinyan" },
+  "10000045": { "name": "Rosaria", "file": "Rosaria" },
+  "10000046": { "name": "Hu Tao", "file": "Hu Tao" },
+  "10000047": { "name": "Kaedehara Kazuha", "file": "Kaedehara Kazuha" },
+  "10000048": { "name": "Yanfei", "file": "Yanfei" },
+  "10000049": { "name": "Yoimiya", "file": "Yoimiya" },
+  "10000050": { "name": "Thoma", "file": "Thoma" },
+  "10000051": { "name": "Eula", "file": "Eula" },
+  "10000052": { "name": "Raiden Shogun", "file": "Raiden Shogun" },
+  "10000053": { "name": "Sayu", "file": "Sayu" },
+  "10000054": { "name": "Sangonomiya Kokomi", "file": "Sangonomiya Kokomi" },
+  "10000055": { "name": "Gorou", "file": "Gorou" },
+  "10000056": { "name": "Kujou Sara", "file": "Kujou Sara" },
+  "10000057": { "name": "Arataki Itto", "file": "Arataki Itto" },
+  "10000058": { "name": "Yae Miko", "file": "Yae Miko" },
+  "10000059": { "name": "Shikanoin Heizou", "file": "Shikanoin Heizou" },
+  "10000060": { "name": "Yelan", "file": "Yelan" },
+  "10000061": { "name": "Kirara", "file": "Kirara" },
+  "10000062": { "name": "Aloy", "file": "Aloy" },
+  "10000063": { "name": "Shenhe", "file": "Shenhe" },
+  "10000064": { "name": "Yun Jin", "file": "Yun Jin" },
+  "10000065": { "name": "Kuki Shinobu", "file": "Kuki Shinobu" },
+  "10000066": { "name": "Kamisato Ayato", "file": "Kamisato Ayato" },
+  "10000067": { "name": "Collei", "file": "Collei" },
+  "10000068": { "name": "Dori", "file": "Dori" },
+  "10000069": { "name": "Tighnari", "file": "Tighnari" },
+  "10000070": { "name": "Nilou", "file": "Nilou" },
+  "10000071": { "name": "Cyno", "file": "Cyno" },
+  "10000072": { "name": "Candace", "file": "Candace" },
+  "10000073": { "name": "Nahida", "file": "Nahida" },
+  "10000074": { "name": "Layla", "file": "Layla" },
+  "10000075": { "name": "Wanderer", "file": "Wanderer" },
+  "10000076": { "name": "Faruzan", "file": "Faruzan" },
+  "10000077": { "name": "Yaoyao", "file": "Yaoyao" },
+  "10000078": { "name": "Alhaitham", "file": "Alhaitham" },
+  "10000079": { "name": "Dehya", "file": "Dehya" },
+  "10000080": { "name": "Mika", "file": "Mika" },
+  "10000081": { "name": "Kaveh", "file": "Kaveh" },
+  "10000082": { "name": "Baizhu", "file": "Baizhu" },
+  "10000083": { "name": "Lynette", "file": "Lynette" },
+  "10000084": { "name": "Lyney", "file": "Lyney" },
+  "10000085": { "name": "Freminet", "file": "Freminet" },
+  "10000086": { "name": "Wriothesley", "file": "Wriothesley" },
+  "10000087": { "name": "Neuvillette", "file": "Neuvillette" },
+  "10000088": { "name": "Charlotte", "file": "Charlotte" },
+  "10000089": { "name": "Furina", "file": "Furina" },
+  "10000090": { "name": "Chevreuse", "file": "Chevreuse" },
+  "10000091": { "name": "Navia", "file": "Navia" },
+  "10000092": { "name": "Gaming", "file": "Gaming" },
+  "10000093": { "name": "Xianyun", "file": "Xianyun" },
+  "10000094": { "name": "Chiori", "file": "Chiori" },
+  "10000095": { "name": "Sigewinne", "file": "Sigewinne" },
+  "10000096": { "name": "Arlecchino", "file": "Arlecchino" },
+  "10000097": { "name": "Sethos", "file": "Sethos" },
+  "10000098": { "name": "Clorinde", "file": "Clorinde" },
+  "10000099": { "name": "Emilie", "file": "Emilie" },
+  "10000100": { "name": "Kachina", "file": "Kachina" },
+  "10000101": { "name": "Kinich", "file": "Kinich" },
+  "10000102": { "name": "Mualani", "file": "Mualani" },
+  "10000103": { "name": "Xilonen", "file": "Xilonen" },
+  "10000104": { "name": "Chasca", "file": "Chasca" },
+  "10000105": { "name": "Ororon", "file": "Ororon" },
+  "10000106": { "name": "Mavuika", "file": "Mavuika" },
+  "10000107": { "name": "Citlali", "file": "Citlali" },
+  "10000108": { "name": "Lan Yan", "file": "Lan Yan" },
+  "10000109": { "name": "Yumemizuki Mizuki", "file": "Yumemizuki Mizuki" },
+  "10000110": { "name": "Iansan", "file": "Iansan" },
+  "10000111": { "name": "Varesa", "file": "Varesa" },
+  "10000112": { "name": "Escoffier", "file": "Escoffier" },
+  "10000113": { "name": "Ifa", "file": "Ifa" },
+  "10000114": { "name": "Skirk", "file": "Skirk" },
+  "10000115": { "name": "Dahlia", "file": "Dahlia" },
+  "10000116": { "name": "Ineffa", "file": "Ineffa" },
+  "10000117": { "name": "Manekin", "file": "Manekin" },
+  "10000118": { "name": "Manekina", "file": "Manekina" },
+  "10000119": { "name": "Lauma", "file": "Lauma" },
+  "10000120": { "name": "Flins", "file": "Flins" },
+  "10000121": { "name": "Aino", "file": "Aino" },
+  "10000122": { "name": "Nefer", "file": "Nefer" },
+  "10000123": { "name": "Durin", "file": "Durin" },
+  "10000124": { "name": "Jahoda", "file": "Jahoda" },
+  "10000125": { "name": "Columbina", "file": "Columbina" },
+  "10000126": { "name": "Zibai", "file": "Zibai" },
+  "10000127": { "name": "Illuga", "file": "Illuga" },
+  "10000128": { "name": "Varka", "file": "Varka" }
+};
+
+// Character map loaded from embedded data
+let characterMap = CHAR_MAP_EMBEDDED;
+
+// Load character map and initialize
+async function initPage() {
+    try {
+        // Debug: Log initialization start
+        console.log('Initializing character detail page...');
+        console.log('Character map loaded, found', Object.keys(characterMap).length, 'characters');
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const characterId = urlParams.get('id');
+        console.log('Looking for character ID:', characterId);
+        
+        if (!characterId) {
+            showError('No character ID specified. Use character.html?id=10000078');
+            return;
+        }
+        
+        if (!characterMap[characterId]) {
+            showError(`Character ID ${characterId} not found. Available IDs: ${Object.keys(characterMap).slice(0, 5).join(', ')}...`);
+            return;
+        }
+        
+        await loadCharacterData(characterId);
+        initDetailPage();
+    } catch (error) {
+        console.error('Error initializing page:', error);
+        showError(`Failed to load character. Error: ${error.message}`);
+    }
+}
+
+function showError(message) {
+    const container = document.getElementById('content-container');
+    container.innerHTML = `<div class="error">${message}</div>`;
+}
+
+async function loadCharacterData(characterId) {
+    try {
+        console.log('Loading character data for ID:', characterId);
+        const charInfo = characterMap[characterId];
+        console.log('Character info from map:', charInfo);
+        
+        const dataPath = `Data/data/${charInfo.file}.json`;
+        console.log('Attempting to fetch from:', dataPath);
+        console.log('Current page URL:', window.location.href);
+        
+        let response;
+        try {
+            response = await fetch(dataPath);
+        } catch (fetchError) {
+            console.error('Fetch error (this is normal for file:// protocol):', fetchError);
+            throw new Error(`Cannot load Data/data/${charInfo.file}.json - ensure you're running this through an HTTP server, not opening as file:// (${fetchError.message})`);
+        }
+        
+        console.log('Fetch response status:', response.status, response.statusText);
+        
+        if (!response.ok) {
+            // For 404, provide specific path help
+            if (response.status === 404) {
+                throw new Error(`File not found: Data/data/${charInfo.file}.json - Check that the file exists in the Data/data directory`);
+            }
+            throw new Error(`Failed to load ${dataPath}: ${response.status} ${response.statusText}`);
+        }
+        
+        const jsonData = await response.json();
+        console.log('Character JSON loaded successfully');
+        const charData = jsonData.data;
+        
+        // Update page title
+        document.title = `${charData.name} - Project Skirk`;
+        document.getElementById('charName').textContent = charData.name;
+        console.log('Updated page title to:', charData.name);
+        
+        // Generate content
+        const content = generateCharacterContent(charData);
+        document.getElementById('content-container').innerHTML = content;
+        console.log('Generated character content');
+        
+        // Load and display skills
+        displaySkills(charData);
+        console.log('Displayed skills');
+        
+        // Load and display constellations
+        displayConstellations(charData);
+        console.log('Displayed constellations');
+        
+        // Load and display stats
+        displayStats(charData);
+        console.log('Displayed stats');
+        
+        // Load and display ascension
+        displayAscension(charData);
+        console.log('Displayed ascension');
+        
+        // Load and display voice actors
+        displayVoiceActors(charData);
+        console.log('Displayed voice actors');
+        
+    } catch (error) {
+        console.error('Error loading character:', error);
+        showError(`Failed to load character data:\n${error.message}`);
+    }
+}
+
+function generateCharacterContent(charData) {
+    const iconUrl = `https://gi.yatta.moe/assets/UI/UI_${charData.icon}.png?vh=2024123000`;
+    const detail = charData.fetter?.detail || 'No description available';
+    const releaseDate = new Date(charData.release * 1000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    
+    return `
+        <div id="tab-info">
+            <div class="character-overview">
+                <img src="${iconUrl}" alt="${charData.name}" onerror="this.src='https://via.placeholder.com/120'">
+                <p>${detail}</p>
+            </div>
+            <div class="info-panels">
+                <div class="basic-info">
+                    <h3>Basic Information</h3>
+                    <table>
+                        <tr><td>Name</td><td>${charData.name}</td></tr>
+                        <tr><td>Title</td><td>${charData.fetter?.title || 'N/A'}</td></tr>
+                        <tr><td>Element</td><td>${charData.element || 'N/A'}</td></tr>
+                        <tr><td>Weapon Type</td><td>${formatWeaponType(charData.weaponType)}</td></tr>
+                        <tr><td>Region</td><td>${charData.region || 'N/A'}</td></tr>
+                        <tr><td>Rarity</td><td>${charData.rank || 'N/A'}⭐</td></tr>
+                        <tr><td>Body Type</td><td>${charData.bodyType || 'N/A'}</td></tr>
+                        <tr><td>Birthday</td><td>${formatBirthday(charData.birthday)}</td></tr>
+                        <tr><td>Release Date</td><td>${releaseDate}</td></tr>
+                    </table>
+                </div>
+                <div class="ascension">
+                    <h3>Constellation Info</h3>
+                    <table>
+                        <tr><td>Constellation</td><td>${charData.fetter?.constellation || 'N/A'}</td></tr>
+                        <tr><td>Native Region</td><td>${charData.fetter?.native || 'N/A'}</td></tr>
+                        <tr><td>Special Bonus</td><td>${formatSpecialProp(charData.specialProp)}</td></tr>
+                    </table>
+                    <h3 style="margin-top:16px;">Base Stats (Lv. 1)</h3>
+                    <table>
+                        <tr><td>Base HP</td><td>${formatStat(charData.upgrade?.prop)}</td></tr>
+                        <tr><td>Base ATK</td><td>${getStatValue(charData.upgrade?.prop, 'FIGHT_PROP_BASE_ATTACK')}</td></tr>
+                        <tr><td>Base DEF</td><td>${getStatValue(charData.upgrade?.prop, 'FIGHT_PROP_BASE_DEFENSE')}</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="level-config">
+                <h3>Level Configuration</h3>
+                <label>Lv. <span id="levelValue">90</span></label>
+                <input type="range" id="levelSlider" min="1" max="90" value="90">
+            </div>
+        </div>
+
+        <div id="tab-skills" style="display:none;">
+            <div class="abilities" id="skillsContainer">
+                <div class="ability-card">
+                    <h3>Skills & Abilities</h3>
+                    <p>Loading skills...</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-constellations" style="display:none;">
+            <div class="abilities" id="constellationsContainer">
+                <div class="ability-card">
+                    <h3>Constellations</h3>
+                    <p>Loading constellations...</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-ascension" style="display:none;">
+            <div id="ascensionContainer" style="padding: 20px;">
+                <p>Loading ascension data...</p>
+            </div>
+        </div>
+
+        <div id="tab-stats" style="display:none;">
+            <div id="statsContainer" style="padding: 20px;">
+                <p>Loading stats...</p>
+            </div>
+        </div>
+
+        <div id="tab-voice" style="display:none;">
+            <div id="voiceContainer" style="padding: 20px;">
+                <p>Loading voice actor data...</p>
+            </div>
+        </div>
+    `;
+}
+
+function formatWeaponType(weaponType) {
+    const weapons = {
+        'WEAPON_SWORD_ONE_HAND': 'Sword',
+        'WEAPON_CLAYMORE': 'Claymore',
+        'WEAPON_POLEARM': 'Polearm',
+        'WEAPON_BOW': 'Bow',
+        'WEAPON_CATALYST': 'Catalyst'
+    };
+    return weapons[weaponType] || weaponType;
+}
+
+function formatBirthday(birthday) {
+    if (!birthday || !Array.isArray(birthday) || birthday.length < 2) return 'N/A';
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${months[birthday[0] - 1]} ${birthday[1]}`;
+}
+
+function formatSpecialProp(specialProp) {
+    const propNames = {
+        'FIGHT_PROP_CRITICAL': 'CRIT Rate',
+        'FIGHT_PROP_CRITICAL_HURT': 'CRIT DMG',
+        'FIGHT_PROP_CHARGE_EFFICIENCY': 'Energy Recharge',
+        'FIGHT_PROP_HEAL_ADD': 'Healing Bonus',
+        'FIGHT_PROP_ELEMENT_MASTERY': 'Elemental Mastery',
+        'FIGHT_PROP_PYRO_ADD_HURT': 'Pyro DMG Bonus',
+        'FIGHT_PROP_HYDRO_ADD_HURT': 'Hydro DMG Bonus',
+        'FIGHT_PROP_ELECTRO_ADD_HURT': 'Electro DMG Bonus',
+        'FIGHT_PROP_CRYO_ADD_HURT': 'Cryo DMG Bonus',
+        'FIGHT_PROP_WIND_ADD_HURT': 'Anemo DMG Bonus',
+        'FIGHT_PROP_ROCK_ADD_HURT': 'Geo DMG Bonus',
+        'FIGHT_PROP_GRASS_ADD_HURT': 'Dendro DMG Bonus',
+        'FIGHT_PROP_PHYSICAL_ADD_HURT': 'Physical DMG Bonus'
+    };
+    return propNames[specialProp] || specialProp || 'N/A';
+}
+
+function formatStat(propArray) {
+    if (!propArray || !Array.isArray(propArray)) return 'N/A';
+    const hp = propArray.find(p => p.propType === 'FIGHT_PROP_BASE_HP');
+    return hp ? Math.round(hp.initValue * 100) / 100 : 'N/A';
+}
+
+function getStatValue(propArray, propType) {
+    if (!propArray || !Array.isArray(propArray)) return 'N/A';
+    const prop = propArray.find(p => p.propType === propType);
+    return prop ? Math.round(prop.initValue * 100) / 100 : 'N/A';
+}
+
+function cleanDescription(text) {
+    if (!text) return '';
+    // Remove color tags like <color=#FFD780FF>text</color>
+    return text.replace(/<color=#[0-9A-Fa-f]{8}FF?>|<\/color>/g, '').replace(/\\n/g, '<br>');
+}
+
+function displaySkills(charData) {
+    const container = document.getElementById('skillsContainer');
+    if (!charData.talent) {
+        container.innerHTML = '<div class="ability-card"><h3>Skills</h3><p>No skill data available.</p></div>';
+        return;
+    }
+    
+    let html = '';
+    const talents = charData.talent;
+    const sortedKeys = Object.keys(talents).sort((a, b) => parseInt(a) - parseInt(b));
+    
+    sortedKeys.forEach(key => {
+        const talent = talents[key];
+        if (!talent) return;
+        
+        const description = cleanDescription(talent.description || '');
+        let attrs = '';
+        
+        if (talent.descriptionBuff && Array.isArray(talent.descriptionBuff)) {
+            attrs = '<div class="ability-attrs"><h4>Attributes</h4><table>';
+            talent.descriptionBuff.forEach((buff, idx) => {
+                const buffText = cleanDescription(buff || '');
+                if (buffText) {
+                    attrs += `<tr><td>Lv. ${idx + 1}</td><td>${buffText}</td></tr>`;
+                }
+            });
+            attrs += '</table></div>';
+        }
+        
+        html += `
+            <div class="ability-card">
+                <h3>${talent.name || 'Unknown Skill'}</h3>
+                <p>${description}</p>
+                ${attrs}
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html || '<div class="ability-card"><h3>Skills</h3><p>No skill data available.</p></div>';
+}
+
+function displayConstellations(charData) {
+    const container = document.getElementById('constellationsContainer');
+    if (!charData.constellation) {
+        container.innerHTML = '<div class="ability-card"><h3>Constellations</h3><p>No constellation data available.</p></div>';
+        return;
+    }
+    
+    let html = '';
+    const constellations = charData.constellation;
+    const sortedKeys = Object.keys(constellations).sort((a, b) => parseInt(a) - parseInt(b));
+    
+    sortedKeys.forEach((key, idx) => {
+        const const_data = constellations[key];
+        if (!const_data) return;
+        
+        const description = cleanDescription(const_data.description || '');
+        
+        html += `
+            <div class="ability-card">
+                <h3>${idx + 1}. ${const_data.name || 'Unknown'}</h3>
+                <p>${description}</p>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html || '<div class="ability-card"><h3>Constellations</h3><p>No constellation data available.</p></div>';
+}
+
+function displayStats(charData) {
+    const container = document.getElementById('statsContainer');
+    if (!charData.upgrade || !charData.upgrade.promote) {
+        container.innerHTML = '<p>No stats data available.</p>';
+        return;
+    }
+    
+    const props = charData.upgrade.prop || [];
+    const promotes = charData.upgrade.promote || [];
+    
+    let html = '<h2>stat Progression (Level 1 - Level 90)</h2>';
+    html += '<table style="width:100%; border-collapse: collapse;"><tr style="background:#7c5cff; color:white;"><th style="padding:10px; text-align:left;">Level</th>';
+    
+    // Get all unique prop types from all promote levels
+    let allProps = {};
+    promotes.forEach(p => {
+        if (p.addProps) {
+            Object.keys(p.addProps).forEach(prop => {
+                allProps[prop] = true;
+            });
+        }
+    });
+    
+    // Add header for each prop
+    Object.keys(allProps).forEach(prop => {
+        html += `<th style="padding:10px; text-align:left;">${formatPropName(prop)}</th>`;
+    });
+    html += '</tr>';
+    
+    // Add base stats row
+    html += `<tr style="border-bottom: 1px solid rgba(255,255,255,0.1);"><td style="padding:10px;">Base (Lv. 1)</td>`;
+    Object.keys(allProps).forEach(prop => {
+        const baseProp = props.find(p => p.propType === prop);
+        html += `<td style="padding:10px; color:#7c5cff;">${baseProp ? Math.round(baseProp.initValue) : '-'}</td>`;
+    });
+    html += '</tr>';
+    
+    // Add promote levels
+    promotes.forEach((promote, idx) => {
+        if (promote.unlockMaxLevel && promote.unlockMaxLevel > 20) {
+            html += `<tr style="border-bottom: 1px solid rgba(255,255,255,0.1);"><td style="padding:10px;">Lv. ${promote.unlockMaxLevel}</td>`;
+            Object.keys(allProps).forEach(prop => {
+                const addedVal = promote.addProps && promote.addProps[prop];
+                const baseProp = props.find(p => p.propType === prop);
+                if (baseProp && addedVal) {
+                    const total = baseProp.initValue + addedVal;
+                    html += `<td style="padding:10px; color:#7c5cff;">${Math.round(total)}</td>`;
+                } else {
+                    html += `<td style="padding:10px;">-</td>`;
+                }
+            });
+            html += '</tr>';
+        }
+    });
+    
+    html += '</table>';
+    container.innerHTML = html;
+}
+
+function displayAscension(charData) {
+    const container = document.getElementById('ascensionContainer');
+    if (!charData.upgrade || !charData.upgrade.promote) {
+        container.innerHTML = '<p>No ascension data available.</p>';
+        return;
+    }
+    
+    const promotes = charData.upgrade.promote || [];
+    let html = '<h2>Ascension Requirements</h2>';
+    html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">';
+    
+    promotes.forEach((promote, idx) => {
+        if (idx === 0 || !promote.costItems) return;
+        
+        html += `
+            <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 20px;">
+                <h3 style="color:#7c5cff; margin-top:0;">Ascension ${idx} → Lv. ${promote.unlockMaxLevel}</h3>
+                <table style="width:100%; font-size:14px;">
+                    <tr><td>Player Level Required:</td><td style="color:#7c5cff;">${promote.requiredPlayerLevel || 'N/A'}</td></tr>
+                    <tr><td>Mora Required:</td><td style="color:#ffd700;">${promote.coinCost ? promote.coinCost.toLocaleString() : 'N/A'}</td></tr>
+                </table>
+                <h4 style="margin: 12px 0 8px 0; color:#aaa;">Materials:</h4>
+                <ul style="margin:0; padding-left:20px; font-size:13px;">
+        `;
+        
+        if (promote.costItems) {
+            Object.entries(promote.costItems).forEach(([itemId, count]) => {
+                html += `<li>Item ${itemId}: ${count} required</li>`;
+            });
+        }
+        
+        html += `
+                </ul>
+            </div>
+        `;
+    });
+    
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+function displayVoiceActors(charData) {
+    const container = document.getElementById('voiceContainer');
+    const cv = charData.fetter?.cv;
+    
+    if (!cv) {
+        container.innerHTML = '<p>No voice actor data available.</p>';
+        return;
+    }
+    
+    let html = '<h2>Voice Actors</h2>';
+    html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">';
+    
+    const languages = {
+        'EN': 'English',
+        'CHS': 'Chinese (Simplified)',
+        'JP': 'Japanese',
+        'KR': 'Korean'
+    };
+    
+    Object.entries(languages).forEach(([code, langName]) => {
+        const voiceActor = cv[code];
+        if (voiceActor) {
+            html += `
+                <div style="background: rgba(124,92,255,0.1); border: 1px solid rgba(124,92,255,0.3); border-radius: 8px; padding: 15px;">
+                    <h4 style="margin: 0 0 8px 0; color:#7c5cff;">${langName}</h4>
+                    <p style="margin: 0; font-size: 14px; opacity: 0.9;">${voiceActor}</p>
+                </div>
+            `;
+        }
+    });
+    
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+function formatPropName(propType) {
+    const propNames = {
+        'FIGHT_PROP_BASE_HP': 'HP',
+        'FIGHT_PROP_BASE_ATTACK': 'ATK',
+        'FIGHT_PROP_BASE_DEFENSE': 'DEF',
+        'FIGHT_PROP_CRITICAL': 'CRIT Rate',
+        'FIGHT_PROP_CRITICAL_HURT': 'CRIT DMG',
+        'FIGHT_PROP_CHARGE_EFFICIENCY': 'Energy Recharge',
+        'FIGHT_PROP_HEAL_ADD': 'Healing Bonus',
+        'FIGHT_PROP_ELEMENT_MASTERY': 'Elemental Mastery',
+        'FIGHT_PROP_PYRO_ADD_HURT': 'Pyro Bonus',
+        'FIGHT_PROP_HYDRO_ADD_HURT': 'Hydro Bonus',
+        'FIGHT_PROP_ELECTRO_ADD_HURT': 'Electro Bonus',
+        'FIGHT_PROP_CRYO_ADD_HURT': 'Cryo Bonus',
+        'FIGHT_PROP_WIND_ADD_HURT': 'Anemo Bonus',
+        'FIGHT_PROP_ROCK_ADD_HURT': 'Geo Bonus',
+        'FIGHT_PROP_GRASS_ADD_HURT': 'Dendro Bonus'
+    };
+    return propNames[propType] || propType;
+}
+
+function initDetailPage() {
+    const slider = document.getElementById('levelSlider');
+    const display = document.getElementById('levelValue');
+    if (slider && display) {
+        slider.addEventListener('input', () => {
+            display.textContent = slider.value;
+        });
+    }
+
+    // tabs
+    document.querySelectorAll('.detail-tabs a').forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.tab;
+            document.querySelectorAll('.detail-tabs a').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            document.querySelectorAll('[id^="tab-"]').forEach(sec => sec.style.display = 'none');
+            const section = document.getElementById('tab-' + target);
+            if (section) section.style.display = 'block';
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initPage);
+</script>
+</body>
+</html>
