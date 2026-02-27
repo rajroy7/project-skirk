@@ -612,23 +612,29 @@ function displaySkills(charData) {
         return;
     }
     
-    let html = '<div style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">';
-    html += '<label style="color: #ffc107; font-weight: 600;">View Attributes at Level:</label>';
-    html += '<select id="talentLevelSelector" style="padding: 8px 12px; background: rgba(0,0,0,0.3); border: 1px solid #7c5cff; border-radius: 4px; color: #fff; font-size: 14px; cursor: pointer;">';
-    for (let i = 1; i <= 10; i++) {
-        html += `<option value="${i}" ${i === 10 ? 'selected' : ''}>Level ${i}</option>`;
-    }
-    html += '</select></div>';
-    
     const talents = charData.talent;
     const sortedKeys = Object.keys(talents).sort((a, b) => parseInt(a) - parseInt(b));
     
-    html += '<div id="skillsContent">';
+    // Find talents with promote data (3 main talents)
+    const mainTalents = [];
+    const talentTypeNames = ['Normal Attack', 'Elemental Skill', 'Elemental Burst'];
+    let typeIndex = 0;
     
-    sortedKeys.forEach(key => {
-        const talent = talents[key];
-        if (!talent) return;
-        
+    for (let key of sortedKeys) {
+        const t = talents[key];
+        if (t && t.promote && Object.keys(t.promote).length > 0) {
+            mainTalents.push({ key: parseInt(key), data: t, type: talentTypeNames[typeIndex] || `Talent ${key}` });
+            typeIndex++;
+            if (mainTalents.length >= 3) break;
+        }
+    }
+    
+    // Create 3 talent cards in a row
+    let html = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 20px;">';
+    
+    mainTalents.forEach((talentInfo) => {
+        const talent = talentInfo.data;
+        const key = talentInfo.key;
         const description = cleanDescription(talent.description || '');
         const iconUrl = talent.icon ? `https://gi.yatta.moe/assets/UI/${talent.icon}.png?vh=2024123000` : '';
         const iconImg = iconUrl ? `<img src="${iconUrl}" alt="${talent.name}" style="width:80px; height:80px; border-radius:8px; margin-bottom:12px; border:2px solid #7c5cff;">` : '';
@@ -640,59 +646,70 @@ function displaySkills(charData) {
         if (talent.promote && defaultPromote && defaultPromote.description) {
             const formattedAttrs = formatTalentDescription(defaultPromote.description, defaultPromote.params);
             if (formattedAttrs) {
-                attrsHtml = `<div class="ability-attrs" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,200,50,0.2);">
-                    <h4 style="color: #ffc107; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">📊 Attributes (Level 10)</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; font-size: 12px;">
-                        ${formattedAttrs.split('\n').map(line => `<div style="color: #ddd;">${line}</div>`).join('')}
+                const attrLines = formattedAttrs.split('\n').map(line => {
+                    const parts = line.split('|');
+                    if (parts.length === 2) {
+                        return `<div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.05);"><span>${parts[0]}</span><span style="color: #ffc107; font-weight: 600;">${parts[1]}</span></div>`;
+                    }
+                    return `<div style="padding: 4px 0;">${line}</div>`;
+                }).join('');
+                
+                attrsHtml = `<div class="ability-attrs" style="margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(255,200,50,0.2);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h4 style="color: #ffc107; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin: 0;">Attributes</h4>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span id="level-display-talent-${key}" style="color: #ffc107; font-weight: 600; font-size: 12px;">Lv.10</span>
+                            <input type="range" id="talent-slider-${key}" class="talent-level-slider" min="1" max="10" value="10" style="width: 100px; cursor: pointer;" data-talent-key="${key}">
+                        </div>
+                    </div>
+                    <div id="attrs-content-${key}" style="font-size: 12px; color: #ddd; line-height: 1.6;">
+                        ${attrLines}
                     </div>
                 </div>`;
             }
         }
         
         html += `
-            <div class="ability-card" data-talent-key="${key}">
+            <div class="ability-card" style="display: flex; flex-direction: column; background: rgba(20,20,40,0.6); border: 1px solid rgba(124,92,255,0.3); border-radius: 12px; padding: 16px;">
                 ${iconImg}
-                <h3>${talent.name || 'Unknown Skill'}</h3>
-                <p>${description}</p>
+                <h3 style="margin: 8px 0; color: #fff;">${talent.name || 'Unknown Skill'}</h3>
+                <h4 style="margin: 0 0 8px 0; color: #ffc107; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">${talentInfo.type}</h4>
+                <p style="color: #ddd; font-size: 13px; line-height: 1.5; margin: 8px 0; flex-grow: 1;">${description}</p>
                 ${attrsHtml}
             </div>
         `;
     });
     
     html += '</div>';
-    
     container.innerHTML = html;
     
-    // Add event listener for level selector
-    const levelSelector = document.getElementById('talentLevelSelector');
-    if (levelSelector) {
-        levelSelector.addEventListener('change', (e) => {
+    // Add event listeners for each slider
+    mainTalents.forEach((talentInfo) => {
+        const slider = document.getElementById(`talent-slider-${talentInfo.key}`);
+        if (!slider) return;
+        
+        slider.addEventListener('input', (e) => {
             const selectedLevel = e.target.value;
+            const talent = talentInfo.data;
+            const displaySpan = document.getElementById(`level-display-talent-${talentInfo.key}`);
+            const contentDiv = document.getElementById(`attrs-content-${talentInfo.key}`);
             
-            sortedKeys.forEach(key => {
-                const talent = talents[key];
-                const card = document.querySelector(`[data-talent-key="${key}"]`);
-                if (!card) return;
-                
-                const existingAttrs = card.querySelector('.ability-attrs');
-                if (existingAttrs) existingAttrs.remove();
-                
-                const promote = talent.promote ? talent.promote[selectedLevel] : null;
-                if (promote && promote.description) {
-                    const formattedAttrs = formatTalentDescription(promote.description, promote.params);
-                    if (formattedAttrs) {
-                        const attrsHtml = `<div class="ability-attrs" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,200,50,0.2);">
-                            <h4 style="color: #ffc107; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">📊 Attributes (Level ${selectedLevel})</h4>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; font-size: 12px;">
-                                ${formattedAttrs.split('\n').map(line => `<div style="color: #ddd;">${line}</div>`).join('')}
-                            </div>
-                        </div>`;
-                        card.insertAdjacentHTML('beforeend', attrsHtml);
+            if (displaySpan) displaySpan.textContent = `Lv.${selectedLevel}`;
+            
+            const promote = talent.promote ? talent.promote[selectedLevel] : null;
+            if (promote && promote.description && contentDiv) {
+                const formattedAttrs = formatTalentDescription(promote.description, promote.params);
+                const attrLines = formattedAttrs.split('\n').map(line => {
+                    const parts = line.split('|');
+                    if (parts.length === 2) {
+                        return `<div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.05);"><span>${parts[0]}</span><span style="color: #ffc107; font-weight: 600;">${parts[1]}</span></div>`;
                     }
-                }
-            });
+                    return `<div style="padding: 4px 0;">${line}</div>`;
+                }).join('');
+                contentDiv.innerHTML = attrLines;
+            }
         });
-    }
+    });
 }
 
 function displayConstellations(charData) {
