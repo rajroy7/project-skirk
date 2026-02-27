@@ -26,6 +26,9 @@
 .basic-info table td:first-child { width: 40%; }
 .level-config { padding:20px; }
 .level-config input[type=range] { width:100%; }
+.level-btn { padding:8px 16px; border:1px solid rgba(124,92,255,0.5); background:transparent; color:#fff; border-radius:6px; cursor:pointer; transition:all 0.2s; font-size:14px; font-weight:600; }
+.level-btn:hover { border-color:#7c5cff; background:rgba(124,92,255,0.1); }
+.level-btn.active { background:#7c5cff; border-color:#7c5cff; color:#fff; }
 
 /* ability cards */
 .abilities { display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); padding:20px; }
@@ -361,6 +364,10 @@ async function loadCharacterData(characterId) {
         document.getElementById('content-container').innerHTML = content;
         console.log('Generated character content');
         
+        // Initialize level buttons and material calculator
+        initLevelButtons(charData);
+        console.log('Initialized level buttons');
+        
         // Load and display skills
         displaySkills(charData);
         console.log('Displayed skills');
@@ -430,8 +437,20 @@ function generateCharacterContent(charData) {
             </div>
             <div class="level-config">
                 <h3>Level Configuration</h3>
-                <label>Lv. <span id="levelValue">90</span></label>
-                <input type="range" id="levelSlider" min="1" max="90" value="90">
+                <p style="font-size:14px; color:#aaa; margin-bottom:12px;">Select target level:</p>
+                <div id="levelButtons" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;"></div>
+                <div id="materialCalculator" style="background:rgba(255,255,255,0.05); border-radius:12px; padding:16px;">
+                    <h4 style="margin-top:0; color:#7c5cff;">Materials & Mora Required</h4>
+                    <div id="materialsDisplay" style="font-size:14px; color:#ddd;"></div>
+                </div>
+                <h4 style="margin-top:20px; color:#7c5cff;">Stats at Selected Level</h4>
+                <div id="selectedLevelStats" style="background:rgba(255,255,255,0.05); border-radius:12px; padding:16px;">
+                    <table style="width:100%; font-size:14px;">
+                        <tr><td style="padding:8px 0;">Base HP</td><td style="color:#7c5cff; text-align:right;" id="statHP">-</td></tr>
+                        <tr><td style="padding:8px 0;">Base ATK</td><td style="color:#7c5cff; text-align:right;" id="statATK">-</td></tr>
+                        <tr><td style="padding:8px 0;">Base DEF</td><td style="color:#7c5cff; text-align:right;" id="statDEF">-</td></tr>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -797,15 +816,131 @@ function getWeaponIcon(weaponType) {
     return weaponIcons[weaponName] || '';
 }
 
-function initDetailPage() {
-    const slider = document.getElementById('levelSlider');
-    const display = document.getElementById('levelValue');
-    if (slider && display) {
-        slider.addEventListener('input', () => {
-            display.textContent = slider.value;
-        });
-    }
+// Material ID to name mapping (common Genshin Impact materials)
+const materialNames = {
+    '100024': 'Slime Condensate',
+    '100025': 'Slime Secretions',
+    '100026': 'Slime Concentrate',
+    '101010': 'Broken Iron Sword Hilt',
+    '101011': 'Bent Iron Sword Hilt',
+    '101012': 'Rusted Iron Sword Hilt',
+    '104111': 'Ascencion Material 1',
+    '104112': 'Ascention Material 2',
+    '104113': 'Ascension Material 3',
+    '104114': 'Ascension Material 4',
+    '112035': 'Material Type 1',
+    '112036': 'Material Type 2',
+    '112037': 'Material Type 3',
+    '113011': 'Local Specialty'
+};
 
+function getMaterialName(id) {
+    return materialNames[id] || `Material ${id}`;
+}
+
+function initLevelButtons(charData) {
+    const levelsContainer = document.getElementById('levelButtons');
+    const levels = [20, 40, 50, 60, 70, 80, 90];
+    
+    levelsContainer.innerHTML = '';
+    levels.forEach(level => {
+        const btn = document.createElement('button');
+        btn.className = 'level-btn' + (level === 90 ? ' active' : '');
+        btn.textContent = `Lv. ${level}`;
+        btn.dataset.level = level;
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateMaterialCalculator(charData, level);
+        });
+        levelsContainer.appendChild(btn);
+    });
+    
+    // Initialize with level 90
+    updateMaterialCalculator(charData, 90);
+}
+
+function calculateMaterialsForLevel(charData, targetLevel) {
+    const promotes = charData.upgrade?.promote || [];
+    let totalMaterials = {};
+    let totalMora = 0;
+    
+    // Find all promotions needed to reach target level
+    for (let i = 1; i < promotes.length; i++) {
+        const promo = promotes[i];
+        if (!promo.unlockMaxLevel || !promo.costItems) continue;
+        
+        if (promo.unlockMaxLevel <= targetLevel) {
+            // This promotion is needed
+            Object.entries(promo.costItems).forEach(([matId, quantity]) => {
+                totalMaterials[matId] = (totalMaterials[matId] || 0) + quantity;
+            });
+            totalMora += promo.coinCost || 0;
+        }
+    }
+    
+    return { materials: totalMaterials, mora: totalMora };
+}
+
+function calculateStatsAtLevel(charData, targetLevel) {
+    const props = charData.upgrade?.prop || [];
+    const promotes = charData.upgrade?.promote || [];
+    
+    let stats = {
+        hp: 0,
+        atk: 0,
+        def: 0
+    };
+    
+    // Get base stats
+    props.forEach(prop => {
+        if (prop.propType === 'FIGHT_PROP_BASE_HP') stats.hp = prop.initValue;
+        if (prop.propType === 'FIGHT_PROP_BASE_ATTACK') stats.atk = prop.initValue;
+        if (prop.propType === 'FIGHT_PROP_BASE_DEFENSE') stats.def = prop.initValue;
+    });
+    
+    // Add promoted stats
+    for (let i = 1; i < promotes.length; i++) {
+        const promo = promotes[i];
+        if (!promo.unlockMaxLevel || !promo.addProps) continue;
+        
+        if (promo.unlockMaxLevel <= targetLevel) {
+            const addProps = promo.addProps;
+            if (addProps.FIGHT_PROP_BASE_HP) stats.hp += addProps.FIGHT_PROP_BASE_HP;
+            if (addProps.FIGHT_PROP_BASE_ATTACK) stats.atk += addProps.FIGHT_PROP_BASE_ATTACK;
+            if (addProps.FIGHT_PROP_BASE_DEFENSE) stats.def += addProps.FIGHT_PROP_BASE_DEFENSE;
+        }
+    }
+    
+    return stats;
+}
+
+function updateMaterialCalculator(charData, targetLevel) {
+    const { materials, mora } = calculateMaterialsForLevel(charData, targetLevel);
+    const stats = calculateStatsAtLevel(charData, targetLevel);
+    
+    // Display materials
+    let materialHtml = '';
+    if (Object.keys(materials).length === 0) {
+        materialHtml = '<p style="color:#aaa;">No materials required for this level.</p>';
+    } else {
+        materialHtml = '<table style="width:100%; font-size:13px;">';
+        Object.entries(materials).forEach(([matId, qty]) => {
+            materialHtml += `<tr style="border-bottom:1px solid rgba(255,255,255,0.1); padding:4px 0;"><td>${getMaterialName(matId)}</td><td style="text-align:right; color:#7c5cff;">${qty}x</td></tr>`;
+        });
+        materialHtml += `<tr style="border-top:2px solid rgba(124,92,255,0.3); margin-top:8px; padding-top:8px;"><td><strong>Mora</strong></td><td style="text-align:right; color:#ffd700;"><strong>${mora.toLocaleString()}</strong></td></tr>`;
+        materialHtml += '</table>';
+    }
+    
+    document.getElementById('materialsDisplay').innerHTML = materialHtml;
+    
+    // Update stats display
+    document.getElementById('statHP').textContent = Math.round(stats.hp);
+    document.getElementById('statATK').textContent = Math.round(stats.atk);
+    document.getElementById('statDEF').textContent = Math.round(stats.def);
+}
+
+function initDetailPage() {
     // tabs
     document.querySelectorAll('.detail-tabs a').forEach(tab => {
         tab.addEventListener('click', () => {
