@@ -71,9 +71,26 @@
 .comparison-label { background: rgba(124, 92, 255, 0.15); padding: 8px 12px; border-radius: 6px; margin-bottom: 12px; font-size: 12px; color: #aaa; }
 .diff-removed { background: rgba(255, 107, 107, 0.2); color: #ff6b6b; padding: 2px 4px; border-radius: 3px; text-decoration: line-through; }
 .diff-added { background: rgba(76, 175, 80, 0.2); color: #4caf50; padding: 2px 4px; border-radius: 3px; font-weight: 600; }
-.skill-diff-card { background: rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 12px; margin-bottom: 12px; border-left: 3px solid rgba(124, 92, 255, 0.5); }
-.skill-diff-card h4 { color: #ddd; margin: 0 0 8px 0; font-size: 13px; }
-.skill-diff-card p { margin: 6px 0; font-size: 12px; line-height: 1.5; color: #ccc; }
+.skill-diff-card { 
+    background: rgba(255, 255, 255, 0.03); 
+    border-radius: 8px; 
+    padding: 16px; 
+    margin-bottom: 12px; 
+    border-left: 3px solid rgba(124, 92, 255, 0.5);
+    border: 1px solid rgba(124, 92, 255, 0.2);
+}
+.skill-diff-card h4 { 
+    color: #ddd; 
+    margin: 0 0 8px 0; 
+    font-size: 13px; 
+    font-weight: 600;
+}
+.skill-diff-card p { 
+    margin: 6px 0; 
+    font-size: 12px; 
+    line-height: 1.6; 
+    color: #ccc; 
+}
 .no-changes { text-align: center; padding: 60px 20px; color: #888; }
 .no-changes-icon { font-size: 48px; opacity: 0.5; margin-bottom: 12px; }
 
@@ -1086,40 +1103,44 @@ function compareVersions(charData, versionFrom, versionTo) {
     resultDiv.innerHTML = '<div style="text-align: center; padding: 20px; color: #7c5cff;">Loading version data...</div>';
     resultDiv.style.display = 'block';
     
-    // Load current character data as the latest version
-    const skills = charData.skill || [];
-    const constellations = charData.constellation || [];
+    // Convert talent and constellation objects to arrays
+    const talentObj = charData.talent || {};
+    const constObj = charData.constellation || {};
+    
+    const talents = Object.keys(talentObj).map(key => talentObj[key]);
+    const constellations = Object.keys(constObj).map(key => constObj[key]);
     
     let html = '<div style="margin-top: 20px;">';
     html += `<div style="background: rgba(124, 92, 255, 0.1); border-left: 4px solid #7c5cff; padding: 16px; border-radius: 6px; margin-bottom: 20px;">`;
     html += `<h3 style="color: #7c5cff; margin-top: 0; font-size: 14px;">Comparison: v${versionFrom} → v${versionTo}</h3>`;
-    html += `<p style="margin: 8px 0 0 0; color: #aaa; font-size: 12px;">Showing skills and constellations that may have been updated</p>`;
+    html += `<p style="margin: 8px 0 0 0; color: #aaa; font-size: 12px;">Showing skills and constellations with latest version details</p>`;
     html += `</div>`;
     
-    // Display skills
-    if (skills.length > 0) {
+    // Display talents/skills
+    if (talents.length > 0) {
         html += '<h4 style="color: #7c5cff; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-top: 24px; margin-bottom: 12px;">Skills & Abilities</h4>';
-        html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px;">';
+        html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 16px;">';
         
-        skills.forEach((skill, idx) => {
-            if (skill.name && skill.description) {
-                let skillName = skill.name || 'Unnamed Skill';
-                let skillDesc = skill.description || 'No description';
+        talents.forEach((talent, idx) => {
+            if (talent && talent.name && talent.description) {
+                let talentName = talent.name || 'Unnamed Talent';
+                let talentDesc = talent.description || 'No description';
                 
-                // Truncate long descriptions
-                if (skillDesc.length > 200) {
-                    skillDesc = skillDesc.substring(0, 200) + '...';
-                }
+                // Clean up color codes from description but preserve structure
+                talentDesc = talentDesc.replace(/<color=#FFD780FF>/g, '<span style="color: #FFD780;">').replace(/<color=#80FFD7FF>/g, '<span style="color: #80FFD7;">').replace(/<color=#FF9999FF>/g, '<span style="color: #FF9999;">').replace(/<color=#80C0FFFF>/g, '<span style="color: #80C0FF;">').replace(/<color=#FFACFFFF>/g, '<span style="color: #FFACFF;">').replace(/<color=#99FFFFFF>/g, '<span style="color: #99FFFF;">').replace(/{\/color}/g, '</span>').replace(/{\/LINK}/g, '').replace(/{LINK#[^}]+}/g, '');
+                
+                let typeLabel = '';
+                if (talent.type === 0) typeLabel = 'Normal Attack';
+                else if (talent.type === 1) typeLabel = 'Elemental Skill';
+                else if (talent.type === 2) typeLabel = 'Elemental Burst';
+                else typeLabel = 'Ability';
                 
                 html += `
                     <div class="skill-diff-card">
-                        <h4 style="margin: 0 0 4px 0;">${skillName}</h4>
-                        <p style="margin: 0 0 8px 0; font-size: 11px; color: #999; text-transform: uppercase;">Type: ${skill.talentType || 'Normal Attack'}</p>
-                        <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.1);">
-                            <p style="margin: 0; font-size: 12px; line-height: 1.4;">${skillDesc}</p>
-                            <div style="margin-top: 8px; display: flex; gap: 8px;">
-                                <span class="diff-added">✓ v${versionTo}</span>
-                            </div>
+                        <h4 style="margin: 0 0 4px 0;">${talentName}</h4>
+                        <p style="margin: 0 0 12px 0; font-size: 11px; color: #999; text-transform: uppercase;">${typeLabel}</p>
+                        <div style="font-size: 12px; line-height: 1.6; color: #ddd;">
+                            ${talentDesc}
                         </div>
                     </div>
                 `;
@@ -1132,26 +1153,21 @@ function compareVersions(charData, versionFrom, versionTo) {
     // Display constellations
     if (constellations.length > 0) {
         html += '<h4 style="color: #7c5cff; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-top: 24px; margin-bottom: 12px;">Constellations</h4>';
-        html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px;">';
+        html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 16px;">';
         
         constellations.forEach((constellation, idx) => {
-            if (constellation.name && constellation.description) {
+            if (constellation && constellation.name && constellation.description) {
                 let constName = constellation.name || `Constellation ${idx + 1}`;
                 let constDesc = constellation.description || 'No description';
                 
-                // Truncate long descriptions
-                if (constDesc.length > 200) {
-                    constDesc = constDesc.substring(0, 200) + '...';
-                }
+                // Clean up color codes but preserve structure
+                constDesc = constDesc.replace(/<color=#FFD780FF>/g, '<span style="color: #FFD780;">').replace(/<color=#80FFD7FF>/g, '<span style="color: #80FFD7;">').replace(/<color=#FF9999FF>/g, '<span style="color: #FF9999;">').replace(/<color=#80C0FFFF>/g, '<span style="color: #80C0FF;">').replace(/<color=#FFACFFFF>/g, '<span style="color: #FFACFF;">').replace(/<color=#99FFFFFF>/g, '<span style="color: #99FFFF;">').replace(/{\/color}/g, '</span>').replace(/{\/LINK}/g, '').replace(/{LINK#[^}]+}/g, '');
                 
                 html += `
                     <div class="skill-diff-card">
-                        <h4 style="margin: 0 0 4px 0;">C${idx + 1} - ${constName}</h4>
-                        <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.1);">
-                            <p style="margin: 0; font-size: 12px; line-height: 1.4;">${constDesc}</p>
-                            <div style="margin-top: 8px;">
-                                <span class="diff-added">✓ v${versionTo}</span>
-                            </div>
+                        <h4 style="margin: 0 0 8px 0;">C${idx + 1} - ${constName}</h4>
+                        <div style="font-size: 12px; line-height: 1.6; color: #ddd;">
+                            ${constDesc}
                         </div>
                     </div>
                 `;
@@ -1161,7 +1177,7 @@ function compareVersions(charData, versionFrom, versionTo) {
         html += '</div>';
     }
     
-    if (skills.length === 0 && constellations.length === 0) {
+    if (talents.length === 0 && constellations.length === 0) {
         html += `
             <div style="background: rgba(124, 92, 255, 0.1); border: 1px solid rgba(124, 92, 255, 0.3); border-radius: 8px; padding: 20px; text-align: center; color: #aaa; margin-top: 20px;">
                 <p style="margin: 0 0 8px 0; font-size: 14px;">No skill or constellation data available</p>
@@ -1175,9 +1191,8 @@ function compareVersions(charData, versionFrom, versionTo) {
         <div style="margin-top: 24px; padding: 16px; background: rgba(255, 200, 50, 0.08); border-left: 4px solid #ffc107; border-radius: 6px;">
             <h4 style="color: #ffc107; margin-top: 0; font-size: 12px; text-transform: uppercase;">About This Comparison</h4>
             <p style="color: #aaa; font-size: 12px; margin: 0; line-height: 1.6;">
-                This view shows the latest version (v${versionTo}) of this character's abilities.
-                <br><span class="diff-added">Green indicators</span> show attributes present in version ${versionTo}.
-                <br>For detailed before/after text changes, full version archives are being compiled.
+                This view shows version ${versionTo} of this character's abilities.
+                <br>For detailed before/after text changes, version archives are being compiled.
             </p>
         </div>
     `;
