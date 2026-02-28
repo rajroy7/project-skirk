@@ -1032,8 +1032,8 @@ function displayDiffs(charData) {
             html += '<div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center;">';
             
             html += '<div>';
-            html += '<label style="display: block; font-size: 11px; color: #aaa; text-transform: uppercase; margin-bottom: 6px;">From Version</label>';
-            html += '<select id="versionFrom" class="version-select" style="width: 100%; padding: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(124,92,255,0.3); border-radius: 6px; color: #fff; font-size: 13px;">';
+            html += '<label for="versionFrom" style="display: block; font-size: 11px; color: #aaa; text-transform: uppercase; margin-bottom: 6px;">From Version</label>';
+            html += '<select id="versionFrom" name="versionFrom" class="version-select" autocomplete="off" style="width: 100%; padding: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(124,92,255,0.3); border-radius: 6px; color: #fff; font-size: 13px;">';
             patchVersions.forEach((v, idx) => {
                 html += `<option value="${v}" ${idx === patchVersions.length - 1 ? 'selected' : ''}>${v}</option>`;
             });
@@ -1043,8 +1043,8 @@ function displayDiffs(charData) {
             html += '<div style="text-align: center; font-size: 18px; color: #7c5cff; font-weight: 700;">→</div>';
             
             html += '<div>';
-            html += '<label style="display: block; font-size: 11px; color: #aaa; text-transform: uppercase; margin-bottom: 6px;">To Version</label>';
-            html += '<select id="versionTo" class="version-select" style="width: 100%; padding: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(124,92,255,0.3); border-radius: 6px; color: #fff; font-size: 13px;">';
+            html += '<label for="versionTo" style="display: block; font-size: 11px; color: #aaa; text-transform: uppercase; margin-bottom: 6px;">To Version</label>';
+            html += '<select id="versionTo" name="versionTo" class="version-select" autocomplete="off" style="width: 100%; padding: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(124,92,255,0.3); border-radius: 6px; color: #fff; font-size: 13px;">';
             patchVersions.forEach((v, idx) => {
                 html += `<option value="${v}" ${idx === 0 ? 'selected' : ''}>${v}</option>`;
             });
@@ -1071,6 +1071,8 @@ function displayDiffs(charData) {
                 const versionFrom = versionFromSelect.value;
                 const versionTo = versionToSelect.value;
                 
+                console.log('Compare button clicked:', versionFrom, '->', versionTo);
+                
                 if (versionFrom === versionTo) {
                     alert('Please select two different versions to compare');
                     return;
@@ -1082,6 +1084,7 @@ function displayDiffs(charData) {
             // Auto-compare when page loads if there are at least 2 versions
             if (patchVersions.length >= 2) {
                 setTimeout(() => {
+                    console.log('Auto-compare triggered for:', charData.name);
                     compareVersions(charData, patchVersions[patchVersions.length - 1], patchVersions[0]);
                 }, 500);
             }
@@ -1098,9 +1101,95 @@ function displayDiffs(charData) {
         });
 }
 
+function createTextDiff(oldText, newText) {
+    if (!oldText || !newText) return newText;
+    
+    // Simple word-by-word diff
+    const oldWords = oldText.split(/\s+/);
+    const newWords = newText.split(/\s+/);
+    
+    let diffHtml = '';
+    let oldIdx = 0, newIdx = 0;
+    
+    while (oldIdx < oldWords.length || newIdx < newWords.length) {
+        if (oldIdx < oldWords.length && newIdx < newWords.length && 
+            oldWords[oldIdx] === newWords[newIdx]) {
+            // Words match - show normally
+            diffHtml += oldWords[oldIdx] + ' ';
+            oldIdx++;
+            newIdx++;
+        } else {
+            // Words don't match
+            if (oldIdx < oldWords.length) {
+                // Show old word as red strikethrough
+                diffHtml += `<span style="color: #FF6B6B; text-decoration: line-through;">${oldWords[oldIdx]}</span> `;
+                oldIdx++;
+            }
+            if (newIdx < newWords.length) {
+                // Show new word as green
+                diffHtml += `<span style="color: #51CF66; font-weight: 600;">${newWords[newIdx]}</span> `;
+                newIdx++;
+            }
+        }
+    }
+    
+    return diffHtml;
+}
+
 function compareVersions(charData, versionFrom, versionTo) {
+    console.log('compareVersions called:', versionFrom, '->', versionTo);
+    console.log('Char ID:', charData.id, 'Type:', typeof charData.id);
     const resultDiv = document.getElementById('comparisonResult');
-    resultDiv.innerHTML = '<div style="text-align: center; padding: 20px; color: #7c5cff;">Loading version data...</div>';
+    
+    if (!resultDiv) {
+        console.error('comparisonResult div not found!');
+        return;
+    }
+    
+    resultDiv.innerHTML = '<div style="text-align: center; padding: 20px; color: #7c5cff;">Loading comparison data...</div>';
+    resultDiv.style.display = 'block';
+    
+    // Load diff data if available
+    fetch('version_diffs.json')
+        .then(response => {
+            console.log('version_diffs.json fetched, status:', response.status);
+            if (!response.ok) throw new Error('Failed to fetch version_diffs.json');
+            return response.json();
+        })
+        .then(diffData => {
+            console.log('Diff data loaded, total keys:', Object.keys(diffData).length);
+            console.log('Looking for char ID:', String(charData.id));
+            console.log('Char in diffs?', String(charData.id) in diffData);
+            displayComparisonResults(charData, versionFrom, versionTo, diffData);
+        })
+        .catch(error => {
+            console.error('Error loading diffs:', error);
+            displayComparisonResults(charData, versionFrom, versionTo, {});
+        });
+}
+
+function cleanDescription(desc) {
+    // Remove ALL color codes and LINK tags - make everything white by default
+    // Only keep structure, no colors
+    return desc
+        .replace(/<color=#[A-F0-9]{6}FF>/g, '')
+        .replace(/{\/color}/g, '')
+        .replace(/{LINK#[^}]+}/g, '')
+        .replace(/{\/LINK}/g, '')
+        .replace(/\\n\\n/g, '\n\n');
+}
+
+function displayComparisonResults(charData, versionFrom, versionTo, diffData) {
+    console.log('displayComparisonResults called for:', charData.name, 'charId:', charData.id);
+    console.log('Comparing:', versionFrom, '→', versionTo);
+    const resultDiv = document.getElementById('comparisonResult');
+    
+    if (!resultDiv) {
+        console.error('comparisonResult div not found!');
+        return;
+    }
+    
+    // Ensure the div is visible
     resultDiv.style.display = 'block';
     
     // Convert talent and constellation objects to arrays
@@ -1110,13 +1199,22 @@ function compareVersions(charData, versionFrom, versionTo) {
     const talents = Object.keys(talentObj).map(key => talentObj[key]);
     const constellations = Object.keys(constObj).map(key => constObj[key]);
     
+    console.log('Talents:', talents.length, 'Constellations:', constellations.length);
+    
     let html = '<div style="margin-top: 20px;">';
     html += `<div style="background: rgba(124, 92, 255, 0.1); border-left: 4px solid #7c5cff; padding: 16px; border-radius: 6px; margin-bottom: 20px;">`;
-    html += `<h3 style="color: #7c5cff; margin-top: 0; font-size: 14px;">Comparison: v${versionFrom} → v${versionTo}</h3>`;
-    html += `<p style="margin: 8px 0 0 0; color: #aaa; font-size: 12px;">Showing skills and constellations with latest version details</p>`;
+    html += `<h3 style="color: #7c5cff; margin-top: 0; font-size: 14px;">Changes: v${versionFrom} → v${versionTo}</h3>`;
+    html += `<p style="margin: 8px 0 0 0; color: #aaa; font-size: 12px;"><span style="color: #FF6B6B; text-decoration: line-through;">Red strikethrough</span> = old text | <span style="color: #51CF66; font-weight: 600;">Green bold</span> = new text</p>`;
     html += `</div>`;
     
-    // Display talents/skills
+    // Get diff info for this character
+    const charDiffData = diffData[String(charData.id)] || diffData[charData.id] || {};
+    const versionFromDiff = charDiffData.diffs ? charDiffData.diffs[versionFrom] : null;
+    const versionToDiff = charDiffData.diffs ? charDiffData.diffs[versionTo] : null;
+    
+    console.log('Diff data found for:', versionFrom, '?', !!versionFromDiff, 'and', versionTo, '?', !!versionToDiff);
+    
+    // Display talents/skills with diffs
     if (talents.length > 0) {
         html += '<h4 style="color: #7c5cff; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-top: 24px; margin-bottom: 12px;">Skills & Abilities</h4>';
         html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 16px;">';
@@ -1124,10 +1222,6 @@ function compareVersions(charData, versionFrom, versionTo) {
         talents.forEach((talent, idx) => {
             if (talent && talent.name && talent.description) {
                 let talentName = talent.name || 'Unnamed Talent';
-                let talentDesc = talent.description || 'No description';
-                
-                // Clean up color codes from description but preserve structure
-                talentDesc = talentDesc.replace(/<color=#FFD780FF>/g, '<span style="color: #FFD780;">').replace(/<color=#80FFD7FF>/g, '<span style="color: #80FFD7;">').replace(/<color=#FF9999FF>/g, '<span style="color: #FF9999;">').replace(/<color=#80C0FFFF>/g, '<span style="color: #80C0FF;">').replace(/<color=#FFACFFFF>/g, '<span style="color: #FFACFF;">').replace(/<color=#99FFFFFF>/g, '<span style="color: #99FFFF;">').replace(/{\/color}/g, '</span>').replace(/{\/LINK}/g, '').replace(/{LINK#[^}]+}/g, '');
                 
                 let typeLabel = '';
                 if (talent.type === 0) typeLabel = 'Normal Attack';
@@ -1135,12 +1229,40 @@ function compareVersions(charData, versionFrom, versionTo) {
                 else if (talent.type === 2) typeLabel = 'Elemental Burst';
                 else typeLabel = 'Ability';
                 
+                // Get old and new text from diffs
+                let oldText = '';
+                let newText = '';
+                let hasChanges = false;
+                
+                if (versionFromDiff && versionFromDiff.talent && versionFromDiff.talent[idx]) {
+                    oldText = cleanDescription(versionFromDiff.talent[idx].new) || cleanDescription(versionFromDiff.talent[idx].old);
+                    hasChanges = true;
+                } 
+                
+                if (versionToDiff && versionToDiff.talent && versionToDiff.talent[idx]) {
+                    newText = cleanDescription(versionToDiff.talent[idx].new) || cleanDescription(versionToDiff.talent[idx].old);
+                    hasChanges = true;
+                }
+                
+                // Create diff
+                let diffDesc = talent.description; // Default to current
+                if (hasChanges && oldText && newText) {
+                    console.log(`Found diffs for talent ${idx}: ${oldText.substring(0,40)}... -> ${newText.substring(0,40)}...`);
+                    diffDesc = createTextDiff(oldText, newText);
+                } else if (hasChanges && newText) {
+                    diffDesc = newText;
+                } else if (hasChanges && oldText) {
+                    diffDesc = oldText;
+                } else {
+                    diffDesc = cleanDescription(talent.description);
+                }
+                
                 html += `
                     <div class="skill-diff-card">
-                        <h4 style="margin: 0 0 4px 0;">${talentName}</h4>
+                        <h4 style="margin: 0 0 4px 0; color: #FFD780;">${talentName}</h4>
                         <p style="margin: 0 0 12px 0; font-size: 11px; color: #999; text-transform: uppercase;">${typeLabel}</p>
-                        <div style="font-size: 12px; line-height: 1.6; color: #ddd;">
-                            ${talentDesc}
+                        <div style="font-size: 12px; line-height: 1.6; color: #fff;">
+                            ${diffDesc}
                         </div>
                     </div>
                 `;
@@ -1150,7 +1272,7 @@ function compareVersions(charData, versionFrom, versionTo) {
         html += '</div>';
     }
     
-    // Display constellations
+    // Display constellations with diffs
     if (constellations.length > 0) {
         html += '<h4 style="color: #7c5cff; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-top: 24px; margin-bottom: 12px;">Constellations</h4>';
         html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 16px;">';
@@ -1158,16 +1280,37 @@ function compareVersions(charData, versionFrom, versionTo) {
         constellations.forEach((constellation, idx) => {
             if (constellation && constellation.name && constellation.description) {
                 let constName = constellation.name || `Constellation ${idx + 1}`;
-                let constDesc = constellation.description || 'No description';
                 
-                // Clean up color codes but preserve structure
-                constDesc = constDesc.replace(/<color=#FFD780FF>/g, '<span style="color: #FFD780;">').replace(/<color=#80FFD7FF>/g, '<span style="color: #80FFD7;">').replace(/<color=#FF9999FF>/g, '<span style="color: #FF9999;">').replace(/<color=#80C0FFFF>/g, '<span style="color: #80C0FF;">').replace(/<color=#FFACFFFF>/g, '<span style="color: #FFACFF;">').replace(/<color=#99FFFFFF>/g, '<span style="color: #99FFFF;">').replace(/{\/color}/g, '</span>').replace(/{\/LINK}/g, '').replace(/{LINK#[^}]+}/g, '');
+                let oldText = '';
+                let newText = '';
+                let hasChanges = false;
+                
+                if (versionFromDiff && versionFromDiff.constellation && versionFromDiff.constellation[idx]) {
+                    oldText = cleanDescription(versionFromDiff.constellation[idx].new) || cleanDescription(versionFromDiff.constellation[idx].old);
+                    hasChanges = true;
+                }
+                
+                if (versionToDiff && versionToDiff.constellation && versionToDiff.constellation[idx]) {
+                    newText = cleanDescription(versionToDiff.constellation[idx].new) || cleanDescription(versionToDiff.constellation[idx].old);
+                    hasChanges = true;
+                }
+                
+                let diffDesc = constellation.description;
+                if (hasChanges && oldText && newText) {
+                    diffDesc = createTextDiff(oldText, newText);
+                } else if (hasChanges && newText) {
+                    diffDesc = newText;
+                } else if (hasChanges && oldText) {
+                    diffDesc = oldText;
+                } else {
+                    diffDesc = cleanDescription(constellation.description);
+                }
                 
                 html += `
                     <div class="skill-diff-card">
-                        <h4 style="margin: 0 0 8px 0;">C${idx + 1} - ${constName}</h4>
-                        <div style="font-size: 12px; line-height: 1.6; color: #ddd;">
-                            ${constDesc}
+                        <h4 style="margin: 0 0 8px 0; color: #FFD780;">C${idx + 1} - ${constName}</h4>
+                        <div style="font-size: 12px; line-height: 1.6; color: #fff;">
+                            ${diffDesc}
                         </div>
                     </div>
                 `;
@@ -1181,7 +1324,7 @@ function compareVersions(charData, versionFrom, versionTo) {
         html += `
             <div style="background: rgba(124, 92, 255, 0.1); border: 1px solid rgba(124, 92, 255, 0.3); border-radius: 8px; padding: 20px; text-align: center; color: #aaa; margin-top: 20px;">
                 <p style="margin: 0 0 8px 0; font-size: 14px;">No skill or constellation data available</p>
-                <p style="font-size: 12px; margin: 0; opacity: 0.7;">Historical version data for detailed changes is being archived.</p>
+                <p style="font-size: 12px; margin: 0; opacity: 0.7;">Unable to load character ability data.</p>
             </div>
         `;
     }
@@ -1191,15 +1334,19 @@ function compareVersions(charData, versionFrom, versionTo) {
         <div style="margin-top: 24px; padding: 16px; background: rgba(255, 200, 50, 0.08); border-left: 4px solid #ffc107; border-radius: 6px;">
             <h4 style="color: #ffc107; margin-top: 0; font-size: 12px; text-transform: uppercase;">About This Comparison</h4>
             <p style="color: #aaa; font-size: 12px; margin: 0; line-height: 1.6;">
-                This view shows version ${versionTo} of this character's abilities.
-                <br>For detailed before/after text changes, version archives are being compiled.
+                Showing changes from v${versionFrom} to v${versionTo}. ${versionToDiff ? 'Diffs applied.' : 'Using current ability descriptions.'}
             </p>
         </div>
     `;
     
     html += '</div>';
     
+    console.log('Setting resultDiv.innerHTML, HTML length:', html.length);
     resultDiv.innerHTML = html;
+    console.log('HTML content set to resultDiv');
+    
+    // Scroll to results
+    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function computeTextDiff(oldText, newText) {

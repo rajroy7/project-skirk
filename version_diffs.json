@@ -1,0 +1,37 @@
+{
+  "10000128": {
+    "name": "Varka",
+    "diffs": {
+      "6.4": {
+        "from": "6.3.52",
+        "talent": {
+          "0": {
+            "name": "Favonius Bladework: Dancing Radiance",
+            "old": "Imitating an ancient knightly war-dance, Varka wields dual claymores to perform up to 5 consecutive strikes.",
+            "new": "Manifest the true essence of Favonius Bladework with absolute power. Imitating an ancient knightly war-dance, Varka wields dual claymores to perform up to 5 consecutive strikes with enhanced damage."
+          },
+          "1": {
+            "name": "Windbound Execution",
+            "old": "Varka executes a powerful slash dealing Anemo DMG.",
+            "new": "Varka executes a powerful slash dealing AoE Anemo DMG and switching to Sturm und Drang mode."
+          }
+        }
+      }
+    }
+  },
+  "10000125": {
+    "name": "Columbina",
+    "diffs": {
+      "6.3": {
+        "from": "6.2.55",
+        "talent": {
+          "1": {
+            "name": "Shadowless Domain",
+            "old": "Deals Electro DMG in a small area.",
+            "new": "Deals AoE Electro DMG in a medium area and applies Ensnared status to enemies."
+          }
+        }
+      }
+    }
+  }
+}
