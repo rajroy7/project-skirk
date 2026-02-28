@@ -409,10 +409,10 @@ def generate_weapon_page(weapon_id, weapon_name):
             background: rgba(124, 92, 255, 0.1);
             border: 1px solid rgba(124, 92, 255, 0.3);
             border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
+            object-fit: contain;
+            padding: 4px;
+            display: block;
+            box-sizing: border-box;
         }}
 
         .material-quantity {{
@@ -571,9 +571,10 @@ def generate_weapon_page(weapon_id, weapon_name):
             let materialsContent = '';
             for (const [id, qty] of Object.entries(ascMaterials)) {{
                 const itemName = fullWeapon.items && fullWeapon.items[id] ? fullWeapon.items[id].name : `Item ${{id}}`;
+                const iconUrl = `https://gi.yatta.moe/assets/UI/ItemIcon_${{id}}.png`;
                 materialsContent += `
                     <div class="material-item">
-                        <div class="material-icon">⊙</div>
+                        <img src="${{iconUrl}}" alt="${{itemName}}" class="material-icon" onerror="this.style.display='none'">
                         <div class="material-quantity">×${{qty}}</div>
                         <div class="material-name">${{itemName}}</div>
                     </div>

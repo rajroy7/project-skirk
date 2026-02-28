@@ -1936,5 +1936,27 @@ function initDetailPage() {
 
 document.addEventListener('DOMContentLoaded', initPage);
 </script>
+<script>
+// Scroll to Top Button
+const scrollToTopBtn = document.createElement('button');
+scrollToTopBtn.id = 'scrollToTopBtn';
+scrollToTopBtn.title = 'Scroll to top';
+scrollToTopBtn.innerHTML = '▲';
+document.body.appendChild(scrollToTopBtn);
+
+window.addEventListener('scroll', () => {
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrolledPercentage = (window.pageYOffset / scrollHeight) * 100;
+  if (scrolledPercentage > 50) {
+    scrollToTopBtn.classList.add('visible');
+  } else {
+    scrollToTopBtn.classList.remove('visible');
+  }
+});
+
+scrollToTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
 </body>
 </html>

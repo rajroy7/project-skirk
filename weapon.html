@@ -30,13 +30,14 @@
             background: linear-gradient(135deg, rgba(139, 90, 43, 0.3) 0%, rgba(255, 200, 50, 0.1) 100%);
             border: 2px solid rgba(255, 200, 50, 0.3);
             border-radius: 12px;
-            padding: 40px;
-            aspect-ratio: 1;
+            padding: 12px;
+            width: 280px;
+            height: 280px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .weapon-hero-image::before {
@@ -395,10 +396,10 @@
             background: rgba(124, 92, 255, 0.1);
             border: 1px solid rgba(124, 92, 255, 0.3);
             border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
+            object-fit: contain;
+            padding: 4px;
+            display: block;
+            box-sizing: border-box;
         }
 
         .material-quantity {
@@ -449,6 +450,16 @@
 
             .content-tabs {
                 grid-template-columns: 1fr;
+            }
+
+            .weapon-hero-image {
+                width: 200px;
+                height: 200px;
+                padding: 8px;
+            }
+
+            .weapon-title-name {
+                font-size: 24px;
             }
         }
     </style>
@@ -594,9 +605,10 @@
             let materialsContent = '';
             for (const [id, qty] of Object.entries(ascMaterials)) {
                 const itemName = fullWeapon.items && fullWeapon.items[id] ? fullWeapon.items[id].name : `Item ${id}`;
+                const iconUrl = `https://gi.yatta.moe/assets/UI/ItemIcon_${id}.png`;
                 materialsContent += `
                     <div class="material-item">
-                        <div class="material-icon">⊙</div>
+                        <img src="${iconUrl}" alt="${itemName}" class="material-icon" onerror="this.style.display='none'">
                         <div class="material-quantity">×${qty}</div>
                         <div class="material-name">${itemName}</div>
                     </div>
@@ -744,5 +756,27 @@
 </script>
 
 <script src="script.js"></script>
+<script>
+// Scroll to Top Button
+const scrollToTopBtn = document.createElement('button');
+scrollToTopBtn.id = 'scrollToTopBtn';
+scrollToTopBtn.title = 'Scroll to top';
+scrollToTopBtn.innerHTML = '▲';
+document.body.appendChild(scrollToTopBtn);
+
+window.addEventListener('scroll', () => {
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrolledPercentage = (window.pageYOffset / scrollHeight) * 100;
+  if (scrolledPercentage > 50) {
+    scrollToTopBtn.classList.add('visible');
+  } else {
+    scrollToTopBtn.classList.remove('visible');
+  }
+});
+
+scrollToTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
 </body>
 </html>

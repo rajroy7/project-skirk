@@ -193,8 +193,13 @@
 
 <!-- COUNTDOWN -->
 <div class="countdown-wrapper">
-  <h2 class="countdown-title">Time Until Next Update</h2>
-  <div class="countdown">
+  <div class="countdown-header">
+    <h2 class="countdown-title">Time Until Next Update</h2>
+    <button class="countdown-toggle" id="countdownToggle" title="Toggle countdown">
+      <span class="toggle-arrow">▼</span>
+    </button>
+  </div>
+  <div class="countdown" id="countdownContent">
     <div class="time-box"><span id="days">00</span><p>Days</p></div>
     <div class="time-box"><span id="hours">00</span><p>Hrs</p></div>
     <div class="time-box"><span id="minutes">00</span><p>Mins</p></div>
@@ -448,6 +453,50 @@ function displayBirthdays(birthdays) {
   
   container.innerHTML = html;
 }
+
+// Countdown toggle functionality
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById('countdownToggle');
+  const countdownContent = document.getElementById('countdownContent');
+  
+  if (toggleBtn && countdownContent) {
+    toggleBtn.addEventListener('click', () => {
+      toggleBtn.classList.toggle('collapsed');
+      countdownContent.classList.toggle('hidden');
+      
+      // Save preference to localStorage
+      const isHidden = countdownContent.classList.contains('hidden');
+      localStorage.setItem('countdownHidden', isHidden);
+    });
+    
+    // Restore preference from localStorage
+    const wasHidden = localStorage.getItem('countdownHidden') === 'true';
+    if (wasHidden) {
+      toggleBtn.classList.add('collapsed');
+      countdownContent.classList.add('hidden');
+    }
+  }
+});
+
+// Scroll to Top Button
+const scrollToTopBtn = document.createElement('button');
+scrollToTopBtn.id = 'scrollToTopBtn';
+scrollToTopBtn.title = 'Scroll to top';
+scrollToTopBtn.innerHTML = '▲';
+document.body.appendChild(scrollToTopBtn);
+
+window.addEventListener('scroll', () => {
+  const isNearBottom = window.pageYOffset + window.innerHeight >= document.documentElement.scrollHeight - 300;
+  if (isNearBottom) {
+    scrollToTopBtn.classList.add('visible');
+  } else {
+    scrollToTopBtn.classList.remove('visible');
+  }
+});
+
+scrollToTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 </script>
 <script src="script.js"></script>
 </body>

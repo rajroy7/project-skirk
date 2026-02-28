@@ -5,6 +5,7 @@ const hamburger = document.getElementById("hamburger");
 hamburger.addEventListener("click", function() {
     sidebar.classList.toggle("open");
     hamburger.classList.toggle("open");
+    document.body.classList.toggle("sidebar-open");
 });
 
 // SEARCH FUNCTIONALITY
@@ -152,6 +153,7 @@ sidebarLinks.forEach(link => {
     link.addEventListener("click", function() {
         sidebar.classList.remove("open");
         hamburger.classList.remove("open");
+        document.body.classList.remove("sidebar-open");
     });
 });
 
@@ -160,6 +162,7 @@ document.addEventListener("click", function(event) {
     if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
         sidebar.classList.remove("open");
         hamburger.classList.remove("open");
+        document.body.classList.remove("sidebar-open");
     }
 });
 
@@ -650,10 +653,10 @@ function initializePageSearch() {
                         </div>
                         ${item.secondaryStat && item.secondaryStat !== '—' ? `<div class="weapon-stat-row">
                             <span class="weapon-stat-label">✦</span>
-                            <span style="color: #ddd; font-size: 12px;">${item.secondaryLabel}</span>
+                            <span style="color: #ddd; font-size: 9px;">${item.secondaryLabel}</span>
                             <span class="weapon-stat-value" style="flex: 1; text-align: right;">${item.secondaryStat}</span>
                         </div>` : ''}
-                        ${item.type ? `<div class="weapon-stat-row" style="color: #aaa; font-size: 12px; margin-top: 4px;">
+                        ${item.type ? `<div class="weapon-stat-row" style="color: #aaa; font-size: 9px; margin-top: 4px;">
                             ${item.type}
                         </div>` : ''}
                     </div>

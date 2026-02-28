@@ -105,7 +105,7 @@ function renderCharacters(chars, container) {
 
   chars.forEach(c => {
     const card = document.createElement('div');
-    card.className = 'char-card';
+    card.className = `char-card rarity-${c.rarity}`;
 
     // determine detail link using character ID
     let linkUrl = '';
@@ -124,7 +124,7 @@ function renderCharacters(chars, container) {
     // Rarity badge
     const rarityBadge = document.createElement('div');
     rarityBadge.className = 'rarity-badge';
-    rarityBadge.innerText = '⭐'.repeat(c.rarity);
+    rarityBadge.innerText = c.rarity + ' ★';
 
     // Character image
     const img = document.createElement('img');
