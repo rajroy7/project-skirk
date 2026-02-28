@@ -13,7 +13,11 @@
 .detail-header .back { color:#ffffff; text-decoration:none; font-size:24px; transition:0.2s; }
 .detail-header .back:hover { color:#7c5cff; }
 .detail-header .name { font-size:24px; font-weight:700; color:#fff; }
-.detail-tabs { display:flex; gap:24px; padding:0 20px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:16px; overflow-x:auto; }
+.detail-tabs { display:flex; gap:24px; padding:0 20px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:16px; overflow-x:auto; overflow-y:hidden; scrollbar-width: thin; scrollbar-color: rgba(124,92,255,0.6) rgba(124,92,255,0.1); }
+.detail-tabs::-webkit-scrollbar { height: 6px; }
+.detail-tabs::-webkit-scrollbar-track { background: rgba(124,92,255,0.05); }
+.detail-tabs::-webkit-scrollbar-thumb { background: rgba(124,92,255,0.6); border-radius: 3px; }
+.detail-tabs::-webkit-scrollbar-thumb:hover { background: rgba(124,92,255,0.8); }
 .detail-tabs a { color:#aaa; text-decoration:none; padding:12px 0; transition:color 0.2s; cursor:pointer; white-space:nowrap; }
 .detail-tabs a.active { color:#fff; border-bottom:2px solid #7c5cff; }
 .character-overview { text-align:center; padding:20px; animation:fadeIn 1s ease; display:flex; flex-direction:column; align-items:center; gap:20px; }
@@ -94,6 +98,57 @@
 .no-changes { text-align: center; padding: 60px 20px; color: #888; }
 .no-changes-icon { font-size: 48px; opacity: 0.5; margin-bottom: 12px; }
 
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .detail-header { padding: 12px 16px; gap: 8px; }
+  .detail-header .back { font-size: 20px; }
+  .detail-header .name { font-size: 18px; }
+  
+  .detail-tabs { gap: 16px; padding: 0 16px; margin-bottom: 12px; }
+  .detail-tabs a { font-size: 12px; padding: 8px 0; }
+  
+  .character-overview { padding: 12px 16px; gap: 12px; }
+  .character-overview img { max-width: 240px; height: auto; }
+  .character-overview p { font-size: 13px; line-height: 1.5; }
+  
+  .info-panels { gap: 12px; padding: 0 16px; flex-direction: column; }
+  .basic-info, .ascension { padding: 12px; flex: 1 1 100%; }
+  .basic-info table td { padding: 6px 0; font-size: 12px; }
+  
+  .level-btn { padding: 6px 12px; font-size: 12px; }
+  
+  .abilities { grid-template-columns: 1fr; gap: 12px; padding: 16px; }
+  .ability-card { padding: 12px; }
+  .ability-card h3 { font-size: 14px; margin-bottom: 8px; }
+  .ability-card p { font-size: 12px; }
+  
+  .ability-attrs h4 { font-size: 11px; margin: 0 0 8px 0; }
+  .ability-attrs table { font-size: 11px; }
+  .ability-attrs td { padding: 3px 0; }
+  
+  .level-config { padding: 12px 16px; }
+  
+  /* Ascension tab sizing */
+  #ascensionContainer h2 { font-size: 14px !important; margin-bottom: 10px !important; }
+  
+  /* Constellation tab sizing */
+  #constellationsContainer { padding: 12px !important; }
+  #constellationsContainer .ability-card { padding: 10px !important; }
+  #constellationsContainer .ability-card h3 { font-size: 12px !important; margin-bottom: 6px !important; }
+  #constellationsContainer .ability-card p { font-size: 11px !important; }
+  #constellationsContainer img { width: 50px !important; height: 50px !important; margin-bottom: 8px !important; }
+  
+  /* Diffs/Beta changes tab sizing */
+  #diffsContainer { padding: 12px !important; }
+  #diffsContainer h2 { font-size: 14px !important; }
+  #diffsContainer p { font-size: 11px !important; }
+  .diffs-header { margin-bottom: 12px !important; }
+  .version-selector { padding: 12px !important; margin-bottom: 12px !important; }
+  .version-selector h3 { font-size: 12px !important; }
+  .version-select { font-size: 11px !important; padding: 6px !important; }
+  #compareBtn { font-size: 12px !important; padding: 8px 16px !important; }
+}
+
 </style>
 </head>
 <body>
@@ -107,7 +162,7 @@
         <li><a href="achievements.html"><img src="https://ik.imagekit.io/gukc1okbd/achievements.webp" class="icon"><span class="text">Achievements</span></a></li>
         <li><a href="inventory.html"><img src="https://ik.imagekit.io/gukc1okbd/inventory.webp" class="icon"><span class="text">Inventory</span></a></li>
         <li><a href="enemy.html"><img src="https://ik.imagekit.io/gukc1okbd/enemy.webp" class="icon"><span class="text">Enemy Creatures</span></a></li>
-        <li><a href="tcg.html"><img src="https://ik.imagekit.io/gukc1okbd/tcg.webp" class="icon"><span class="text">Genius Invokation TCG</span></a></li>
+        <li><a href="wishes.html"><img src="https://ik.imagekit.io/gukc1okbd/wishes.webp" class="icon"><span class="text">Character Wishes</span></a></li>
         <li><a href="abyss.html"><img src="icons/abyss.webp" class="icon"><span class="text">Spiral Abyss</span></a></li>
         <li><a href="theater.html"><img src="https://ik.imagekit.io/gukc1okbd/theater.webp" class="icon"><span class="text">Imaginarium Theater</span></a></li>
         <li><a href="stygian.html"><img src="icons/stygian.webp" class="icon"><span class="text">Stygian Onslaught</span></a></li>
@@ -119,7 +174,7 @@
         <li><a href="mw-inventory.html"><img src="https://ik.imagekit.io/gukc1okbd/mw-inventory.webp" class="icon"><span class="text">Miliastra Wonderland Inventory</span></a></li>
         <li><a href="search.html"><img src="https://ik.imagekit.io/gukc1okbd/search.webp" class="icon"><span class="text">Search</span></a></li>
         <li><a href="diff.html"><img src="icons/diff.webp" class="icon"><span class="text">Diff</span></a></li>
-        <li><a href="wishes.html"><img src="https://ik.imagekit.io/gukc1okbd/wishes.webp" class="icon"><span class="text">Character Wishes</span></a></li>
+        <li><a href="tcg.html"><img src="https://ik.imagekit.io/gukc1okbd/tcg.webp" class="icon"><span class="text">Genius Invokation TCG</span></a></li>
         <li class="settings-menu-item"><button id="settingsBtn" class="settings-menu-btn"><img src="https://ik.imagekit.io/gukc1okbd/settings.webp" class="icon"><span class="text">Settings</span></button></li>
     </ul>
 </div>
@@ -187,7 +242,6 @@
 
     <div class="detail-tabs">
         <a data-tab="info" class="active">Character Information</a>
-        <a data-tab="stats">Base Stats</a>
         <a data-tab="skills">Skills</a>
         <a data-tab="constellations">Constellations</a>
         <a data-tab="ascension">Ascension</a>
@@ -438,10 +492,6 @@ async function loadCharacterData(characterId) {
         displayConstellations(charData);
         console.log('Displayed constellations');
         
-        // Load and display stats
-        displayStats(charData);
-        console.log('Displayed stats');
-        
         // Load and display ascension
         displayAscension(charData);
         console.log('Displayed ascension');
@@ -481,7 +531,7 @@ function generateCharacterContent(charData) {
             <div class="info-panels">
                 <div class="basic-info">
                     <h3>Basic Information</h3>
-                    <table>
+                    <table style="font-size:12px;">
                         <tr><td>Name</td><td>${charData.name}</td></tr>
                         <tr><td>Title</td><td>${charData.fetter?.title || 'N/A'}</td></tr>
                         <tr><td>Element</td><td>${charData.element ? `<img src="${getElementIcon(mapElementName(charData.element))}" alt="${mapElementName(charData.element)}" style="width:24px;height:24px;vertical-align:middle;margin-right:8px;">${mapElementName(charData.element)}` : 'N/A'}</td></tr>
@@ -494,14 +544,13 @@ function generateCharacterContent(charData) {
                     </table>
                 </div>
                 <div class="ascension">
-                    <h3>Constellation Info</h3>
-                    <table>
+                    <h3 style="font-size:13px;">Constellation Info</h3>
+                    <table style="font-size:11px;">
                         <tr><td>Constellation</td><td>${charData.fetter?.constellation || 'N/A'}</td></tr>
                         <tr><td>Native Region</td><td>${charData.fetter?.native || 'N/A'}</td></tr>
-                        <tr><td>Special Bonus</td><td>${formatSpecialProp(charData.specialProp)}</td></tr>
                     </table>
-                    <h3 style="margin-top:16px;">Base Stats (Lv. 1)</h3>
-                    <table>
+                    <h3 style="margin-top:16px; font-size:13px;">Base Stats (Lv. 1)</h3>
+                    <table style="font-size:11px;">
                         <tr><td>Base HP</td><td>${formatStat(charData.upgrade?.prop)}</td></tr>
                         <tr><td>Base ATK</td><td>${getStatValue(charData.upgrade?.prop, 'FIGHT_PROP_BASE_ATTACK')}</td></tr>
                         <tr><td>Base DEF</td><td>${getStatValue(charData.upgrade?.prop, 'FIGHT_PROP_BASE_DEFENSE')}</td></tr>
@@ -512,25 +561,27 @@ function generateCharacterContent(charData) {
                 <h3>Level Configuration</h3>
                 <p style="font-size:14px; color:#aaa; margin-bottom:12px;">Select target level:</p>
                 <div id="levelButtons" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;"></div>
-                <div id="materialCalculator" style="background: linear-gradient(135deg, rgba(100,100,255,0.05) 0%, rgba(200,150,255,0.05) 100%); border: 1px solid rgba(124,92,255,0.3); border-radius:12px; padding:16px;">
-                    <h4 style="margin-top:0; color:#7c5cff;">⚗️ Materials & Mora Required</h4>
-                    <div id="materialsDisplay" style="font-size:14px; color:#ddd;"></div>
+                
+                <h4 style="margin-top:0; margin-bottom:12px; color:#7c5cff; font-size:12px;">Stats at Selected Level</h4>
+                <div id="selectedLevelStats" style="background:rgba(255,255,255,0.05); border-radius:12px; padding:12px; margin-bottom:16px;">
+                    <table style="width:100%; font-size:12px;">
+                        <tr><td style="padding:6px 0;">Special Bonus</td><td style="color:#7c5cff; text-align:right;" id="statBonus">-</td></tr>
+                        <tr><td style="padding:6px 0;">Base HP</td><td style="color:#7c5cff; text-align:right;" id="statHP">-</td></tr>
+                        <tr><td style="padding:6px 0;">Base ATK</td><td style="color:#7c5cff; text-align:right;" id="statATK">-</td></tr>
+                        <tr><td style="padding:6px 0;">Base DEF</td><td style="color:#7c5cff; text-align:right;" id="statDEF">-</td></tr>
+                    </table>
+                </div>
+                
+                <div id="materialCalculator" style="background: linear-gradient(135deg, rgba(100,100,255,0.05) 0%, rgba(200,150,255,0.05) 100%); border: 1px solid rgba(124,92,255,0.3); border-radius:12px; padding:12px; margin-bottom:16px;">
+                    <h4 style="margin:0 0 10px 0; color:#7c5cff; font-size:13px;">Materials & Mora Required</h4>
+                    <div id="materialsDisplay" style="font-size:12px; color:#ddd; line-height:1.4;"></div>
                 </div>
 
                 <!-- Talent Upgrade Calculator -->
-                <div id="talentCalculator" style="background: linear-gradient(135deg, rgba(139,90,43,0.05) 0%, rgba(255,200,50,0.05) 100%); border: 1px solid rgba(255,200,50,0.3); border-radius:12px; padding:16px; margin-top:20px;">
-                    <h4 style="margin-top:0; color:#ffc107;">⭐ Talent Upgrade Costs</h4>
-                    <div id="talentsList" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 16px;"></div>
-                    <div id="talentCostsDisplay" style="font-size:14px; color:#ddd;"></div>
-                </div>
-
-                <h4 style="margin-top:20px; color:#7c5cff;">Stats at Selected Level</h4>
-                <div id="selectedLevelStats" style="background:rgba(255,255,255,0.05); border-radius:12px; padding:16px;">
-                    <table style="width:100%; font-size:14px;">
-                        <tr><td style="padding:8px 0;">Base HP</td><td style="color:#7c5cff; text-align:right;" id="statHP">-</td></tr>
-                        <tr><td style="padding:8px 0;">Base ATK</td><td style="color:#7c5cff; text-align:right;" id="statATK">-</td></tr>
-                        <tr><td style="padding:8px 0;">Base DEF</td><td style="color:#7c5cff; text-align:right;" id="statDEF">-</td></tr>
-                    </table>
+                <div id="talentCalculator" style="background: linear-gradient(135deg, rgba(139,90,43,0.05) 0%, rgba(255,200,50,0.05) 100%); border: 1px solid rgba(255,200,50,0.3); border-radius:12px; padding:12px; margin-top:16px;">
+                    <h4 style="margin:0 0 10px 0; color:#ffc107; font-size:13px;">Talent Upgrade Costs</h4>
+                    <div id="talentsList" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin-bottom: 12px;"></div>
+                    <div id="talentCostsDisplay" style="font-size:12px; color:#ddd; line-height:1.4;"></div>
                 </div>
             </div>
         </div>
@@ -556,12 +607,6 @@ function generateCharacterContent(charData) {
         <div id="tab-ascension" style="display:none;">
             <div id="ascensionContainer" style="padding: 20px;">
                 <p>Loading ascension data...</p>
-            </div>
-        </div>
-
-        <div id="tab-stats" style="display:none;">
-            <div id="statsContainer" style="padding: 20px;">
-                <p>Loading stats...</p>
             </div>
         </div>
 
@@ -723,7 +768,7 @@ function displaySkills(charData) {
                         <h4 style="color: #ffc107; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin: 0;">Attributes</h4>
                         <div style="display: flex; align-items: center; gap: 6px;">
                             <span id="level-display-talent-${key}" style="color: #ffc107; font-weight: 600; font-size: 11px;">Lv.10</span>
-                            <input type="range" id="talent-slider-${key}" class="talent-level-slider" min="1" max="10" value="10" style="width: 80px; cursor: pointer;" data-talent-key="${key}">
+                            <input type="range" id="talent-slider-${key}" class="talent-level-slider" min="1" max="15" value="10" style="width: 80px; cursor: pointer;" data-talent-key="${key}">
                         </div>
                     </div>
                     <div id="attrs-content-${key}" style="font-size: 11px; color: #ddd; line-height: 1.4;">
@@ -783,7 +828,11 @@ function displaySkills(charData) {
             
             if (displaySpan) displaySpan.textContent = `Lv.${selectedLevel}`;
             
-            const promote = talent.promote ? talent.promote[selectedLevel] : null;
+            // Try to get promote data for selected level, fallback to level 10 if not available
+            let promote = talent.promote ? talent.promote[selectedLevel] : null;
+            if (!promote && selectedLevel > 10) {
+                promote = talent.promote ? talent.promote['10'] : null;
+            }
             if (promote && promote.description && contentDiv) {
                 const formattedAttrs = formatTalentDescription(promote.description, promote.params);
                 const attrLines = formattedAttrs.split('\n').map(line => {
@@ -816,13 +865,13 @@ function displayConstellations(charData) {
         
         const description = cleanDescription(const_data.description || '');
         const iconUrl = const_data.icon ? `https://gi.yatta.moe/assets/UI/${const_data.icon}.png?vh=2024123000` : '';
-        const iconImg = iconUrl ? `<img src="${iconUrl}" alt="${const_data.name}" style="width:80px; height:80px; border-radius:8px; margin-bottom:12px; border:2px solid #7c5cff;">` : '';
+        const iconImg = iconUrl ? `<img src="${iconUrl}" alt="${const_data.name}" style="width:60px; height:60px; border-radius:8px; margin-bottom:10px; border:2px solid #7c5cff;">` : '';
         
         html += `
             <div class="ability-card">
                 ${iconImg}
-                <h3>${idx + 1}. ${const_data.name || 'Unknown'}</h3>
-                <p>${description}</p>
+                <h3 style="margin:4px 0; font-size:12px;">${idx + 1}. ${const_data.name || 'Unknown'}</h3>
+                <p style="font-size:11px; margin:0;">${description}</p>
             </div>
         `;
     });
@@ -832,6 +881,7 @@ function displayConstellations(charData) {
 
 function displayStats(charData) {
     const container = document.getElementById('statsContainer');
+    if (!container) return; // Container no longer exists, skip
     if (!charData.upgrade || !charData.upgrade.promote) {
         container.innerHTML = '<p>No stats data available.</p>';
         return;
@@ -922,8 +972,8 @@ function displayAscension(charData) {
     }
     
     const promotes = charData.upgrade.promote || [];
-    let html = '<h2>Ascension Requirements</h2>';
-    html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">';
+    let html = '<h2 style="font-size:16px; margin-bottom:12px;">Ascension Requirements</h2>';
+    html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">';
     
     // Load inventory data for material icons
     fetch('inventory.json')
@@ -933,14 +983,14 @@ function displayAscension(charData) {
                 if (idx === 0 || !promote.costItems) return;
                 
                 html += `
-                    <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 20px; border: 1px solid rgba(124,92,255,0.2);">
-                        <h3 style="color:#7c5cff; margin-top:0;">Ascension ${idx} → Lv. ${promote.unlockMaxLevel}</h3>
-                        <table style="width:100%; font-size:14px; margin-bottom: 16px;">
-                            <tr><td>Player Level Required:</td><td style="color:#7c5cff;">${promote.requiredPlayerLevel || 'N/A'}</td></tr>
-                            <tr><td>Mora Required:</td><td style="color:#ffd700;">${promote.coinCost ? promote.coinCost.toLocaleString() : 'N/A'}</td></tr>
+                    <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 12px; border: 1px solid rgba(124,92,255,0.2);">
+                        <h3 style="color:#7c5cff; margin:0 0 8px 0; font-size:12px;">Ascension ${idx} → Lv. ${promote.unlockMaxLevel}</h3>
+                        <table style="width:100%; font-size:11px; margin-bottom: 10px;">
+                            <tr><td style="padding:3px 0;">Player Level:</td><td style="color:#7c5cff; text-align:right;">${promote.requiredPlayerLevel || 'N/A'}</td></tr>
+                            <tr><td style="padding:3px 0;">Mora:</td><td style="color:#ffd700; text-align:right;">${promote.coinCost ? promote.coinCost.toLocaleString() : 'N/A'}</td></tr>
                         </table>
-                        <h4 style="margin: 12px 0 12px 0; color:#aaa;">Materials:</h4>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px;">
+                        <h4 style="margin: 8px 0 8px 0; color:#aaa; font-size:10px;">Materials:</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 8px;">
                 `;
                 
                 if (promote.costItems) {
@@ -953,18 +1003,18 @@ function displayAscension(charData) {
                             const rankColor = ['#888', '#4a9eff', '#00d4ff', '#b291dc', '#ffc107'][invItem.rank - 1] || '#888';
                             
                             html += `
-                                <div data-item-id="${matIdNum}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px; background: linear-gradient(135deg, rgba(100,100,255,0.08) 0%, rgba(200,150,255,0.08) 100%); border: 2px solid ${rankColor}; border-radius: 6px; text-align: center; transition: all 0.2s; cursor: pointer;" onmouseover="this.style.transform='scale(1.05)'; this.style.borderColor='#ffc107';" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='${rankColor}';">
-                                    <img src="${iconUrl}" alt="${invItem.name}" style="width: 40px; height: 40px; object-fit: contain;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22%3E%3Crect fill=%23333 width=%2240%22 height=%2240%22/%3E%3Ctext fill=%22%23666%22 text-anchor=%22middle%22 x=%2220%22 y=%2228%22 font-size=%2218%22%3E?%3C/text%3E%3C/svg%3E'">
-                                    <div style="font-size: 11px; color: #7c5cff; font-weight: 700;">${qty}x</div>
-                                    <div style="font-size: 9px; color: #aaa; line-height: 1.2; word-break: break-word; max-width: 80px;">${invItem.name}</div>
+                                <div data-item-id="${matIdNum}" style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 4px; background: linear-gradient(135deg, rgba(100,100,255,0.08) 0%, rgba(200,150,255,0.08) 100%); border: 1px solid ${rankColor}; border-radius: 5px; text-align: center; transition: all 0.2s; cursor: pointer;" onmouseover="this.style.transform='scale(1.05)'; this.style.borderColor='#ffc107';" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='${rankColor}';">
+                                    <img src="${iconUrl}" alt="${invItem.name}" style="width: 32px; height: 32px; object-fit: contain;">
+                                    <div style="font-size: 9px; color: #7c5cff; font-weight: 700;">${qty}x</div>
+                                    <div style="font-size: 8px; color: #aaa; line-height: 1.1; word-break: break-word; max-width: 70px;">${invItem.name}</div>
                                 </div>
                             `;
                         } else {
                             html += `
-                                <div data-item-id="${matIdNum}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px; background: linear-gradient(135deg, rgba(100,100,100,0.08) 0%, rgba(150,150,150,0.08) 100%); border: 2px solid #666; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.borderColor='#ffc107';" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#666';">
-                                    <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 20px;">❓</div>
-                                    <div style="font-size: 11px; color: #7c5cff; font-weight: 700;">${qty}x</div>
-                                    <div style="font-size: 9px; color: #999; line-height: 1.2;">ID: ${itemId}</div>
+                                <div data-item-id="${matIdNum}" style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 4px; background: linear-gradient(135deg, rgba(100,100,100,0.08) 0%, rgba(150,150,150,0.08) 100%); border: 1px solid #666; border-radius: 5px; text-align: center; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.borderColor='#ffc107';" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#666';">
+                                    <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 16px;">❓</div>
+                                    <div style="font-size: 9px; color: #7c5cff; font-weight: 700;">${qty}x</div>
+                                    <div style="font-size: 8px; color: #999; line-height: 1.1;">ID: ${itemId}</div>
                                 </div>
                             `;
                         }
@@ -1085,29 +1135,29 @@ function displayDiffs(charData) {
             
             let html = '<div class="diffs-container">';
             html += '<div class="diffs-header">';
-            html += `<h2>Beta Changes & Balance Updates</h2>`;
-            html += `<p style="color: #aaa; margin: 0; font-size: 14px;">Select two patch versions to compare changes made to ${charData.name}</p>`;
+            html += `<h2 style="font-size:14px; margin:0 0 8px 0;">Beta Changes & Balance Updates</h2>`;
+            html += `<p style="color: #aaa; margin: 0; font-size: 12px;">Select two patch versions to compare changes made to ${charData.name}</p>`;
             html += '</div>';
             
             // Version selector
             html += '<div class="version-selector">';
-            html += '<h3>Compare Patch Versions</h3>';
-            html += '<div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center;">';
+            html += '<h3 style="font-size:12px; margin:0 0 10px 0;">Compare Patch Versions</h3>';
+            html += '<div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center;">';
             
             html += '<div>';
-            html += '<label for="versionFrom" style="display: block; font-size: 11px; color: #aaa; text-transform: uppercase; margin-bottom: 6px;">From Version</label>';
-            html += '<select id="versionFrom" name="versionFrom" class="version-select" autocomplete="off" style="width: 100%; padding: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(124,92,255,0.3); border-radius: 6px; color: #fff; font-size: 13px;">';
+            html += '<label for="versionFrom" style="display: block; font-size: 10px; color: #aaa; text-transform: uppercase; margin-bottom: 4px;">From Version</label>';
+            html += '<select id="versionFrom" name="versionFrom" class="version-select" autocomplete="off" style="width: 100%; padding: 6px; background: rgba(0,0,0,0.3); border: 1px solid rgba(124,92,255,0.3); border-radius: 6px; color: #fff; font-size: 11px;">';
             patchVersions.forEach((v, idx) => {
                 html += `<option value="${v}" ${idx === patchVersions.length - 1 ? 'selected' : ''}>${v}</option>`;
             });
             html += '</select>';
             html += '</div>';
             
-            html += '<div style="text-align: center; font-size: 18px; color: #7c5cff; font-weight: 700;">→</div>';
+            html += '<div style="text-align: center; font-size: 14px; color: #7c5cff; font-weight: 700;">→</div>';
             
             html += '<div>';
-            html += '<label for="versionTo" style="display: block; font-size: 11px; color: #aaa; text-transform: uppercase; margin-bottom: 6px;">To Version</label>';
-            html += '<select id="versionTo" name="versionTo" class="version-select" autocomplete="off" style="width: 100%; padding: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(124,92,255,0.3); border-radius: 6px; color: #fff; font-size: 13px;">';
+            html += '<label for="versionTo" style="display: block; font-size: 10px; color: #aaa; text-transform: uppercase; margin-bottom: 4px;">To Version</label>';
+            html += '<select id="versionTo" name="versionTo" class="version-select" autocomplete="off" style="width: 100%; padding: 6px; background: rgba(0,0,0,0.3); border: 1px solid rgba(124,92,255,0.3); border-radius: 6px; color: #fff; font-size: 11px;">';
             patchVersions.forEach((v, idx) => {
                 html += `<option value="${v}" ${idx === 0 ? 'selected' : ''}>${v}</option>`;
             });
@@ -1115,11 +1165,11 @@ function displayDiffs(charData) {
             html += '</div>';
             
             html += '</div>';
-            html += '<button id="compareBtn" style="margin-top: 16px; padding: 10px 20px; background: linear-gradient(135deg, #7c5cff, #a878ff); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.3s;">Compare Changes</button>';
+            html += '<button id="compareBtn" style="margin-top: 12px; padding: 8px 16px; background: linear-gradient(135deg, #7c5cff, #a878ff); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.3s;">Compare Changes</button>';
             html += '</div>';
             
             // Comparison result area
-            html += '<div id="comparisonResult" style="display: none; margin-top: 24px;"></div>';
+            html += '<div id="comparisonResult" style="display: none; margin-top: 16px;"></div>';
             
             html += '</div>'; // Close diffs-container
             
@@ -1264,10 +1314,10 @@ function displayComparisonResults(charData, versionFrom, versionTo, diffData) {
     
     console.log('Talents:', talents.length, 'Constellations:', constellations.length);
     
-    let html = '<div style="margin-top: 20px;">';
-    html += `<div style="background: rgba(124, 92, 255, 0.1); border-left: 4px solid #7c5cff; padding: 16px; border-radius: 6px; margin-bottom: 20px;">`;
-    html += `<h3 style="color: #7c5cff; margin-top: 0; font-size: 14px;">Changes: v${versionFrom} → v${versionTo}</h3>`;
-    html += `<p style="margin: 8px 0 0 0; color: #aaa; font-size: 12px;"><span style="color: #FF6B6B; text-decoration: line-through;">Red strikethrough</span> = old text | <span style="color: #51CF66; font-weight: 600;">Green bold</span> = new text</p>`;
+    let html = '<div style="margin-top: 16px;">';
+    html += `<div style="background: rgba(124, 92, 255, 0.1); border-left: 4px solid #7c5cff; padding: 12px; border-radius: 6px; margin-bottom: 16px;">`;
+    html += `<h3 style="color: #7c5cff; margin-top: 0; font-size: 13px;">Changes: v${versionFrom} → v${versionTo}</h3>`;
+    html += `<p style="margin: 6px 0 0 0; color: #aaa; font-size: 11px;"><span style="color: #FF6B6B; text-decoration: line-through;">Red strikethrough</span> = old text | <span style="color: #51CF66; font-weight: 600;">Green bold</span> = new text</p>`;
     html += `</div>`;
     
     // Get diff info for this character
@@ -1279,8 +1329,8 @@ function displayComparisonResults(charData, versionFrom, versionTo, diffData) {
     
     // Display talents/skills with diffs
     if (talents.length > 0) {
-        html += '<h4 style="color: #7c5cff; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-top: 24px; margin-bottom: 12px;">Skills & Abilities</h4>';
-        html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 16px;">';
+        html += '<h4 style="color: #7c5cff; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 16px; margin-bottom: 10px;">Skills & Abilities</h4>';
+        html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px;">';
         
         talents.forEach((talent, idx) => {
             if (talent && talent.name && talent.description) {
@@ -1322,9 +1372,9 @@ function displayComparisonResults(charData, versionFrom, versionTo, diffData) {
                 
                 html += `
                     <div class="skill-diff-card">
-                        <h4 style="margin: 0 0 4px 0; color: #FFD780;">${talentName}</h4>
-                        <p style="margin: 0 0 12px 0; font-size: 11px; color: #999; text-transform: uppercase;">${typeLabel}</p>
-                        <div style="font-size: 12px; line-height: 1.6; color: #fff;">
+                        <h4 style="margin: 0 0 4px 0; color: #FFD780; font-size: 12px;">​${talentName}</h4>
+                        <p style="margin: 0 0 10px 0; font-size: 10px; color: #999; text-transform: uppercase;">${typeLabel}</p>
+                        <div style="font-size: 11px; line-height: 1.5; color: #fff;">
                             ${diffDesc}
                         </div>
                     </div>
@@ -1337,8 +1387,8 @@ function displayComparisonResults(charData, versionFrom, versionTo, diffData) {
     
     // Display constellations with diffs
     if (constellations.length > 0) {
-        html += '<h4 style="color: #7c5cff; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-top: 24px; margin-bottom: 12px;">Constellations</h4>';
-        html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 16px;">';
+        html += '<h4 style="color: #7c5cff; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 16px; margin-bottom: 10px;">Constellations</h4>';
+        html += '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px;">';
         
         constellations.forEach((constellation, idx) => {
             if (constellation && constellation.name && constellation.description) {
@@ -1371,8 +1421,8 @@ function displayComparisonResults(charData, versionFrom, versionTo, diffData) {
                 
                 html += `
                     <div class="skill-diff-card">
-                        <h4 style="margin: 0 0 8px 0; color: #FFD780;">C${idx + 1} - ${constName}</h4>
-                        <div style="font-size: 12px; line-height: 1.6; color: #fff;">
+                        <h4 style="margin: 0 0 8px 0; color: #FFD780; font-size: 12px;">C${idx + 1} - ${constName}</h4>
+                        <div style="font-size: 11px; line-height: 1.5; color: #fff;">
                             ${diffDesc}
                         </div>
                     </div>
@@ -1385,18 +1435,18 @@ function displayComparisonResults(charData, versionFrom, versionTo, diffData) {
     
     if (talents.length === 0 && constellations.length === 0) {
         html += `
-            <div style="background: rgba(124, 92, 255, 0.1); border: 1px solid rgba(124, 92, 255, 0.3); border-radius: 8px; padding: 20px; text-align: center; color: #aaa; margin-top: 20px;">
-                <p style="margin: 0 0 8px 0; font-size: 14px;">No skill or constellation data available</p>
-                <p style="font-size: 12px; margin: 0; opacity: 0.7;">Unable to load character ability data.</p>
+            <div style="background: rgba(124, 92, 255, 0.1); border: 1px solid rgba(124, 92, 255, 0.3); border-radius: 8px; padding: 16px; text-align: center; color: #aaa; margin-top: 16px;">
+                <p style="margin: 0 0 6px 0; font-size: 12px;">No skill or constellation data available</p>
+                <p style="font-size: 11px; margin: 0; opacity: 0.7;">Unable to load character ability data.</p>
             </div>
         `;
     }
     
     // Add comparison info footer
     html += `
-        <div style="margin-top: 24px; padding: 16px; background: rgba(255, 200, 50, 0.08); border-left: 4px solid #ffc107; border-radius: 6px;">
-            <h4 style="color: #ffc107; margin-top: 0; font-size: 12px; text-transform: uppercase;">About This Comparison</h4>
-            <p style="color: #aaa; font-size: 12px; margin: 0; line-height: 1.6;">
+        <div style="margin-top: 16px; padding: 12px; background: rgba(255, 200, 50, 0.08); border-left: 4px solid #ffc107; border-radius: 6px;">
+            <h4 style="color: #ffc107; margin-top: 0; font-size: 11px; text-transform: uppercase;">About This Comparison</h4>
+            <p style="color: #aaa; font-size: 11px; margin: 0; line-height: 1.5;">
                 Showing changes from v${versionFrom} to v${versionTo}. ${versionToDiff ? 'Diffs applied.' : 'Using current ability descriptions.'}
             </p>
         </div>
@@ -1726,7 +1776,7 @@ function initTalentCalculator(charData) {
     `;
     
     calcButtonDiv.innerHTML = `
-        <button id="talent-calculate-all" style="flex: 1; padding: 12px 24px; background: linear-gradient(135deg, rgba(255,200,50,0.3) 0%, rgba(255,200,50,0.15) 100%); border: 2px solid rgba(255,200,50,0.5); border-radius: 8px; color: #ffc107; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px;">📊 Calculate All Talents</button>
+        <button id="talent-calculate-all" style="flex: 1; padding: 12px 24px; background: linear-gradient(135deg, rgba(255,200,50,0.3) 0%, rgba(255,200,50,0.15) 100%); border: 2px solid rgba(255,200,50,0.5); border-radius: 8px; color: #ffc107; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px;">Calculate All Talents</button>
     `;
     
     talentsList.appendChild(calcButtonDiv);
@@ -1844,7 +1894,7 @@ function updateMaterialCalculator(charData, targetLevel) {
     } else {
         // Use cached inventory or fetch if not cached
         const displayMaterials = (inventory) => {
-            let cardsHtml = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px;">';
+            let cardsHtml = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 10px; margin-bottom: 16px;">';
             
             // Create material cards
             Object.entries(materials).forEach(([matId, qty]) => {
@@ -1915,6 +1965,12 @@ function updateMaterialCalculator(charData, targetLevel) {
     }
     
     // Update stats display
+    const specialBonusElement = document.getElementById('statBonus');
+    if (specialBonusElement && charData && charData.specialProp) {
+        specialBonusElement.textContent = formatSpecialProp(charData.specialProp);
+    } else if (specialBonusElement) {
+        specialBonusElement.textContent = 'N/A';
+    }
     document.getElementById('statHP').textContent = Math.round(stats.hp);
     document.getElementById('statATK').textContent = Math.round(stats.atk);
     document.getElementById('statDEF').textContent = Math.round(stats.def);

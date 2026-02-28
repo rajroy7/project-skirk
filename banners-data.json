@@ -1,0 +1,2183 @@
+{
+  "banners": {
+    "6.4": [
+      {
+        "id": 10000128,
+        "name": "Varka",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Varka.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Varka.png?vh=2024123000"
+      },
+      {
+        "id": 10000120,
+        "name": "Flins",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Flins.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Flins.png?vh=2024123000"
+      },
+      {
+        "id": 10000114,
+        "name": "Skirk",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Skirk.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_SkirkNew.png?vh=2024123000"
+      },
+      {
+        "id": 10000112,
+        "name": "Escoffier",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Escoffier.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Escoffier.png?vh=2024123000"
+      }
+    ],
+    "6.3": [
+      {
+        "id": 10000125,
+        "name": "Columbina",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Columbina.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Columbina.png?vh=2024123000"
+      },
+      {
+        "id": 10000116,
+        "name": "Ineffa",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Ineffa.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ineffa.png?vh=2024123000"
+      },
+      {
+        "id": 10000126,
+        "name": "Zibai",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Zibai.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Zibai.png?vh=2024123000"
+      },
+      {
+        "id": 10000087,
+        "name": "Neuvillette",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Neuvillette.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Neuvillette.png?vh=2024123000"
+      }
+    ],
+    "6.2": [
+      {
+        "id": 10000123,
+        "name": "Durin",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Durin.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Durin.png?vh=2024123000"
+      },
+      {
+        "id": 10000022,
+        "name": "Venti",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Venti.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Venti.png?vh=2024123000"
+      },
+      {
+        "id": 10000111,
+        "name": "Varesa",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Varesa.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Varesa.png?vh=2024123000"
+      },
+      {
+        "id": 10000103,
+        "name": "Xilonen",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Xilonen.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Xilonen.png?vh=2024123000"
+      }
+    ],
+    "6.1": [
+      {
+        "id": 10000122,
+        "name": "Nefer",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Nefer.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Nefer.png?vh=2024123000"
+      },
+      {
+        "id": 10000089,
+        "name": "Furina",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Furina.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Furina.png?vh=2024123000"
+      },
+      {
+        "id": 10000096,
+        "name": "Arlecchino",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Arlecchino.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Arlecchino.png?vh=2024123000"
+      },
+      {
+        "id": 10000030,
+        "name": "Zhongli",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Zhongli.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Zhongli.png?vh=2024123000"
+      }
+    ],
+    "6.0": [
+      {
+        "id": 10000119,
+        "name": "Lauma",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Lauma.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Lauma.png?vh=2024123000"
+      },
+      {
+        "id": 10000073,
+        "name": "Nahida",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Nahida.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Nahida.png?vh=2024123000"
+      },
+      {
+        "id": 10000120,
+        "name": "Flins",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Flins.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Flins.png?vh=2024123000"
+      },
+      {
+        "id": 10000060,
+        "name": "Yelan",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Yelan.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yelan.png?vh=2024123000"
+      }
+    ],
+    "5.8": [
+      {
+        "id": 10000116,
+        "name": "Ineffa",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Ineffa.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ineffa.png?vh=2024123000"
+      },
+      {
+        "id": 10000107,
+        "name": "Citlali",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Citlali.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Citlali.png?vh=2024123000"
+      },
+      {
+        "id": 10000102,
+        "name": "Mualani",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Mualani.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Mualani.png?vh=2024123000"
+      },
+      {
+        "id": 10000104,
+        "name": "Chasca",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Chasca.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Chasca.png?vh=2024123000"
+      }
+    ],
+    "5.7": [
+      {
+        "id": 10000114,
+        "name": "Skirk",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Skirk.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_SkirkNew.png?vh=2024123000"
+      },
+      {
+        "id": 10000063,
+        "name": "Shenhe",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Shenhe.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Shenhe.png?vh=2024123000"
+      },
+      {
+        "id": 10000099,
+        "name": "Emilie",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Emilie.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Emilie.png?vh=2024123000"
+      },
+      {
+        "id": 10000106,
+        "name": "Mavuika",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Mavuika.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Mavuika.png?vh=2024123000"
+      }
+    ],
+    "5.6": [
+      {
+        "id": 10000112,
+        "name": "Escoffier",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Escoffier.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Escoffier.png?vh=2024123000"
+      },
+      {
+        "id": 10000091,
+        "name": "Navia",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Navia.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Navia.png?vh=2024123000"
+      },
+      {
+        "id": 10000101,
+        "name": "Kinich",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Kinich.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kinich.png?vh=2024123000"
+      },
+      {
+        "id": 10000052,
+        "name": "Raiden Shogun",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_RaidenShogun.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Shougun.png?vh=2024123000"
+      }
+    ],
+    "5.5": [
+      {
+        "id": 10000111,
+        "name": "Varesa",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Varesa.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Varesa.png?vh=2024123000"
+      },
+      {
+        "id": 10000093,
+        "name": "Xianyun",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Xianyun.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Liuyun.png?vh=2024123000"
+      },
+      {
+        "id": 10000103,
+        "name": "Xilonen",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Xilonen.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Xilonen.png?vh=2024123000"
+      },
+      {
+        "id": 10000022,
+        "name": "Venti",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Venti.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Venti.png?vh=2024123000"
+      }
+    ],
+    "5.4": [
+      {
+        "id": 10000109,
+        "name": "Yumemizuki Mizuki",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_YumemizukiMizuki.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Mizuki.png?vh=2024123000"
+      },
+      {
+        "id": 10000095,
+        "name": "Sigewinne",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Sigewinne.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Sigewinne.png?vh=2024123000"
+      },
+      {
+        "id": 10000086,
+        "name": "Wriothesley",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Wriothesley.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Wriothesley.png?vh=2024123000"
+      },
+      {
+        "id": 10000089,
+        "name": "Furina",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Furina.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Furina.png?vh=2024123000"
+      }
+    ],
+    "5.3": [
+      {
+        "id": 10000106,
+        "name": "Mavuika",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Mavuika.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Mavuika.png?vh=2024123000"
+      },
+      {
+        "id": 10000107,
+        "name": "Citlali",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Citlali.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Citlali.png?vh=2024123000"
+      },
+      {
+        "id": 10000096,
+        "name": "Arlecchino",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Arlecchino.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Arlecchino.png?vh=2024123000"
+      },
+      {
+        "id": 10000098,
+        "name": "Clorinde",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Clorinde.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Clorinde.png?vh=2024123000"
+      }
+    ],
+    "5.2": [
+      {
+        "id": 10000104,
+        "name": "Chasca",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Chasca.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Chasca.png?vh=2024123000"
+      },
+      {
+        "id": 10000084,
+        "name": "Lyney",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Lyney.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Liney.png?vh=2024123000"
+      },
+      {
+        "id": 10000087,
+        "name": "Neuvillette",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Neuvillette.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Neuvillette.png?vh=2024123000"
+      },
+      {
+        "id": 10000030,
+        "name": "Zhongli",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Zhongli.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Zhongli.png?vh=2024123000"
+      }
+    ],
+    "5.1": [
+      {
+        "id": 10000103,
+        "name": "Xilonen",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Xilonen.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Xilonen.png?vh=2024123000"
+      },
+      {
+        "id": 10000094,
+        "name": "Chiori",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Chiori.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Chiori.png?vh=2024123000"
+      },
+      {
+        "id": 10000073,
+        "name": "Nahida",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Nahida.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Nahida.png?vh=2024123000"
+      },
+      {
+        "id": 10000046,
+        "name": "Hu Tao",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_HuTao.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Hutao.png?vh=2024123000"
+      }
+    ],
+    "5.0": [
+      {
+        "id": 10000102,
+        "name": "Mualani",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Mualani.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Mualani.png?vh=2024123000"
+      },
+      {
+        "id": 10000047,
+        "name": "Kaedehara Kazuha",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KaedeharaKazuha.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kazuha.png?vh=2024123000"
+      },
+      {
+        "id": 10000101,
+        "name": "Kinich",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Kinich.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kinich.png?vh=2024123000"
+      },
+      {
+        "id": 10000052,
+        "name": "Raiden Shogun",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_RaidenShogun.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Shougun.png?vh=2024123000"
+      }
+    ],
+    "4.8": [
+      {
+        "id": 10000091,
+        "name": "Navia",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Navia.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Navia.png?vh=2024123000"
+      },
+      {
+        "id": 10000070,
+        "name": "Nilou",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Nilou.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Nilou.png?vh=2024123000"
+      },
+      {
+        "id": 10000099,
+        "name": "Emilie",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Emilie.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Emilie.png?vh=2024123000"
+      },
+      {
+        "id": 10000060,
+        "name": "Yelan",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Yelan.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yelan.png?vh=2024123000"
+      }
+    ],
+    "4.7": [
+      {
+        "id": 10000098,
+        "name": "Clorinde",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Clorinde.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Clorinde.png?vh=2024123000"
+      },
+      {
+        "id": 10000078,
+        "name": "Alhaitham",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Alhaitham.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Alhatham.png?vh=2024123000"
+      },
+      {
+        "id": 10000095,
+        "name": "Sigewinne",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Sigewinne.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Sigewinne.png?vh=2024123000"
+      },
+      {
+        "id": 10000089,
+        "name": "Furina",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Furina.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Furina.png?vh=2024123000"
+      }
+    ],
+    "4.6": [
+      {
+        "id": 10000096,
+        "name": "Arlecchino",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Arlecchino.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Arlecchino.png?vh=2024123000"
+      },
+      {
+        "id": 10000084,
+        "name": "Lyney",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Lyney.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Liney.png?vh=2024123000"
+      },
+      {
+        "id": 10000082,
+        "name": "Baizhu",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Baizhu.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Baizhuer.png?vh=2024123000"
+      },
+      {
+        "id": 10000075,
+        "name": "Wanderer",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Wanderer.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Wanderer.png?vh=2024123000"
+      }
+    ],
+    "4.5": [
+      {
+        "id": 10000094,
+        "name": "Chiori",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Chiori.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Chiori.png?vh=2024123000"
+      },
+      {
+        "id": 10000057,
+        "name": "Arataki Itto",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_AratakiItto.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Itto.png?vh=2024123000"
+      },
+      {
+        "id": 10000087,
+        "name": "Neuvillette",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Neuvillette.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Neuvillette.png?vh=2024123000"
+      },
+      {
+        "id": 10000047,
+        "name": "Kaedehara Kazuha",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KaedeharaKazuha.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kazuha.png?vh=2024123000"
+      }
+    ],
+    "4.4": [
+      {
+        "id": 10000093,
+        "name": "Xianyun",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Xianyun.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Liuyun.png?vh=2024123000"
+      },
+      {
+        "id": 10000073,
+        "name": "Nahida",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Nahida.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Nahida.png?vh=2024123000"
+      },
+      {
+        "id": 10000058,
+        "name": "Yae Miko",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_YaeMiko.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yae.png?vh=2024123000"
+      },
+      {
+        "id": 10000026,
+        "name": "Xiao",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Xiao.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Xiao.png?vh=2024123000"
+      }
+    ],
+    "4.3": [
+      {
+        "id": 10000091,
+        "name": "Navia",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Navia.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Navia.png?vh=2024123000"
+      },
+      {
+        "id": 10000002,
+        "name": "Kamisato Ayaka",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KamisatoAyaka.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ayaka.png?vh=2024123000"
+      },
+      {
+        "id": 10000052,
+        "name": "Raiden Shogun",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_RaidenShogun.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Shougun.png?vh=2024123000"
+      },
+      {
+        "id": 10000049,
+        "name": "Yoimiya",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Yoimiya.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yoimiya.png?vh=2024123000"
+      }
+    ],
+    "4.2": [
+      {
+        "id": 10000089,
+        "name": "Furina",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Furina.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Furina.png?vh=2024123000"
+      },
+      {
+        "id": 10000082,
+        "name": "Baizhu",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Baizhu.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Baizhuer.png?vh=2024123000"
+      },
+      {
+        "id": 10000066,
+        "name": "Kamisato Ayato",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KamisatoAyato.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ayato.png?vh=2024123000"
+      },
+      {
+        "id": 10000071,
+        "name": "Cyno",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Cyno.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Cyno.png?vh=2024123000"
+      }
+    ],
+    "4.1": [
+      {
+        "id": 10000087,
+        "name": "Neuvillette",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Neuvillette.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Neuvillette.png?vh=2024123000"
+      },
+      {
+        "id": 10000046,
+        "name": "Hu Tao",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_HuTao.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Hutao.png?vh=2024123000"
+      },
+      {
+        "id": 10000086,
+        "name": "Wriothesley",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Wriothesley.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Wriothesley.png?vh=2024123000"
+      },
+      {
+        "id": 10000022,
+        "name": "Venti",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Venti.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Venti.png?vh=2024123000"
+      }
+    ],
+    "4.0": [
+      {
+        "id": 10000084,
+        "name": "Lyney",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Lyney.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Liney.png?vh=2024123000"
+      },
+      {
+        "id": 10000060,
+        "name": "Yelan",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Yelan.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yelan.png?vh=2024123000"
+      },
+      {
+        "id": 10000033,
+        "name": "Tartaglia",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Tartaglia.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Tartaglia.png?vh=2024123000"
+      },
+      {
+        "id": 10000030,
+        "name": "Zhongli",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Zhongli.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Zhongli.png?vh=2024123000"
+      }
+    ],
+    "3.8": [
+      {
+        "id": 10000051,
+        "name": "Eula",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Eula.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Eula.png?vh=2024123000"
+      },
+      {
+        "id": 10000029,
+        "name": "Klee",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Klee.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Klee.png?vh=2024123000"
+      },
+      {
+        "id": 10000075,
+        "name": "Wanderer",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Wanderer.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Wanderer.png?vh=2024123000"
+      },
+      {
+        "id": 10000054,
+        "name": "Sangonomiya Kokomi",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_SangonomiyaKokomi.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kokomi.png?vh=2024123000"
+      }
+    ],
+    "3.7": [
+      {
+        "id": 10000058,
+        "name": "Yae Miko",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_YaeMiko.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yae.png?vh=2024123000"
+      },
+      {
+        "id": 10000049,
+        "name": "Yoimiya",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Yoimiya.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yoimiya.png?vh=2024123000"
+      },
+      {
+        "id": 10000078,
+        "name": "Alhaitham",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Alhaitham.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Alhatham.png?vh=2024123000"
+      },
+      {
+        "id": 10000047,
+        "name": "Kaedehara Kazuha",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KaedeharaKazuha.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kazuha.png?vh=2024123000"
+      }
+    ],
+    "3.6": [
+      {
+        "id": 10000070,
+        "name": "Nilou",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Nilou.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Nilou.png?vh=2024123000"
+      },
+      {
+        "id": 10000073,
+        "name": "Nahida",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Nahida.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Nahida.png?vh=2024123000"
+      },
+      {
+        "id": 10000082,
+        "name": "Baizhu",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Baizhu.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Baizhuer.png?vh=2024123000"
+      },
+      {
+        "id": 10000037,
+        "name": "Ganyu",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Ganyu.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ganyu.png?vh=2024123000"
+      }
+    ],
+    "3.5": [
+      {
+        "id": 10000079,
+        "name": "Dehya",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Dehya.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Dehya.png?vh=2024123000"
+      },
+      {
+        "id": 10000071,
+        "name": "Cyno",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Cyno.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Cyno.png?vh=2024123000"
+      },
+      {
+        "id": 10000063,
+        "name": "Shenhe",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Shenhe.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Shenhe.png?vh=2024123000"
+      },
+      {
+        "id": 10000002,
+        "name": "Kamisato Ayaka",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KamisatoAyaka.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ayaka.png?vh=2024123000"
+      }
+    ],
+    "3.4": [
+      {
+        "id": 10000078,
+        "name": "Alhaitham",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Alhaitham.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Alhatham.png?vh=2024123000"
+      },
+      {
+        "id": 10000026,
+        "name": "Xiao",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Xiao.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Xiao.png?vh=2024123000"
+      },
+      {
+        "id": 10000060,
+        "name": "Yelan",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Yelan.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yelan.png?vh=2024123000"
+      },
+      {
+        "id": 10000046,
+        "name": "Hu Tao",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_HuTao.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Hutao.png?vh=2024123000"
+      }
+    ],
+    "3.3": [
+      {
+        "id": 10000075,
+        "name": "Wanderer",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Wanderer.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Wanderer.png?vh=2024123000"
+      },
+      {
+        "id": 10000057,
+        "name": "Arataki Itto",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_AratakiItto.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Itto.png?vh=2024123000"
+      },
+      {
+        "id": 10000066,
+        "name": "Kamisato Ayato",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KamisatoAyato.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ayato.png?vh=2024123000"
+      },
+      {
+        "id": 10000052,
+        "name": "Raiden Shogun",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_RaidenShogun.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Shougun.png?vh=2024123000"
+      }
+    ],
+    "3.2": [
+      {
+        "id": 10000073,
+        "name": "Nahida",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Nahida.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Nahida.png?vh=2024123000"
+      },
+      {
+        "id": 10000049,
+        "name": "Yoimiya",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Yoimiya.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yoimiya.png?vh=2024123000"
+      },
+      {
+        "id": 10000058,
+        "name": "Yae Miko",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_YaeMiko.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yae.png?vh=2024123000"
+      },
+      {
+        "id": 10000033,
+        "name": "Tartaglia",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Tartaglia.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Tartaglia.png?vh=2024123000"
+      }
+    ],
+    "3.1": [
+      {
+        "id": 10000071,
+        "name": "Cyno",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Cyno.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Cyno.png?vh=2024123000"
+      },
+      {
+        "id": 10000022,
+        "name": "Venti",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Venti.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Venti.png?vh=2024123000"
+      },
+      {
+        "id": 10000070,
+        "name": "Nilou",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Nilou.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Nilou.png?vh=2024123000"
+      },
+      {
+        "id": 10000038,
+        "name": "Albedo",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Albedo.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Albedo.png?vh=2024123000"
+      }
+    ],
+    "3.0": [
+      {
+        "id": 10000069,
+        "name": "Tighnari",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Tighnari.png?vh=2024123000",
+        "vision": "Dendro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Tighnari.png?vh=2024123000"
+      },
+      {
+        "id": 10000030,
+        "name": "Zhongli",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Zhongli.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Zhongli.png?vh=2024123000"
+      },
+      {
+        "id": 10000037,
+        "name": "Ganyu",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Ganyu.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ganyu.png?vh=2024123000"
+      },
+      {
+        "id": 10000054,
+        "name": "Sangonomiya Kokomi",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_SangonomiyaKokomi.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kokomi.png?vh=2024123000"
+      }
+    ],
+    "2.8": [
+      {
+        "id": 10000047,
+        "name": "Kaedehara Kazuha",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KaedeharaKazuha.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kazuha.png?vh=2024123000"
+      },
+      {
+        "id": 10000029,
+        "name": "Klee",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Klee.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Klee.png?vh=2024123000"
+      },
+      {
+        "id": 10000049,
+        "name": "Yoimiya",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Yoimiya.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yoimiya.png?vh=2024123000"
+      }
+    ],
+    "2.7": [
+      {
+        "id": 10000060,
+        "name": "Yelan",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Yelan.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yelan.png?vh=2024123000"
+      },
+      {
+        "id": 10000026,
+        "name": "Xiao",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Xiao.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Xiao.png?vh=2024123000"
+      },
+      {
+        "id": 10000057,
+        "name": "Arataki Itto",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_AratakiItto.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Itto.png?vh=2024123000"
+      }
+    ],
+    "2.6": [
+      {
+        "id": 10000066,
+        "name": "Kamisato Ayato",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KamisatoAyato.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ayato.png?vh=2024123000"
+      },
+      {
+        "id": 10000022,
+        "name": "Venti",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Venti.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Venti.png?vh=2024123000"
+      },
+      {
+        "id": 10000002,
+        "name": "Kamisato Ayaka",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KamisatoAyaka.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ayaka.png?vh=2024123000"
+      }
+    ],
+    "2.5": [
+      {
+        "id": 10000058,
+        "name": "Yae Miko",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_YaeMiko.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yae.png?vh=2024123000"
+      },
+      {
+        "id": 10000054,
+        "name": "Sangonomiya Kokomi",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_SangonomiyaKokomi.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kokomi.png?vh=2024123000"
+      },
+      {
+        "id": 10000052,
+        "name": "Raiden Shogun",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_RaidenShogun.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Shougun.png?vh=2024123000"
+      }
+    ],
+    "2.4": [
+      {
+        "id": 10000063,
+        "name": "Shenhe",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Shenhe.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Shenhe.png?vh=2024123000"
+      },
+      {
+        "id": 10000026,
+        "name": "Xiao",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Xiao.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Xiao.png?vh=2024123000"
+      },
+      {
+        "id": 10000037,
+        "name": "Ganyu",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Ganyu.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ganyu.png?vh=2024123000"
+      },
+      {
+        "id": 10000030,
+        "name": "Zhongli",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Zhongli.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Zhongli.png?vh=2024123000"
+      }
+    ],
+    "2.3": [
+      {
+        "id": 10000051,
+        "name": "Eula",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Eula.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Eula.png?vh=2024123000"
+      },
+      {
+        "id": 10000038,
+        "name": "Albedo",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Albedo.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Albedo.png?vh=2024123000"
+      },
+      {
+        "id": 10000057,
+        "name": "Arataki Itto",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_AratakiItto.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Itto.png?vh=2024123000"
+      }
+    ],
+    "2.2": [
+      {
+        "id": 10000033,
+        "name": "Tartaglia",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Tartaglia.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Tartaglia.png?vh=2024123000"
+      },
+      {
+        "id": 10000046,
+        "name": "Hu Tao",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_HuTao.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Hutao.png?vh=2024123000"
+      }
+    ],
+    "2.1": [
+      {
+        "id": 10000052,
+        "name": "Raiden Shogun",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_RaidenShogun.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Shougun.png?vh=2024123000"
+      },
+      {
+        "id": 10000054,
+        "name": "Sangonomiya Kokomi",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_SangonomiyaKokomi.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kokomi.png?vh=2024123000"
+      }
+    ],
+    "2.0": [
+      {
+        "id": 10000002,
+        "name": "Kamisato Ayaka",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KamisatoAyaka.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ayaka.png?vh=2024123000"
+      },
+      {
+        "id": 10000049,
+        "name": "Yoimiya",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Yoimiya.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yoimiya.png?vh=2024123000"
+      }
+    ],
+    "1.6": [
+      {
+        "id": 10000029,
+        "name": "Klee",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Klee.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Klee.png?vh=2024123000"
+      },
+      {
+        "id": 10000047,
+        "name": "Kaedehara Kazuha",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KaedeharaKazuha.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kazuha.png?vh=2024123000"
+      }
+    ],
+    "1.5": [
+      {
+        "id": 10000030,
+        "name": "Zhongli",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Zhongli.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Zhongli.png?vh=2024123000"
+      },
+      {
+        "id": 10000051,
+        "name": "Eula",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Eula.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Claymore",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Eula.png?vh=2024123000"
+      }
+    ],
+    "1.4": [
+      {
+        "id": 10000022,
+        "name": "Venti",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Venti.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Venti.png?vh=2024123000"
+      },
+      {
+        "id": 10000033,
+        "name": "Tartaglia",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Tartaglia.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Tartaglia.png?vh=2024123000"
+      }
+    ],
+    "1.3": [
+      {
+        "id": 10000026,
+        "name": "Xiao",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Xiao.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Xiao.png?vh=2024123000"
+      },
+      {
+        "id": 10000042,
+        "name": "Keqing",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Keqing.png?vh=2024123000",
+        "vision": "Electro",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Keqing.png?vh=2024123000"
+      },
+      {
+        "id": 10000046,
+        "name": "Hu Tao",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_HuTao.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Hutao.png?vh=2024123000"
+      }
+    ],
+    "1.2": [
+      {
+        "id": 10000038,
+        "name": "Albedo",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Albedo.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Sword",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Albedo.png?vh=2024123000"
+      },
+      {
+        "id": 10000037,
+        "name": "Ganyu",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Ganyu.png?vh=2024123000",
+        "vision": "Cryo",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ganyu.png?vh=2024123000"
+      }
+    ],
+    "1.1": [
+      {
+        "id": 10000033,
+        "name": "Tartaglia",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Tartaglia.png?vh=2024123000",
+        "vision": "Hydro",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Tartaglia.png?vh=2024123000"
+      },
+      {
+        "id": 10000030,
+        "name": "Zhongli",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Zhongli.png?vh=2024123000",
+        "vision": "Geo",
+        "weapon": "Polearm",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Zhongli.png?vh=2024123000"
+      }
+    ],
+    "1.0": [
+      {
+        "id": 10000022,
+        "name": "Venti",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Venti.png?vh=2024123000",
+        "vision": "Anemo",
+        "weapon": "Bow",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Venti.png?vh=2024123000"
+      },
+      {
+        "id": 10000029,
+        "name": "Klee",
+        "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Klee.png?vh=2024123000",
+        "vision": "Pyro",
+        "weapon": "Catalyst",
+        "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Klee.png?vh=2024123000"
+      }
+    ]
+  },
+  "characters": {
+    "Varka": {
+      "id": 10000128,
+      "versions": [
+        "6.4"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Varka.png?vh=2024123000",
+      "vision": "Anemo",
+      "weapon": "Claymore",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Varka.png?vh=2024123000"
+    },
+    "Flins": {
+      "id": 10000120,
+      "versions": [
+        "6.4",
+        "6.0"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Flins.png?vh=2024123000",
+      "vision": "Electro",
+      "weapon": "Polearm",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Flins.png?vh=2024123000"
+    },
+    "Skirk": {
+      "id": 10000114,
+      "versions": [
+        "6.4",
+        "5.7"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Skirk.png?vh=2024123000",
+      "vision": "Cryo",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_SkirkNew.png?vh=2024123000"
+    },
+    "Escoffier": {
+      "id": 10000112,
+      "versions": [
+        "6.4",
+        "5.6"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Escoffier.png?vh=2024123000",
+      "vision": "Cryo",
+      "weapon": "Polearm",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Escoffier.png?vh=2024123000"
+    },
+    "Columbina": {
+      "id": 10000125,
+      "versions": [
+        "6.3"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Columbina.png?vh=2024123000",
+      "vision": "Hydro",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Columbina.png?vh=2024123000"
+    },
+    "Ineffa": {
+      "id": 10000116,
+      "versions": [
+        "6.3",
+        "5.8"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Ineffa.png?vh=2024123000",
+      "vision": "Electro",
+      "weapon": "Polearm",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ineffa.png?vh=2024123000"
+    },
+    "Zibai": {
+      "id": 10000126,
+      "versions": [
+        "6.3"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Zibai.png?vh=2024123000",
+      "vision": "Geo",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Zibai.png?vh=2024123000"
+    },
+    "Neuvillette": {
+      "id": 10000087,
+      "versions": [
+        "6.3",
+        "5.2",
+        "4.5",
+        "4.1"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Neuvillette.png?vh=2024123000",
+      "vision": "Hydro",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Neuvillette.png?vh=2024123000"
+    },
+    "Durin": {
+      "id": 10000123,
+      "versions": [
+        "6.2"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Durin.png?vh=2024123000",
+      "vision": "Pyro",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Durin.png?vh=2024123000"
+    },
+    "Venti": {
+      "id": 10000022,
+      "versions": [
+        "6.2",
+        "5.5",
+        "4.1",
+        "3.1",
+        "2.6",
+        "1.4",
+        "1.0"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Venti.png?vh=2024123000",
+      "vision": "Anemo",
+      "weapon": "Bow",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Venti.png?vh=2024123000"
+    },
+    "Varesa": {
+      "id": 10000111,
+      "versions": [
+        "6.2",
+        "5.5"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Varesa.png?vh=2024123000",
+      "vision": "Electro",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Varesa.png?vh=2024123000"
+    },
+    "Xilonen": {
+      "id": 10000103,
+      "versions": [
+        "6.2",
+        "5.5",
+        "5.1"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Xilonen.png?vh=2024123000",
+      "vision": "Geo",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Xilonen.png?vh=2024123000"
+    },
+    "Nefer": {
+      "id": 10000122,
+      "versions": [
+        "6.1"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Nefer.png?vh=2024123000",
+      "vision": "Dendro",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Nefer.png?vh=2024123000"
+    },
+    "Furina": {
+      "id": 10000089,
+      "versions": [
+        "6.1",
+        "5.4",
+        "4.7",
+        "4.2"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Furina.png?vh=2024123000",
+      "vision": "Hydro",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Furina.png?vh=2024123000"
+    },
+    "Arlecchino": {
+      "id": 10000096,
+      "versions": [
+        "6.1",
+        "5.3",
+        "4.6"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Arlecchino.png?vh=2024123000",
+      "vision": "Pyro",
+      "weapon": "Polearm",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Arlecchino.png?vh=2024123000"
+    },
+    "Zhongli": {
+      "id": 10000030,
+      "versions": [
+        "6.1",
+        "5.2",
+        "4.0",
+        "3.0",
+        "2.4",
+        "1.5",
+        "1.1"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Zhongli.png?vh=2024123000",
+      "vision": "Geo",
+      "weapon": "Polearm",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Zhongli.png?vh=2024123000"
+    },
+    "Lauma": {
+      "id": 10000119,
+      "versions": [
+        "6.0"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Lauma.png?vh=2024123000",
+      "vision": "Dendro",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Lauma.png?vh=2024123000"
+    },
+    "Nahida": {
+      "id": 10000073,
+      "versions": [
+        "6.0",
+        "5.1",
+        "4.4",
+        "3.6",
+        "3.2"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Nahida.png?vh=2024123000",
+      "vision": "Dendro",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Nahida.png?vh=2024123000"
+    },
+    "Yelan": {
+      "id": 10000060,
+      "versions": [
+        "6.0",
+        "4.8",
+        "4.0",
+        "3.4",
+        "2.7"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Yelan.png?vh=2024123000",
+      "vision": "Hydro",
+      "weapon": "Bow",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yelan.png?vh=2024123000"
+    },
+    "Citlali": {
+      "id": 10000107,
+      "versions": [
+        "5.8",
+        "5.3"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Citlali.png?vh=2024123000",
+      "vision": "Cryo",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Citlali.png?vh=2024123000"
+    },
+    "Mualani": {
+      "id": 10000102,
+      "versions": [
+        "5.8",
+        "5.0"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Mualani.png?vh=2024123000",
+      "vision": "Hydro",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Mualani.png?vh=2024123000"
+    },
+    "Chasca": {
+      "id": 10000104,
+      "versions": [
+        "5.8",
+        "5.2"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Chasca.png?vh=2024123000",
+      "vision": "Anemo",
+      "weapon": "Bow",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Chasca.png?vh=2024123000"
+    },
+    "Shenhe": {
+      "id": 10000063,
+      "versions": [
+        "5.7",
+        "3.5",
+        "2.4"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Shenhe.png?vh=2024123000",
+      "vision": "Cryo",
+      "weapon": "Polearm",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Shenhe.png?vh=2024123000"
+    },
+    "Emilie": {
+      "id": 10000099,
+      "versions": [
+        "5.7",
+        "4.8"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Emilie.png?vh=2024123000",
+      "vision": "Dendro",
+      "weapon": "Polearm",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Emilie.png?vh=2024123000"
+    },
+    "Mavuika": {
+      "id": 10000106,
+      "versions": [
+        "5.7",
+        "5.3"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Mavuika.png?vh=2024123000",
+      "vision": "Pyro",
+      "weapon": "Claymore",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Mavuika.png?vh=2024123000"
+    },
+    "Navia": {
+      "id": 10000091,
+      "versions": [
+        "5.6",
+        "4.8",
+        "4.3"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Navia.png?vh=2024123000",
+      "vision": "Geo",
+      "weapon": "Claymore",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Navia.png?vh=2024123000"
+    },
+    "Kinich": {
+      "id": 10000101,
+      "versions": [
+        "5.6",
+        "5.0"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Kinich.png?vh=2024123000",
+      "vision": "Dendro",
+      "weapon": "Claymore",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kinich.png?vh=2024123000"
+    },
+    "Raiden Shogun": {
+      "id": 10000052,
+      "versions": [
+        "5.6",
+        "5.0",
+        "4.3",
+        "3.3",
+        "2.5",
+        "2.1"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_RaidenShogun.png?vh=2024123000",
+      "vision": "Electro",
+      "weapon": "Polearm",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Shougun.png?vh=2024123000"
+    },
+    "Xianyun": {
+      "id": 10000093,
+      "versions": [
+        "5.5",
+        "4.4"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Xianyun.png?vh=2024123000",
+      "vision": "Anemo",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Liuyun.png?vh=2024123000"
+    },
+    "Yumemizuki Mizuki": {
+      "id": 10000109,
+      "versions": [
+        "5.4"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_YumemizukiMizuki.png?vh=2024123000",
+      "vision": "Anemo",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Mizuki.png?vh=2024123000"
+    },
+    "Sigewinne": {
+      "id": 10000095,
+      "versions": [
+        "5.4",
+        "4.7"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Sigewinne.png?vh=2024123000",
+      "vision": "Hydro",
+      "weapon": "Bow",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Sigewinne.png?vh=2024123000"
+    },
+    "Wriothesley": {
+      "id": 10000086,
+      "versions": [
+        "5.4",
+        "4.1"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Wriothesley.png?vh=2024123000",
+      "vision": "Cryo",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Wriothesley.png?vh=2024123000"
+    },
+    "Clorinde": {
+      "id": 10000098,
+      "versions": [
+        "5.3",
+        "4.7"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Clorinde.png?vh=2024123000",
+      "vision": "Electro",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Clorinde.png?vh=2024123000"
+    },
+    "Lyney": {
+      "id": 10000084,
+      "versions": [
+        "5.2",
+        "4.6",
+        "4.0"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Lyney.png?vh=2024123000",
+      "vision": "Pyro",
+      "weapon": "Bow",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Liney.png?vh=2024123000"
+    },
+    "Chiori": {
+      "id": 10000094,
+      "versions": [
+        "5.1",
+        "4.5"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Chiori.png?vh=2024123000",
+      "vision": "Geo",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Chiori.png?vh=2024123000"
+    },
+    "Hu Tao": {
+      "id": 10000046,
+      "versions": [
+        "5.1",
+        "4.1",
+        "3.4",
+        "2.2",
+        "1.3"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_HuTao.png?vh=2024123000",
+      "vision": "Pyro",
+      "weapon": "Polearm",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Hutao.png?vh=2024123000"
+    },
+    "Kaedehara Kazuha": {
+      "id": 10000047,
+      "versions": [
+        "5.0",
+        "4.5",
+        "3.7",
+        "2.8",
+        "1.6"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KaedeharaKazuha.png?vh=2024123000",
+      "vision": "Anemo",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kazuha.png?vh=2024123000"
+    },
+    "Nilou": {
+      "id": 10000070,
+      "versions": [
+        "4.8",
+        "3.6",
+        "3.1"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Nilou.png?vh=2024123000",
+      "vision": "Hydro",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Nilou.png?vh=2024123000"
+    },
+    "Alhaitham": {
+      "id": 10000078,
+      "versions": [
+        "4.7",
+        "3.7",
+        "3.4"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Alhaitham.png?vh=2024123000",
+      "vision": "Dendro",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Alhatham.png?vh=2024123000"
+    },
+    "Baizhu": {
+      "id": 10000082,
+      "versions": [
+        "4.6",
+        "4.2",
+        "3.6"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Baizhu.png?vh=2024123000",
+      "vision": "Dendro",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Baizhuer.png?vh=2024123000"
+    },
+    "Wanderer": {
+      "id": 10000075,
+      "versions": [
+        "4.6",
+        "3.8",
+        "3.3"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Wanderer.png?vh=2024123000",
+      "vision": "Anemo",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Wanderer.png?vh=2024123000"
+    },
+    "Arataki Itto": {
+      "id": 10000057,
+      "versions": [
+        "4.5",
+        "3.3",
+        "2.7",
+        "2.3"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_AratakiItto.png?vh=2024123000",
+      "vision": "Geo",
+      "weapon": "Claymore",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Itto.png?vh=2024123000"
+    },
+    "Yae Miko": {
+      "id": 10000058,
+      "versions": [
+        "4.4",
+        "3.7",
+        "3.2",
+        "2.5"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_YaeMiko.png?vh=2024123000",
+      "vision": "Electro",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yae.png?vh=2024123000"
+    },
+    "Xiao": {
+      "id": 10000026,
+      "versions": [
+        "4.4",
+        "3.4",
+        "2.7",
+        "2.4",
+        "1.3"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Xiao.png?vh=2024123000",
+      "vision": "Anemo",
+      "weapon": "Polearm",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Xiao.png?vh=2024123000"
+    },
+    "Kamisato Ayaka": {
+      "id": 10000002,
+      "versions": [
+        "4.3",
+        "3.5",
+        "2.6",
+        "2.0"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KamisatoAyaka.png?vh=2024123000",
+      "vision": "Cryo",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ayaka.png?vh=2024123000"
+    },
+    "Yoimiya": {
+      "id": 10000049,
+      "versions": [
+        "4.3",
+        "3.7",
+        "3.2",
+        "2.8",
+        "2.0"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Yoimiya.png?vh=2024123000",
+      "vision": "Pyro",
+      "weapon": "Bow",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Yoimiya.png?vh=2024123000"
+    },
+    "Kamisato Ayato": {
+      "id": 10000066,
+      "versions": [
+        "4.2",
+        "3.3",
+        "2.6"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_KamisatoAyato.png?vh=2024123000",
+      "vision": "Hydro",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ayato.png?vh=2024123000"
+    },
+    "Cyno": {
+      "id": 10000071,
+      "versions": [
+        "4.2",
+        "3.5",
+        "3.1"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Cyno.png?vh=2024123000",
+      "vision": "Electro",
+      "weapon": "Polearm",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Cyno.png?vh=2024123000"
+    },
+    "Tartaglia": {
+      "id": 10000033,
+      "versions": [
+        "4.0",
+        "3.2",
+        "2.2",
+        "1.4",
+        "1.1"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Tartaglia.png?vh=2024123000",
+      "vision": "Hydro",
+      "weapon": "Bow",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Tartaglia.png?vh=2024123000"
+    },
+    "Eula": {
+      "id": 10000051,
+      "versions": [
+        "3.8",
+        "2.3",
+        "1.5"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Eula.png?vh=2024123000",
+      "vision": "Cryo",
+      "weapon": "Claymore",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Eula.png?vh=2024123000"
+    },
+    "Klee": {
+      "id": 10000029,
+      "versions": [
+        "3.8",
+        "2.8",
+        "1.6",
+        "1.0"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Klee.png?vh=2024123000",
+      "vision": "Pyro",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Klee.png?vh=2024123000"
+    },
+    "Sangonomiya Kokomi": {
+      "id": 10000054,
+      "versions": [
+        "3.8",
+        "3.0",
+        "2.5",
+        "2.1"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_SangonomiyaKokomi.png?vh=2024123000",
+      "vision": "Hydro",
+      "weapon": "Catalyst",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Kokomi.png?vh=2024123000"
+    },
+    "Ganyu": {
+      "id": 10000037,
+      "versions": [
+        "3.6",
+        "3.0",
+        "2.4",
+        "1.2"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Ganyu.png?vh=2024123000",
+      "vision": "Cryo",
+      "weapon": "Bow",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Ganyu.png?vh=2024123000"
+    },
+    "Dehya": {
+      "id": 10000079,
+      "versions": [
+        "3.5"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Dehya.png?vh=2024123000",
+      "vision": "Pyro",
+      "weapon": "Claymore",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Dehya.png?vh=2024123000"
+    },
+    "Albedo": {
+      "id": 10000038,
+      "versions": [
+        "3.1",
+        "2.3",
+        "1.2"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Albedo.png?vh=2024123000",
+      "vision": "Geo",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Albedo.png?vh=2024123000"
+    },
+    "Tighnari": {
+      "id": 10000069,
+      "versions": [
+        "3.0"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Tighnari.png?vh=2024123000",
+      "vision": "Dendro",
+      "weapon": "Bow",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Tighnari.png?vh=2024123000"
+    },
+    "Keqing": {
+      "id": 10000042,
+      "versions": [
+        "1.3"
+      ],
+      "image": "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Keqing.png?vh=2024123000",
+      "vision": "Electro",
+      "weapon": "Sword",
+      "icon": "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Keqing.png?vh=2024123000"
+    }
+  },
+  "summary": {
+    "total_versions": 48,
+    "unique_characters": 57,
+    "total_character_appearances": 168,
+    "average_appearances_per_character": 2.95,
+    "versions": [
+      "6.4",
+      "6.3",
+      "6.2",
+      "6.1",
+      "6.0",
+      "5.8",
+      "5.7",
+      "5.6",
+      "5.5",
+      "5.4",
+      "5.3",
+      "5.2",
+      "5.1",
+      "5.0",
+      "4.8",
+      "4.7",
+      "4.6",
+      "4.5",
+      "4.4",
+      "4.3",
+      "4.2",
+      "4.1",
+      "4.0",
+      "3.8",
+      "3.7",
+      "3.6",
+      "3.5",
+      "3.4",
+      "3.3",
+      "3.2",
+      "3.1",
+      "3.0",
+      "2.8",
+      "2.7",
+      "2.6",
+      "2.5",
+      "2.4",
+      "2.3",
+      "2.2",
+      "2.1",
+      "2.0",
+      "1.6",
+      "1.5",
+      "1.4",
+      "1.3",
+      "1.2",
+      "1.1",
+      "1.0"
+    ]
+  }
+}
